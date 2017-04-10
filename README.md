@@ -55,9 +55,9 @@ To always set these variables when you log in, copy the export commands into you
 
 	$ cat < ~/.amlenvrc >> ~/.bashrc
 	
-The ACS deployment continues in the background and you are supplied with an ACS deployment ID that you can use with the AML environment setup to check the status of the deployment. **Note**: The .amlenvrc file is not automatically updated with ACS values, you must run the status command after the ACS deployment has completed to update the file.
+**Important**: The ACS deployment continues in the background and you are supplied with an ACS deployment ID that you can use with the AML environment setup to check the status of the deployment. The .amlenvrc file is not automatically updated with ACS values, you must copy and run the status command after the ACS deployment has completed to update the file. We recommend that you copy the supplied command immediately, otherwise you may lose it if you close your session. If you do not have the ACS deployment ID, you will not be able to automatically update the ACS environment variables.
 
-Example: 
+Example status command: 
 
 	aml env setup -s doncli04082017rgdeploymentacs20170407062300
 
