@@ -1,0 +1,32 @@
+{
+  "agentprivateCount": {
+    "value": 1
+  },
+  "agentVMSize": {
+    "value": "Standard_D2_v2"
+  },
+  "agentpublicEndpointDNSNamePrefix": {
+    "value": "amlagentdns"
+  },
+  "linuxAdminUsername": {
+    "value": "amladmin"
+  },
+  "masterEndpointDNSNamePrefix": {
+    "value": "amlmasterdns"
+  },
+  "sshRSAPublicKey": {
+    "value": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgX+9/RPKq1SacBjqknGHjTNR1YpOs0ZAQfSjy9k0i2VF8S4hqE5yiyljwSXCVK0+l76rtEazOr2XZofXlCvor3LdpckiWzKyqqYgNl2nbDdrJjuykAXVbT//IHFR4Sj3sL55qneZtLqzGsyu8AUUU0FHLYu8xhSUFuKYgzoWO2pWE1q+JhX60IGc5gPlwLPzs7Rf9UTpr6Ez6GY4ESNtd3Jt2MmEVOfWaH1sq8uQHenq/vfQzVx85Qtrmst4RQLEJ482D3LRpTI3WojRie8cm0y8vBH0ZQxG+4n6ZzDYlVML9wxY+jYmbB2iAQVBlSlmDOIXSaXkWXVQE/Q19uY5zQ=="
+  },
+  "azureContainerRegistryLogonServer": {
+    "value": "<Provide a valid ACR server name>"
+  },
+  "azureContainerRegistryUsername": {
+    "value": "<Provide a ACR username>"
+  },
+  "azureContainerRegistryPassword": {
+    "value": "<Provide ACR password>"
+  },
+  "nameSuffix": {
+      "value": "AzureMLCluster"
+  }
+}
