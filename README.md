@@ -55,7 +55,11 @@ To always set these variables when you log in, copy the export commands into you
 
 	$ cat < ~/.amlenvrc >> ~/.bashrc
 	
-**Important**: The ACS deployment continues in the background and you are supplied with an ACS deployment ID that you can use with the AML environment setup to check the status of the deployment. The .amlenvrc file is not automatically updated with ACS values, you must copy and run the status command after the ACS deployment has completed to update the file. We recommend that you copy the supplied command immediately, otherwise you may lose it if you close your session. If you do not have the ACS deployment ID, you will not be able to automatically update the ACS environment variables.
+**Important**: The ACS and App Insights deployment continues in the background and you are supplied with deployment IDs that you can use with the AML environment setup command to check the status of the deployments. The .amlenvrc file is not automatically updated with ACS and App Insights enviornment values, you must copy and run the status command after the deployments have completed to update the file. We recommend that you copy the supplied commands immediately, otherwise you may lose them if you close your session. If you do not have the deployment IDs, you will not be able to automatically update the ACS and App Insights environment variables.
+
+The aml status command has the following format:
+
+	aml env setup -s <your-cli-deployment-id>
 
 Example status command: 
 
