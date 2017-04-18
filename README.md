@@ -2,7 +2,7 @@
 
 ## Overview
 
-You can efficiently operationalize Spark, Tensorflow, CNTK, or Python based machine learning models using the Azure Machine Learning CLI and a Linux Data Science VM.
+You can efficiently operationalize Spark, Tensorflow, CNTK, or Python based machine learning models using the Azure Machine Learning CLI and a Data Science Virtual Machine for Linux.
 
 The following getting started tutorial walks you through building predictive APIs (both realtime and batch) powered by Spark machine learning models, and deploying them to [HDinsight](https://azure.microsoft.com/en-us/services/hdinsight/) and [Azure Container Service](https://azure.microsoft.com/en-us/services/container-service/) clusters for scale.
 
@@ -14,7 +14,9 @@ Additional tutorials are available for:
 
 ## Getting Started
 
-The getting started environment uses a Data Science VM (DSVM). For information on provisioning a DSVM, see [Provision the Linux Data Science Virtual Machine](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro).
+The getting started environment uses a Data Science Virtual Machine for Linux (CentOS). When provisioning the DSVM, choose password authentication rather than SSH. The getting started uses Jupyter server which requires password authentication to sign in.
+
+For information on provisioning a DSVM, see [Provision the Linux Data Science Virtual Machine](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro).
 
 Note: The information in this document pertains to DSVMs provisioned after February 1st, 2017.
 
