@@ -75,8 +75,8 @@ To run the real-time scenario, from the azureml folder, change to the realtime f
 
 To run the batch scenario on the DSVM, from the azureml folder, change to the batch folder and open the batchwebservices.ipynb notebook. Follow the provided instructions to train, save, and deploy a model as a local web service to the DSVM or to a production HDInsight environment. 
 
-## Updating the DSVM environment
+## Updating the DSVM Samples
 
-To update the Azure ML bits on the DSVM, run the following command.
+To update the Azure ML samples on the DSVM, run the following command.
 
 	$ wget -q http://amlsamples.blob.core.windows.net/scripts/amlupdate.sh -O - | sudo bash -
