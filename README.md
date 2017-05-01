@@ -27,7 +27,7 @@ Once you have provisioned and signed into the DSVM, run the following commands a
 
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
 
-Next, setup the Azure Machine Learning (AML) environment. The environment setup command creates the following resources for you:
+Next, set up the Azure Machine Learning (AML) environment. The environment setup command creates the following resources for you:
 
 * A resource group
 * A storage account
