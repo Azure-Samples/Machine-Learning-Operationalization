@@ -4,14 +4,6 @@
 
 You can efficiently operationalize Spark, Tensorflow, CNTK, or Python based machine learning models using the Azure Machine Learning CLI and a Data Science VM.
 
-The following getting started tutorial walks you through building predictive APIs (both realtime and batch) powered by Spark machine learning models, and deploying them to [HDinsight](https://azure.microsoft.com/en-us/services/hdinsight/) and [Azure Container Service](https://azure.microsoft.com/en-us/services/container-service/) clusters for scale.
-
-Additional tutorials are available for:
-
-* [CNTK](samples/cntk/tutorials/realtime)
-* [Tensorflow](samples/tensorflow/tutorials/realtime)
-* [Python](samples/python/tutorials/realtime) 
-
 ## Getting Started
 
 To get started, see [Provision the Linux Data Science Virtual Machine](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro).
@@ -22,8 +14,6 @@ Once you have provisioned and signed into the DSVM, run the following commands a
 
 	$ wget -q http://amlsamples.blob.core.windows.net/scripts/amlupdate.sh -O - | sudo bash -
 	$ sudo /anaconda/envs/py35/bin/pip install azure-cli-ml --upgrade
-	$ sudo /opt/microsoft/azureml/initial_setup.sh
-
 
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
 
@@ -55,13 +45,25 @@ To always set these variables when you log in, copy the export commands into you
 
 	$ cat < ~/.amlenvrc >> ~/.bashrc
 	
-Example status command: 
 
-	az ml env setup -s doncli04082017rgdeploymentacs20170407062300
+## Tutorial 
+
+The real-time and batch tutorial walk you through building predictive APIs (both realtime and batch) powered by Spark machine learning models, and deploying them to [HDinsight](https://azure.microsoft.com/en-us/services/hdinsight/) and [Azure Container Service](https://azure.microsoft.com/en-us/services/container-service/) clusters for scale.
+
+Additional tutorials are available for:
+
+* [CNTK](samples/cntk/tutorials/realtime)
+* [Tensorflow](samples/tensorflow/tutorials/realtime)
+* [Python](samples/python/tutorials/realtime) 
+
+
+To copy the tutorials to your DSVM, run the following script:
+
+	$ sudo /opt/microsoft/azureml/initial_setup.sh
 
 ## Jupyter notebook
 
-A Jupyter notebooks containg tutorials are available on the DSVM. 
+A Jupyter notebooks containing tutorials are available on the DSVM. 
 
 Open Jupyter at https://&lt;machine-ip-address&gt;:8000 in a browser and sign in. The user name and password are those that you configured for the DSVM. Note that you will receive a certificate warning that you can safely click through. 
 
