@@ -1,49 +1,23 @@
-# Azure machine learning CLI tutorial setup
+## Tutorial 
 
-To complete the Azure machine learning CLI tutorials, you must provision a Data Science Virtual Machine (DSVM). 
+The real-time and batch tutorial walk you through building predictive APIs (both realtime and batch) powered by Spark machine learning models, and deploying them to [HDinsight](https://azure.microsoft.com/en-us/services/hdinsight/) and [Azure Container Service](https://azure.microsoft.com/en-us/services/container-service/) clusters for scale.
 
-If you have previously provisioned a DSVM and setup the CLI environment, you want to ensure that you have the latest CLI bits by updating the Updating the CLI. For information on updating the CLI installation, see Updating the CLI at the end of this article.
+Additional tutorials are available for:
 
-To get started, see [Provision the Linux Data Science Virtual Machine](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro).
+* [CNTK](samples/cntk/tutorials/realtime)
+* [Tensorflow](samples/tensorflow/tutorials/realtime)
+* [Python](samples/python/tutorials/realtime) 
 
-**Note**: The information in this document pertains to DSVMs provisioned after May 1st, 2017.
+## Jupyter notebook
 
-Once you have provisioned and signed into the DSVM, run the following commands and follow the prompts:
+A Jupyter notebooks containing tutorials are available on the DSVM. 
 
-	$ wget -q http://amlsamples.blob.core.windows.net/scripts/amlupdate.sh -O - | sudo bash -
-	$ sudo /anaconda/envs/py35/bin/pip install azure-cli-ml --upgrade
-	$ sudo /opt/microsoft/azureml/initial_setup.sh
+Open Jupyter at https://&lt;machine-ip-address&gt;:8000 in a browser and sign in. The user name and password are those that you configured for the DSVM. Note that you will receive a certificate warning that you can safely click through. 
 
-**NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
+### Run the Notebook 
 
-Next, enter the environment setup command. **NOTE**: The following items are important when completing the environment setup:
+There are notebooks for both the real-time and batch web service scenarios. The notebooks are located in the **azureml/realtime** and **azureml/batch** folders. 
 
--   You will be prompted to sign in to Azure. To sign in, use a web browser to open the page <https://aka.ms/devicelogin> and enter the provided code to authenticate.
--   During the authentication process you are prompted for an account to authenticate with. Use the account under which you created the DSVM.
--   When the sign in is complete, your subscription information is presented and you are prompted whether you wish to continue with the selected account.
+To run the real-time scenario, from the azureml folder, change to the realtime folder and open the  realtimewebservices.ipynb notebook. Follow the instructions to train, save, and deploy a model as a real-time web service.  The notebook contains instructions for deploying to the DSVM and for deployment to a production ACS environment.
 
-Environment setup command:
-
-	$ az ml env setup -k
-
-Once the setup command has finished, it outputs environment export commands for the AML CLI environment. It also saves these export commands to a file in your home directory. Source the file to set up your environment variables:
-
-	$ source ~/.amlenvrc
-
-To always set these variables when you log in, copy the export commands into your *.bashrc* file:
-
-	$ cat < ~/.amlenvrc >> ~/.bashrc
-
-## Updating the AML CLI Installation
-
-
-You can upgrade your Azure ml CLI component using pip.
-
-To perform the upgrade you must be running as sudo:
-
-	$ sudo -i
-
-Then issue the following command:
-
-	# pip install --upgrade azure-cli-ml
-
+To run the batch scenario on the DSVM, from the azureml folder, change to the batch folder and open the batchwebservices.ipynb notebook. Follow the provided instructions to train, save, and deploy a model as a local web service to the DSVM or to a production HDInsight environment. 
