@@ -2,7 +2,7 @@
 
 ## Overview
 
-You can efficiently operationalize Spark, Tensorflow, CNTK, or Python based machine learning models using the Azure Machine Learning CLI and a Data Science Virtual Machine for Linux.
+You can efficiently operationalize Spark, Tensorflow, CNTK, or Python based machine learning models using the Azure Machine Learning CLI and a Data Science VM.
 
 The following getting started tutorial walks you through building predictive APIs (both realtime and batch) powered by Spark machine learning models, and deploying them to [HDinsight](https://azure.microsoft.com/en-us/services/hdinsight/) and [Azure Container Service](https://azure.microsoft.com/en-us/services/container-service/) clusters for scale.
 
@@ -14,62 +14,56 @@ Additional tutorials are available for:
 
 ## Getting Started
 
-The getting started environment uses a Data Science Virtual Machine for Linux (CentOS). When provisioning the DSVM, choose password authentication rather than SSH. The getting started uses Jupyter server which requires password authentication to sign in.
+To get started, see [Provision the Linux Data Science Virtual Machine](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro).
 
-For information on provisioning a DSVM, see [Provision the Linux Data Science Virtual Machine](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro).
+**Note**: The information in this document pertains to DSVMs provisioned after May 1st, 2017.
 
-Note: The information in this document pertains to DSVMs provisioned after February 1st, 2017.
-
-Once you have signed into the DSVM, run the following commands and follow the prompts:
+Once you have provisioned and signed into the DSVM, run the following commands and follow the prompts:
 
 	$ wget -q http://amlsamples.blob.core.windows.net/scripts/amlupdate.sh -O - | sudo bash -
+	$ sudo /anaconda/envs/py35/bin/pip install azure-cli-ml --upgrade
 	$ sudo /opt/microsoft/azureml/initial_setup.sh
+
 
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
 
-Next, setup the AML environment. The AML environment setup command creates the following resources for you:
+Next, setup the Azure Machine Learning (AML) environment. The environment setup command creates the following resources for you:
 
 * A resource group
 * A storage account
 * An Azure Container Registry (ACR)
-* An Azure Container Service (ACS)
+* A Kubernetes deployment on an Azure Container Service (ACS) cluster
 * Application insights
 
 **NOTE**: The following items when completing the environment setup:
 
-* Enter a name for the environment. Environment names must be 20 or fewer characters in length and can only consist of numbers and lowercase letters.
 * You will be prompted to sign in to Azure. To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the provided code to authenticate.
 * During the authentication process you will be prompted for an account to authenticate with. Use the account under which you created the DSVM.
 * When the sign in is complete your subscription information will be presented and you will be prompted whether you wish to continue with the selected account.
 
 To setup the AML environment, run the following commands:
 
-	$ az login
-	$ aml env setup
+	$ az ml env setup -k
 	
 The resource group, storage account, and ACR are created quickly. The ACS deployment can take some time. Once the setup command has finished setting up the resource group, storage account, and ACR, it outputs environment export commands for the AML CLI environment. 
 
 It saves the export commands to a file in your home directory. Source the file to set up your environment variables: 
 
-	$ source ~/.amlenvrc 
+	$ source ~/.amlenvrc
 	
 To always set these variables when you log in, copy the export commands into your .bashrc file:
 
 	$ cat < ~/.amlenvrc >> ~/.bashrc
 	
-**Important**: The ACS and App Insights deployment continues in the background and you are supplied with deployment IDs that you can use with the AML environment setup command to check the status of the deployments. The .amlenvrc file is not automatically updated with ACS and App Insights enviornment values, you must copy and run the status command after the deployments have completed to update the file. We recommend that you copy the supplied commands immediately, otherwise you may lose them if you close your session. If you do not have the deployment IDs, you will not be able to automatically update the ACS and App Insights environment variables.
-
-The aml status command has the following format:
-
-	aml env setup -s <your-cli-deployment-id>
-
 Example status command: 
 
-	aml env setup -s doncli04082017rgdeploymentacs20170407062300
+	az ml env setup -s doncli04082017rgdeploymentacs20170407062300
 
 ## Jupyter notebook
 
-Jupyter is running on the DSVM at https://&lt;machine-ip-address&gt;:8000. Open Jupyter in a browser and sign in. The user name and password are those that you configured for the DSVM. Note that you will receive a certificate warning that you can safely click through. 
+A Jupyter notebooks containg tutorials are available on the DSVM. 
+
+Open Jupyter at https://&lt;machine-ip-address&gt;:8000 in a browser and sign in. The user name and password are those that you configured for the DSVM. Note that you will receive a certificate warning that you can safely click through. 
 
 ### Run the Notebook 
 

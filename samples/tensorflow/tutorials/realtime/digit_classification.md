@@ -1,6 +1,6 @@
 # Walkthrough: Operationalizing Tensorflow image classification 
 
-In this walkthrough, you will learn how to deploy a Tensorflow model as a web service using the Azure Machine Learning CLI. The walkthrough uses the [MNIST sample dataset](http://yann.lecun.com/exdb/mnist/) to train a model to recognize a handwritten digit and is based on the Tensorflow [MNIST For ML Beginners](https://www.tensorflow.org/get_started/mnist/beginners) tutorial. 
+In this walkthrough, you will learn how to deploy a Tensorflow model as a web service using the Azure Machine Learning component for the Azure CLI 2.0. The walkthrough uses the [MNIST sample dataset](http://yann.lecun.com/exdb/mnist/) to train a model to recognize a handwritten digit and is based on the Tensorflow [MNIST For ML Beginners](https://www.tensorflow.org/get_started/mnist/beginners) tutorial. 
 
 Steps:
 
@@ -12,7 +12,7 @@ Steps:
 
 ## Provision a Data Science Virtual Machine
 
-To complete the AML CLI tutorials and walkthroughs, you must provision a Microsoft Linux Data Science Virtual Machine (DSVM). If you have not yet provisioned a DSVM, set the [tutorial setup](../../../tutorial_setup.md) document.
+To complete the CLI tutorials and walkthroughs, you must provision a Microsoft Linux Data Science Virtual Machine (DSVM). If you have not yet provisioned a DSVM, set the [tutorial setup](../../../tutorial_setup.md) document.
 
 ## Prepare the DSVM 
 
@@ -21,7 +21,14 @@ To prepare the DSVM to run the walkthrough.
 1. Sign into the DSVM. Navigate to the notebooks > azureml folder. 
 2. Create a folder named *tensorflow*. 
 3. From the folder for this walkthrough on GitHub, copy the driver.py, tensorscorer.py, and tensortrain.py files to your tesnsorflow folder on the DSVM.
-3. Install the Tensorflow libraries on the DSVM:
+
+Install the Tensorflow libraries on the DSVM:
+
+Windows
+
+	pip install tensorflow
+	
+Linux
 
 	$ sudo /anaconda/envs/py35/bin/pip install tensorflow
 
@@ -44,16 +51,15 @@ To deploy the model as a web service, you must supply a driver program that load
 
 The following command creates and deploys the model as a real-time web service:
 
-
-	$ aml service create realtime -r <runtime type>  -f <driver file> -m <model file> -n <your service name>
+	$ az ml service create realtime -r <runtime type>  -f <driver file> -m <model file> -n <your service name>
 
 Example command for this walkthrough:
 		
-	$ aml service create realtime -r tensorflow-py -f driver.py -m mnist_model.index -m mnist_model.data-00000-of-00001 -m mnist_model.meta -n tensorflowsrvc1
+	$ az ml service create realtime -r tensorflow-py -f driver.py -m mnist_model.index -m mnist_model.data-00000-of-00001 -m mnist_model.meta -n tensorflowsrvc1
 
-When the service finishes deploying, the AML CLI returns the service URL and service port which you use to call the service. If you need to retrieve the URL and port, you can call the ```aml service view``` command.
+When the service finishes deploying, the CLI returns the service URL and service port which you use to call the service. If you need to retrieve the URL and port, you can call the ```aml service view``` command.
 
-	$ aml service view realtime <your service name>
+	$ az ml service view realtime <your service name>
 
 For information on deploying the web service on an ACS cluster, see the notes section at the end of the walkthrough.
 
@@ -80,7 +86,7 @@ Using the Azure Machine Learning CLI you can quickly deploy and test a Tensorflo
 
 ### Deploying to an ACS cluster
 
-A three node ACS is cluster is provisioned as part of the *aml env setup*. The provisioning takes about 20 minutes and updates the *.amlenvrc* file with the information on the cluster.
+A three node ACS is cluster is provisioned as part of the *az ml env setup*. The provisioning takes about 20 minutes and updates the *.amlenvrc* file with the information on the cluster.
 
 Source the file to set up your environment variables that include the ACS cluster information:
 
@@ -88,19 +94,19 @@ Source the file to set up your environment variables that include the ACS cluste
 
 To set your environment to cluster mode, enter the following command:
 
-	$ aml env cluster
+	$ az ml env cluster
 
-You can then run the AML command to create the service on the cluster.
+You can then run the command to create the service on the cluster.
 
-	$ aml service create realtime -r <runtime type>  -f <driver file> -m <model file> -n <your service name>
+	$ az ml service create realtime -r <runtime type>  -f <driver file> -m <model file> -n <your service name>
 
 Example:
 		
-	$ aml service create realtime -r tensorflow-py -f driver.py -m mnist_model.index -m mnist_model.data-00000-of-00001 -m mnist_model.meta -n tensorflowsrvc1
+	$ az ml service create realtime -r tensorflow-py -f driver.py -m mnist_model.index -m mnist_model.data-00000-of-00001 -m mnist_model.meta -n tensorflowsrvc1
 
 
 
-When the service finishes deploying, the AML CLI returns the service URL which you use to call the service. If you need to retrieve the URL and port, you can call the ```aml service view``` command. When you call the web service on the ACS cluster, you must always use port 9091.
+When the service finishes deploying, the CLI returns the service URL which you use to call the service. If you need to retrieve the URL and port, you can call the ```az ml service view``` command. When you call the web service on the ACS cluster, you must always use port 9091.
 
 	$ python tensorscorer.py --imgIdx <index of an image> ---url http://<your service URL>:9091/score --name <your service name>
 
