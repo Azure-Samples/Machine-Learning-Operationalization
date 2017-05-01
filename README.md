@@ -24,8 +24,8 @@ To get started, see [Provision the Linux Data Science Virtual Machine](https://
 
 Once you have provisioned and signed into the DSVM, run the following commands and follow the prompts:
 
-    $ wget -q http://amlsamples.blob.core.windows.net/scripts/amlupdate.sh -O - | sudo bash -
-    $ sudo /opt/microsoft/azureml/initial_setup.sh
+    $ wget -q http://amlsamples.blob.core.windows.net/scripts/amlupdate.sh -O - | sudo bash -
+    $ sudo /opt/microsoft/azureml/initial_setup.sh
     
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
 
