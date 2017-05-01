@@ -26,7 +26,7 @@ Once you have provisioned and signed into the DSVM, run the following commands a
 
     $ wget -q http://amlsamples.blob.core.windows.net/scripts/amlupdate.sh -O - | sudo bash -
     $ sudo /opt/microsoft/azureml/initial_setup.sh
-
+    
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
 
 Next, set up the Azure Machine Learning (AML) environment. The environment setup command creates the following resources for you:
@@ -45,7 +45,7 @@ Next, set up the Azure Machine Learning (AML) environment. The environment setup
 
 To setup the AML environment, run the following commands:
 
-    $ az ml env setup -k
+    $ az ml env setup -k
     
 The resource group, storage account, and ACR are created quickly. The ACS deployment can take some time. Once the setup command has finished setting up the resource group, storage account, and ACR, it outputs environment export commands for the AML CLI environment. 
 
@@ -55,7 +55,7 @@ The environment setup saves the set or export commands to a file in your home di
 
 The environment set commands are saved to:
 
-    C:\users\&lt;user name&gt;\.amlenvrc
+    C:\users\&lt;user name&gt;\.amlenvrc
 
 ### Linux
 
@@ -65,9 +65,9 @@ The environment expor commands are saved to:
 
 Source the file to set up your environment variables: 
 
-    $ source ~/.amlenvrc
+    $ source ~/.amlenvrc
     
 To always set these variables when you log in, copy the export commands into your .bashrc file:
 
-    $ cat < ~/.amlenvrc >> ~/.bashrc
+    $ cat < ~/.amlenvrc >> ~/.bashrc
     
