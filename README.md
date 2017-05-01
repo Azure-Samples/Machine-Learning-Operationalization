@@ -31,17 +31,17 @@ Once you have provisioned and signed into the DSVM, run the following commands a
 
 Next, set up the Azure Machine Learning (AML) environment. The environment setup command creates the following resources for you:
 
-* A resource group
-* A storage account
+* A resource group
+* A storage account
 * An Azure Container Registry (ACR)
 * A Kubernetes deployment on an Azure Container Service (ACS) cluster
 * Application insights
 
 **NOTE**: The following items when completing the environment setup:
 
-* You will be prompted to sign in to Azure. To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the provided code to authenticate.
-* During the authentication process you will be prompted for an account to authenticate with. Use the account under which you created the DSVM.
-* When the sign in is complete your subscription information will be presented and you will be prompted whether you wish to continue with the selected account.
+* You will be prompted to sign in to Azure. To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the provided code to authenticate.
+* During the authentication process you will be prompted for an account to authenticate with. Use the account under which you created the DSVM.
+* When the sign in is complete your subscription information will be presented and you will be prompted whether you wish to continue with the selected account.
 
 To setup the AML environment, run the following commands:
 
@@ -66,7 +66,7 @@ The environment expor commands are saved to:
 Source the file to set up your environment variables: 
 
     $ source ~/.amlenvrc
-    
+    
 To always set these variables when you log in, copy the export commands into your .bashrc file:
 
     $ cat < ~/.amlenvrc >> ~/.bashrc
