@@ -4,9 +4,9 @@ The real-time and batch tutorial walk you through building predictive APIs (both
 
 Additional tutorials are available for:
 
-* [CNTK](samples/cntk/tutorials/realtime)
-* [Tensorflow](samples/tensorflow/tutorials/realtime)
-* [Python](samples/python/tutorials/realtime) 
+* [CNTK](samples/cntk/tutorials/realtime)
+* [Tensorflow](samples/tensorflow/tutorials/realtime)
+* [Python](samples/python/tutorials/realtime)
 
 ## Jupyter notebook
 
