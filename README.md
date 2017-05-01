@@ -13,7 +13,6 @@ To get started, see [Provision the Linux Data Science Virtual Machine](https://d
 Once you have provisioned and signed into the DSVM, run the following commands and follow the prompts:
 
 	$ wget -q http://amlsamples.blob.core.windows.net/scripts/amlupdate.sh -O - | sudo bash -
-	$ sudo /anaconda/envs/py35/bin/pip install azure-cli-ml --upgrade
 
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
 
