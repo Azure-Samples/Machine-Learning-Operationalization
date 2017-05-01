@@ -1,3 +1,4 @@
+
 # Operationalizing ML Models on Azure (Preview)
 
 ## Overview
@@ -13,6 +14,7 @@ To get started, see [Provision the Linux Data Science Virtual Machine](https://d
 Once you have provisioned and signed into the DSVM, run the following commands and follow the prompts:
 
 	$ wget -q http://amlsamples.blob.core.windows.net/scripts/amlupdate.sh -O - | sudo bash -
+	$ sudo /opt/microsoft/azureml/initial_setup.sh
 
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
 
@@ -73,9 +75,3 @@ There are notebooks for both the real-time and batch web service scenarios. The 
 To run the real-time scenario, from the azureml folder, change to the realtime folder and open the  realtimewebservices.ipynb notebook. Follow the instructions to train, save, and deploy a model as a real-time web service.  The notebook contains instructions for deploying to the DSVM and for deployment to a production ACS environment.
 
 To run the batch scenario on the DSVM, from the azureml folder, change to the batch folder and open the batchwebservices.ipynb notebook. Follow the provided instructions to train, save, and deploy a model as a local web service to the DSVM or to a production HDInsight environment. 
-
-## Updating the DSVM Samples
-
-To update the Azure ML samples on the DSVM, run the following command.
-
-	$ wget -q http://amlsamples.blob.core.windows.net/scripts/amlupdate.sh -O - | sudo bash -
