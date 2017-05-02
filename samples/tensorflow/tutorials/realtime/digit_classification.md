@@ -12,7 +12,7 @@ Steps:
 
 ## Provision a Data Science Virtual Machine
 
-To complete the CLI tutorials and walkthroughs, you must provision a Microsoft Linux Data Science Virtual Machine (DSVM). If you have not yet provisioned a DSVM, set the [tutorial setup](../../../tutorial_setup.md) document.
+To complete the CLI tutorials and walkthroughs, you must provision a Microsoft Linux Data Science Virtual Machine (DSVM). If you have not yet provisioned a DSVM, see [Readme](https://aka.ms/o16ncli) for this repository.
 
 ## Prepare the DSVM 
 
