@@ -100,10 +100,6 @@ You can then run the following command to create the service on the cluster.
 
 	$ az ml service create realtime -r <runtime type>  -f <driver file> -m <model file> -n <your service name>
 
-Example: 
-
-	$ az ml service create realtime -r cntk-py -f driver.py -m resnet.dnn -n cntksrvc2
-
 Example:
 		
 	$ az ml service create realtime -r tensorflow-py -f driver.py -m mnist_model.index -m mnist_model.data-00000-of-00001 -m mnist_model.meta -n tensorflowsrvc1
