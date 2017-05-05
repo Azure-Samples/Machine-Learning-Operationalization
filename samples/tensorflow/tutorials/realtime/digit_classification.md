@@ -84,21 +84,25 @@ Using the Azure Machine Learning CLI you can quickly deploy and test a Tensorflo
 
 ## Notes
 
-### Deploying to an ACS cluster
-
-A three node ACS is cluster is provisioned as part of the *az ml env setup*. The provisioning takes about 20 minutes and updates the *.amlenvrc* file with the information on the cluster.
-
-Source the file to set up your environment variables that include the ACS cluster information:
-
-	$ source ~/.amlenvrc
+### Deploying to a cluster
 
 To set your environment to cluster mode, enter the following command:
 
 	$ az ml env cluster
 
-You can then run the command to create the service on the cluster.
+Once you are in cluster mode, you deploy the model as a web service using the same deployment command you used in local mode:
 
 	$ az ml service create realtime -r <runtime type>  -f <driver file> -m <model file> -n <your service name>
+
+When the service finishes deploying, the CLI returns the service URL which you use to call the service. If you need to retrieve the URL and port, you can call the ```az ml service view``` command. When you call the web service on the ACS cluster, you must always use port 9091.
+
+You can then run the following command to create the service on the cluster.
+
+	$ az ml service create realtime -r <runtime type>  -f <driver file> -m <model file> -n <your service name>
+
+Example: 
+
+	$ az ml service create realtime -r cntk-py -f driver.py -m resnet.dnn -n cntksrvc2
 
 Example:
 		
