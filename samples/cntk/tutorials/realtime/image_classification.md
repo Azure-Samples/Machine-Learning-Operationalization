@@ -81,17 +81,15 @@ In the command prompt, issue the following command:
 
 	pip install --upgrade azure-cli-ml
 
-### Deploying to an ACS cluster
-
-A three node ACS is cluster is provisioned as part of the *aml env setup*. The provisioning takes about 20 minutes and updates the *.amlenvrc* file with the information on the cluster.
-
-Source the file to set up your environment variables that include the ACS cluster information:
-
-	$ source ~/.amlenvrc
+### Deploying to a cluster
 
 To set your environment to cluster mode, enter the following command:
 
 	$ az ml env cluster
+
+Once you are in cluster mode, you deploy the model as a web service using the same deployment command you used in local mode:
+
+	$ az ml service create realtime -r <runtime type>  -f <driver file> -m <model file> -n <your service name>
 
 When the service finishes deploying, the CLI returns the service URL which you use to call the service. If you need to retrieve the URL and port, you can call the ```az ml service view``` command. When you call the web service on the ACS cluster, you must always use port 9091.
 
@@ -107,7 +105,7 @@ Example:
 The To test the web service on the cluster run the python script:
 
 	$ python score_cntk.py --img car.png --url http://<your service URL>:9091/score --name <your service name>
-
+	
 ### Training the model
 
 The model contained in the *resnet.dnn* file was trained using sample notebooks from the CNTK tutorials.
