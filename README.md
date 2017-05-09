@@ -4,7 +4,7 @@
 
 You can efficiently operationalize Spark, Tensorflow, CNTK, or Python based machine learning models using the Azure Machine Learning CLI.
 
-## piGetting Started
+## Getting Started
 
 ### Windows
 
