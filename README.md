@@ -55,7 +55,7 @@ The environment setup saves the set or export commands to a file in your home di
 
 The environment set commands are saved to:
 
-    C:\users\&lt;user name&gt;\.amlenvrc
+    C:\users\<user name>\.amlenvrc
 
 ### Linux
 
