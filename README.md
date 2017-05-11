@@ -33,9 +33,9 @@ Next, set up the Azure Machine Learning (AML) environment. The environment setup
 
 * A resource group
 * A storage account
-* An Azure Container Registry (ACR)
-* A Kubernetes deployment on an Azure Container Service (ACS) cluster
-* Application insights
+* An Azure Container Registry (ACR)
+* A Kubernetes deployment on an Azure Container Service (ACS) cluster
+* Application insights
 
 **NOTE**: The following items when completing the environment setup:
 
