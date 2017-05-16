@@ -18,13 +18,12 @@ class Capturing(list):
 
     def __exit__(self, *args):
         self.extend(self._stringio.getvalue().splitlines())
-        del self._stringio    # free up some memory
+        del self._stringio  # free up some memory
         sys.stdout = self._stdout
 
 
 @magics_class
 class AMLHelpers(Magics):
-
     @staticmethod
     def print_and_update_env(k, v):
         os.environ[k] = v
@@ -78,10 +77,12 @@ class AMLHelpers(Magics):
 
         try:
             profile.set_active_subscription(parsed_args.subscription)
-            print('Active subscription set to {}'.format(profile.get_subscription()['name']))
+            print('Active subscription set to {}'.format(
+                profile.get_subscription()['name']))
         except CLIError as exc:
             print(exc)
-            print('Active subscription remains {}'.format(profile.get_subscription()['name']))
+            print('Active subscription remains {}'.format(
+                profile.get_subscription()['name']))
 
     @line_magic
     def check_deployment(self, line):
@@ -104,11 +105,17 @@ class AMLHelpers(Magics):
         from azure.cli.core._profile import Profile
         self._redirect_logging('az.azure.cli.core._profile')
         p = argparse.ArgumentParser()
-        p.add_argument('-n', '--name', help='base name for your environment', required=True)
-        p.add_argument('-k', dest='kubernetes', help='Flag to indicate kubernetes environment', required=False, action='store_true')
-        p.add_argument('-l', dest='local_only', help='Flag to preclude ACS deployment', required=False, action='store_true')
-        p.add_argument('-a', dest='service_principal_app_id', help='AppID of service principal', required=False)
-        p.add_argument('-p', dest='service_principal_password', help='Client Secret of service principal', required=False)
+        p.add_argument('-n', '--name', help='base name for your environment',
+                       required=True)
+        p.add_argument('-k', dest='kubernetes',
+                       help='Flag to indicate kubernetes environment', required=False,
+                       action='store_true')
+        p.add_argument('-l', dest='local_only', help='Flag to preclude ACS deployment',
+                       required=False, action='store_true')
+        p.add_argument('-a', dest='service_principal_app_id',
+                       help='AppID of service principal', required=False)
+        p.add_argument('-p', dest='service_principal_password',
+                       help='Client Secret of service principal', required=False)
         parsed_args = p.parse_args(line.split())
         # validate that user has selected a subscription
         profile = Profile()
@@ -120,11 +127,14 @@ class AMLHelpers(Magics):
         from azure.cli.command_modules.ml._util import JupyterContext
         c = JupyterContext()
         c.set_input_response('Continue with this subscription (Y/n)? ', 'y')
-        print('Setting up AML environment. Feel free to continue interacting with the rest '
-              'of your notebook until this cell updates...')
+        print(
+            'Setting up AML environment. Feel free to continue exploring the rest '
+            'of your notebook until this cell updates, though kernel will be busy...')
         with Capturing() as output:
-            env_setup(None, parsed_args.name, parsed_args.kubernetes, parsed_args.local_only,
-                      parsed_args.service_principal_app_id, parsed_args.service_principal_password,
+            env_setup(None, parsed_args.name, parsed_args.kubernetes,
+                      parsed_args.local_only,
+                      parsed_args.service_principal_app_id,
+                      parsed_args.service_principal_password,
                       c)
         acs_regex = r"az ml env setup -s (?P<deployment_id>[^']+)"
         env_regex = r'export (?P<k>[^=]+)=(?P<v>.+)'
@@ -132,7 +142,9 @@ class AMLHelpers(Magics):
         for line in output:
             s = re.search(acs_regex, line)
             if s:
-                print('To check the status of the deployment, run line magic %check_deployment -d {}'.format(s.group('deployment_id')))
+                print(
+                    'To check the status of the deployment, run line magic %check_deployment -d {}'.format(
+                        s.group('deployment_id')))
             else:
                 s = re.search(env_regex, line)
                 if s:
@@ -147,6 +159,7 @@ class AMLHelpers(Magics):
         import tempfile
         import azure.cli.command_modules.ml.service.realtime as r
         import azure.cli.command_modules.ml._util as u
+        import azure.cli.command_modules.ml.service._realtimeutilities as rtu
 
         # reload util to get new environment vars
         self.easy_reload(u)
@@ -154,23 +167,39 @@ class AMLHelpers(Magics):
         p.add_argument('-s', '--schema', help='local path to schema file', required=True)
         p.add_argument('-m', '--model', help='local path to model', required=True)
         p.add_argument('-n', '--name', help='name of the webservice', required=True)
-        p.add_argument('-d', '--dependency', dest='dependencies', help='arbitrary dependencies', action='append', default=[])
+        p.add_argument('-d', '--dependency', dest='dependencies',
+                       help='arbitrary dependencies', action='append', default=[])
+        p.add_argument('-p', '--requirements', dest='requirements',
+                       help='A pip requirements.txt file of packages needed by the code file.', required=False)
         p.add_argument('-o', '--overwrite', help='flag to overwrite existing service',
                        action='store_true')
+        p.add_argument('-r', '--target-runtime', help='Runtime of the web service. Valid runtimes are {}'.format('|'.join(rtu.RealtimeConstants.supported_runtimes)),
+                       default='spark-py')
+        p.add_argument('-l', '--app-insights-logging-enabled', dest='app_insights_logging_enabled',
+                       action='store_true', help='Flag to enable App insights logging.', required=False)
+        p.add_argument('-z', '--num-replicas', dest='num_replicas', type=int,
+                      default=1, required=False, help='Number of replicas for a Kubernetes service.')
         args = p.parse_args(parameter_s.split())
         context = u.JupyterContext()
         context.local_mode = True
-        context.set_input_response('Delete existing service and create new service (y/N)? ',
-                          'y' if args.overwrite else 'n')
+        context.set_input_response(
+            'Delete existing service and create new service (y/N)? ',
+            'y' if args.overwrite else 'n')
         _, fp = tempfile.mkstemp()
         with open(fp, 'w') as score_file:
             score_file.write(cell)
         try:
             resp_code = r.realtime_service_create(score_file.name,
-                                      dependencies=args.dependencies, requirements='',
-                                      schema_file=args.schema, service_name=args.name,
-                                      verb=False, custom_ice_url='', target_runtime='spark-py',
-                                      logging_level='debug', model=args.model, context=context)
+                                                  dependencies=args.dependencies,
+                                                  requirements=args.requirements,
+                                                  schema_file=args.schema,
+                                                  service_name=args.name,
+                                                  verb=False, custom_ice_url='',
+                                                  target_runtime=args.target_runtime,
+                                                  app_insights_logging_enabled=args.app_insights_logging_enabled,
+                                                  num_replicas=args.num_replicas,
+                                                  model=args.model,
+                                                  context=context)
             if resp_code == 1:
                 print('Use -o flag to magic to overwrite the existing service.')
         finally:
@@ -207,7 +236,8 @@ class AMLHelpers(Magics):
         parsed_args = p.parse_args(shlex.split(line))
         name = parsed_args.name
         input_data = parsed_args.data
-        r.realtime_service_run_local(service_name=name, input_data=input_data, verbose=False)
+        r.realtime_service_run_local(service_name=name, input_data=input_data,
+                                     verbose=False)
 
     @line_magic
     def delete_realtime_local(self, line):
@@ -260,6 +290,7 @@ class AMLHelpers(Magics):
                 # builtin for p2
 
         reload(module)
+
 
 from IPython import get_ipython
 
