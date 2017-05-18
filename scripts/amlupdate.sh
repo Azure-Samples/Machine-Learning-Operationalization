@@ -64,7 +64,7 @@ sudo /anaconda/bin/pip install azure-cli-ml --upgrade
 sudo /anaconda/bin/pip install azure-cli --upgrade
 
 ## reinstall backports, as the --upgrade flag above causes issues
-sudo /usr/bin/yes | /anaconda/bin/pip uninstall backports.shutil-get-terminal-size
+sudo /anaconda/bin/pip uninstall -y backports.shutil-get-terminal-size
 sudo /anaconda/bin/pip install backports.shutil-get-terminal-size
 
 echo "Success."
