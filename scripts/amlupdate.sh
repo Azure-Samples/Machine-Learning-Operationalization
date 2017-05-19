@@ -22,6 +22,7 @@ cd ${AZUREML_TMP}
 
 ## Install SparkBatch
 echo "Installing azureml spark-batch"
+rm -rf ${AZUREML_INSTALLDIR}/azureml
 AZUREML_TARFILE=azureml.tar.gz
 AZUREML_TARFILEURI=https://amlsamples.blob.core.windows.net/apps/${AZUREML_TARFILE}
 wget -nv $AZUREML_TARFILEURI -P ${AZUREML_TMP}
@@ -36,8 +37,9 @@ Description=azureml service
 [Service]
 Type=simple
 User=root
+Environment=YARN_CONF_DIR=
 Environment=SPARK_HOME=/dsvm/tools/spark/current
-Environment=PYSPARK_PYTHON=/usr/bin/python2.7
+Environment=PYSPARK_PYTHON=/anaconda/bin/python
 Environment=LIVY_URL=http://localhost:8998
 Restart=always
 RestartSec=5
