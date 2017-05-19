@@ -30,7 +30,7 @@ Example:
 
 When the service finishes deploying, the CLI returns the service URL and service port which you use to call the service. If you need to retrieve the URL and port, you can call the ```aml service view``` command.
 
-	$ az ml service view realtime <your service name>
+	$ az ml service view realtime -n <your service name>
 
 For information on deploying the web service on an ACS cluster, see the notes section at the end of the tutorial.
 
