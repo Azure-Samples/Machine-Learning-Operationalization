@@ -29,7 +29,9 @@ Once you have provisioned and signed into the DSVM, run the following commands a
     
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
 
-Next, set up the Azure Machine Learning (AML) environment. The environment setup command creates the following resources for you:
+## Set up the Azure Machine Learning environment on Windows and Linux
+
+The environment setup command creates the following resources for you:
 
 * A resource group
 * A storage account
@@ -43,23 +45,27 @@ Next, set up the Azure Machine Learning (AML) environment. The environment setup
 * During the authentication process you will be prompted for an account to authenticate with. Use the account under which you created the DSVM.
 * When the sign in is complete your subscription information will be presented and you will be prompted whether you wish to continue with the selected account.
 
-To setup the AML environment, run the following commands:
+To setup the AML environment, on either Windows or Linux, run the following command:
 
-    $ az ml env setup -k
+    az ml env setup -k
     
 The resource group, storage account, and ACR are created quickly. The ACS deployment can take some time. Once the setup command has finished setting up the resource group, storage account, and ACR, it outputs environment export commands for the AML CLI environment. 
 
-The environment setup saves the set or export commands to a file in your home directory. 
+The setup command saves a file in your home directory that contains commands to configure your environment. You must run these commands before you use the Azure Mchine Learning CLI to operationalize your models.
 
 ### Windows 
 
 The environment set commands are saved to:
 
     C:\users\<user name>\.amlenvrc
+    
+To set the environment commands temporarily, you can open the file in a text editor, copy the commands, and run them at the command prompt.
+
+To set them permanantly, open your **Control Panel** and click **System**. Next, clcik **Advanced System Settings** and select the **Advanced** tab. Click **Environment Variables** and add the each of the variables to the **Systems variables**.
 
 ### Linux
 
-The environment expor commands are saved to:
+The environment export commands are saved to:
 
     ~/.amlenvrc
 
