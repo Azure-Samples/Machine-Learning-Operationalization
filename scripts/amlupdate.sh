@@ -69,4 +69,10 @@ sudo /anaconda/bin/pip install azure-cli --upgrade
 sudo /anaconda/bin/pip uninstall -y backports.shutil-get-terminal-size
 sudo /anaconda/bin/pip install backports.shutil-get-terminal-size
 
+## place magic
+wget https://raw.githubusercontent.com/Azure/Machine-Learning-Operationalization/master/samples/magic/az_ml_magic.py -P ~/.ipython/profile_default/startup
+
+## restart kernel
+kill $(pgrep -f '/anaconda/bin/python -m ipykernel')
+
 echo "Success."
