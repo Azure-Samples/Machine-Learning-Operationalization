@@ -164,13 +164,14 @@ class AMLHelpers(Magics):
         # reload util to get new environment vars
         self.easy_reload(u)
         p = argparse.ArgumentParser()
-        p.add_argument('-s', '--schema', help='local path to schema file')
-        p.add_argument('-m', '--model', help='local path to model')
+        p.add_argument('-s', '--schema', help='local path to schema file', required=False, default='')
+        p.add_argument('-m', '--model', help='local path to model', required=False, default='')
         p.add_argument('-n', '--name', help='name of the webservice', required=True)
         p.add_argument('-d', '--dependency', dest='dependencies',
                        help='arbitrary dependencies', action='append', default=[])
         p.add_argument('-p', '--requirements', dest='requirements',
-                       help='A pip requirements.txt file of packages needed by the code file.', required=False)
+                       help='A pip requirements.txt file of packages needed by the code file.', required=False,
+                       default='')
         p.add_argument('-o', '--overwrite', help='flag to overwrite existing service',
                        action='store_true')
         p.add_argument('-r', '--target-runtime', help='Runtime of the web service. Valid runtimes are {}'.format('|'.join(rtu.RealtimeConstants.supported_runtimes)),
@@ -178,7 +179,7 @@ class AMLHelpers(Magics):
         p.add_argument('-l', '--app-insights-logging-enabled', dest='app_insights_logging_enabled',
                        action='store_true', help='Flag to enable App insights logging.', required=False)
         p.add_argument('-z', '--num-replicas', dest='num_replicas', type=int,
-                      default=1, required=False, help='Number of replicas for a Kubernetes service.')
+                       default=1, required=False, help='Number of replicas for a Kubernetes service.')
         args = p.parse_args(parameter_s.split())
         context = u.JupyterContext()
         context.local_mode = True
@@ -189,7 +190,9 @@ class AMLHelpers(Magics):
         with open(fp, 'w') as score_file:
             score_file.write(cell)
         try:
-            resp_code = r.realtime_service_create(score_file.name,
+            print('filepath: {}'.format(fp))
+            print('args.schema: {}'.format(args.schema))
+            resp_code = r.realtime_service_create(fp,
                                                   dependencies=args.dependencies,
                                                   requirements=args.requirements,
                                                   schema_file=args.schema,
