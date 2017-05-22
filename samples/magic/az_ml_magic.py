@@ -5,6 +5,7 @@ import os
 import argparse
 import shlex
 import re
+import platform
 
 from cStringIO import StringIO
 import sys
@@ -27,8 +28,9 @@ class AMLHelpers(Magics):
     @staticmethod
     def print_and_update_env(k, v):
         os.environ[k] = v
+        env_verb = 'export' if platform.system() in ['Linux', 'linux', 'Unix', 'unix'] else 'set'
         print(' os.environ["{}"]="{}"'.format(k, v))
-        return 'export {}={}'.format(k, v)
+        return '{} {}={}'.format(env_verb, k, v)
 
     @cell_magic
     def save_file(self, parameter_s='', cell=None):
@@ -46,11 +48,17 @@ class AMLHelpers(Magics):
         except ImportError:
             from azure.cli.core._util import CLIError
         self._redirect_logging('az.azure.cli.core._profile')
+
+        # load cached credentials in Profile() object
         profile = Profile()
         try:
+            # if user is logged in, get their current subscription
             profile.get_subscription()
         except CLIError:
+            # otherwise interactively prompy user to log in
             profile.find_subscriptions_on_login(True, None, None, None, None)
+
+        # list all subscriptions
         subs = profile.load_cached_subscriptions()
         if not subs:
             print('No subscriptions available.')
@@ -70,9 +78,12 @@ class AMLHelpers(Magics):
         p = argparse.ArgumentParser()
         p.add_argument('subscription')
         parsed_args = p.parse_args(shlex.split(line))
+
+        # if user is already logged in, get their subscriptions
         profile = Profile()
         subs = profile.load_cached_subscriptions()
         if not subs:
+            # user not logged in--prompt them
             profile.find_subscriptions_on_login(True, None, None, None, None)
 
         try:
@@ -95,7 +106,7 @@ class AMLHelpers(Magics):
         profile = Profile()
         subs = profile.load_cached_subscriptions()
         if not subs:
-            print('Please run %%select_sub before attempting to query.')
+            print('Please run %select_sub before attempting to query.')
             return
 
         env_setup(True, None, None, None, None, None, context=JupyterContext())
@@ -110,7 +121,7 @@ class AMLHelpers(Magics):
         p.add_argument('-k', dest='kubernetes',
                        help='Flag to indicate kubernetes environment', required=False,
                        action='store_true')
-        p.add_argument('-l', dest='local_only', help='Flag to preclude ACS deployment',
+        p.add_argument('-l', dest='local_only', help='Flag to exclude ACS deployment',
                        required=False, action='store_true')
         p.add_argument('-a', dest='service_principal_app_id',
                        help='AppID of service principal', required=False)
@@ -142,9 +153,7 @@ class AMLHelpers(Magics):
         for line in output:
             s = re.search(acs_regex, line)
             if s:
-                print(
-                    'To check the status of the deployment, run line magic %check_deployment -d {}'.format(
-                        s.group('deployment_id')))
+                print('To check the status of the deployment, run line magic %check_deployment')
             else:
                 s = re.search(env_regex, line)
                 if s:
@@ -190,8 +199,6 @@ class AMLHelpers(Magics):
         with open(fp, 'w') as score_file:
             score_file.write(cell)
         try:
-            print('filepath: {}'.format(fp))
-            print('args.schema: {}'.format(args.schema))
             resp_code = r.realtime_service_create(fp,
                                                   dependencies=args.dependencies,
                                                   requirements=args.requirements,
