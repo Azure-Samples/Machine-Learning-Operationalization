@@ -164,8 +164,8 @@ class AMLHelpers(Magics):
         # reload util to get new environment vars
         self.easy_reload(u)
         p = argparse.ArgumentParser()
-        p.add_argument('-s', '--schema', help='local path to schema file', required=True)
-        p.add_argument('-m', '--model', help='local path to model', required=True)
+        p.add_argument('-s', '--schema', help='local path to schema file')
+        p.add_argument('-m', '--model', help='local path to model')
         p.add_argument('-n', '--name', help='name of the webservice', required=True)
         p.add_argument('-d', '--dependency', dest='dependencies',
                        help='arbitrary dependencies', action='append', default=[])
