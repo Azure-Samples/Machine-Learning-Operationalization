@@ -1,4 +1,5 @@
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ConsoleApp1
 {
     class Program
     {
-        // Web Service URL
+        // Web Service URL (you can do $az ml service view realtime -n myservicename to get the post url)
         private const string URL = "http://<yourseviceipaddress>:8001/api/v1/service/skdigitsapp/score";
 
         // Web service input data
