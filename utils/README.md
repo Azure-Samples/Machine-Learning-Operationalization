@@ -3,6 +3,8 @@
 ## Create Bundle
 
 ```R
+source('https://raw.githubusercontent.com/danhartl/Machine-Learning-Operationalization/master/utils/BundleService.R')
+
 init <- function() {
   d <<- 3
 }
