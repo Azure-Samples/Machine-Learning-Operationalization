@@ -1,8 +1,17 @@
 # Operationalizing R Models in AzureML
 
+## Setup
+
+Create AzureML cluster
+
+```
+az ml env setup -k
+```
+
 ## Create Bundle
 
 ```R
+# One time load function
 source('https://raw.githubusercontent.com/danhartl/Machine-Learning-Operationalization/master/utils/BundleService.R')
 
 init <- function() {
@@ -13,7 +22,14 @@ add <- function(x, y) {
   result <<- (x + y) * myModel + d
 }
 
-bundleService(init, add, list(myModel = 2), inputs = list(x = "numeric", y = "numeric"), outputs = list(result = "numeric"), "/tmp")
+bundleService(
+    init,
+    add,
+    list(myModel = 2),
+    inputs = list(x = "numeric", y = "numeric"),
+    outputs = list(result = "numeric"),
+    outputFolder = "/tmp")
+
 ```
 
 ## Deploy

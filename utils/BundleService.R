@@ -1,9 +1,9 @@
 library(jsonlite)
 
-bundleService <- function(init, run, objects, inputs, outputs, folder)
+bundleService <- function(init, run, objects, inputs, outputs, outputFolder)
 {
   saveToFile <- function(name, obj) {
-    binFile <- file(paste(folder, '/', name, sep = ''), 'wb')
+    binFile <- file(paste(outputFolder, '/', name, sep = ''), 'wb')
     binObj <- serialize(obj, NULL)
     writeBin(con = binFile, object = binObj)
     close(binFile)
