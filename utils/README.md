@@ -21,3 +21,9 @@ bundleService(init, add, list(myModel = 2), inputs = list(x = "numeric", y = "nu
 ```
 az ml service create realtime -n myservice1 -r mrs -f service.json -d init -d run -d myModel
 ```
+
+## Test
+
+```
+az ml service run realtime -n myservice1 -d '{"x" : 2, "y": 3}
+```
