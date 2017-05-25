@@ -53,5 +53,5 @@ bundleService <- function(init, run, objects, inputs, outputs, outputFolder)
   ))
 
   json <- toJSON(svcmetadata, pretty=TRUE)
-  write(json, paste(folder, '/service.json', sep = ''))
+  write(json, paste(outputFolder, '/service.json', sep = ''))
 }
