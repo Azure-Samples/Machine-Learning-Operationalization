@@ -18,7 +18,7 @@ Open a command prompt using Run As Administrator and run the following commands:
 
 ### Linux
 
-To get started, see [Provision the Linux Data Science Virtual Machine](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro).
+The easiest and quickest way to get started, is to use the Data Sience VM (see [Provision the Linux Data Science Virtual Machine](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro)).
 
 **Note**: The information in this document pertains to DSVMs provisioned after May 1st, 2017.
 
