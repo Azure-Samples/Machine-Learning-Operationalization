@@ -36,8 +36,8 @@ The example command creates a web service named *foodinspector* that uses the sc
 
 You can also provide data from remote storage, for example:
 
-* ```az ml service create batch -f batch_score.py --in=--trained-model:food_inspection.model --in=--input-data:https://chpirillk8sstor.blob.core.windows.net/amlbdpackages/food_inspections2.csv --out=--output-data -v -n foodinspector```
-* ```az ml service create batch -f batch_score.py --in=--trained-model:food_inspection.model --in=--input-data:wasbs://amlbdpackages@chpirillk8sstor.blob.core.windows.net/food_inspections2.csv --out=--output-data -v -n foodinspector```
+* ```az ml service create batch -f batch_score.py --in=--trained-model:food_inspection.model --in=--input-data:https://myk8sclusterstor.blob.core.windows.net/amlbdpackages/food_inspections2.csv --out=--output-data -v -n foodinspector```
+* ```az ml service create batch -f batch_score.py --in=--trained-model:food_inspection.model --in=--input-data:wasbs://amlbdpackages@myk8sclusterstor.blob.core.windows.net/food_inspections2.csv --out=--output-data -v -n foodinspector```
 
 For more information on the scoring file, see [How to create a batch web service for a Spark model on Azure](https://github.com/Azure/Machine-Learning-Operationalization/blob/master/samples/spark/tutorials/batch/batchwebservices.ipynb).
 
