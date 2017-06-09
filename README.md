@@ -42,7 +42,7 @@ The environment setup command creates the following resources for you:
 **NOTE**: The following items when completing the environment setup:
 
 * You will be prompted to sign in to Azure. To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the provided code to authenticate.
-* During the authentication process you will be prompted for an account to authenticate with. Use the account under which you created the DSVM.
+* During the authentication process you will be prompted for an account to authenticate with. **Important**: Select an account that has a valid Azure subscription and sufficient permissions to create resources in the account.
 * When the sign in is complete your subscription information will be presented and you will be prompted whether you wish to continue with the selected account.
 
 To setup the AML environment, on either Windows or Linux, run the following command:
