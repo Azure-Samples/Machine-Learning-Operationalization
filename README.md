@@ -18,7 +18,7 @@ Open a command prompt using Run As Administrator and run the following commands:
 
 ### Linux
 
-The easiest and quickest way to get started, is to use the Data Sience VM (see [Provision the Linux Data Science Virtual Machine](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro)).
+The easiest and quickest way to get started is to use the Data Sience VM (see [Provision the Linux Data Science Virtual Machine](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro)).
 
 **Note**: The information in this document pertains to DSVMs provisioned after May 1st, 2017.
 
@@ -51,7 +51,7 @@ To setup the AML environment, on either Windows or Linux, run the following comm
     
 The resource group, storage account, and ACR are created quickly. The ACS deployment can take some time. Once the setup command has finished setting up the resource group, storage account, and ACR, it outputs environment export commands for the AML CLI environment. 
 
-The setup command saves a file in your home directory that contains commands to configure your environment. You must run these commands before you use the Azure Mchine Learning CLI to operationalize your models.
+The setup command saves a file in your home directory that contains commands to configure your environment. You must run these commands before you use the Azure Machine Learning CLI to operationalize your models.
 
 ### Windows 
 
@@ -61,7 +61,7 @@ The environment set commands are saved to:
     
 To set the environment commands temporarily, you can open the file in a text editor, copy the commands, and run them at the command prompt.
 
-To set them permanantly, open your **Control Panel** and click **System**. Next, clcik **Advanced System Settings** and select the **Advanced** tab. Click **Environment Variables** and add the each of the variables to the **Systems variables**.
+To set them permanantly, open your **Control Panel** and click **System**. Next, click **Advanced System Settings** and select the **Advanced** tab. Click **Environment Variables** and add the each of the variables to the **Systems variables**.
 
 ### Linux
 
