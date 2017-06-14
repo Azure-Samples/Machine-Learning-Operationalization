@@ -51,7 +51,7 @@ To setup the AML environment, on either Windows or Linux, run the following comm
     
 The resource group, storage account, and ACR are created quickly. The ACS deployment can take some time. Once the setup command has finished setting up the resource group, storage account, and ACR, it outputs environment export commands for the AML CLI environment. 
 
-**Note**: You can use the -l parameter to configure a local only evironment. If you choose this option, you will not be able to run any cluster mode commands.
+**Note**: You can use the -l parameter to configure a local only environment. If you choose this option, you will not be able to run any cluster mode commands.
 
 The setup command saves a file in your home directory that contains commands to configure your environment. You must run these commands before you use the Azure Machine Learning CLI to operationalize your models.
 
