@@ -70,7 +70,7 @@ Store it in a file and you can use [autorest](https://www.nuget.org/packages/Aut
 
 With this you can create a sample C# application
 
-```
+```csharp
 internal class Program
 {
     private static void Main(string[] args)
