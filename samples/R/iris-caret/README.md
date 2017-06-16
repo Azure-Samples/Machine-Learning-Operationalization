@@ -55,5 +55,30 @@ az ml service create realtime -n myservice1 -r mrs -f service.json -d init -d ru
 ## Test
 
 ```
-az ml service run realtime -n myservice1 -d '{ "SepalLength": 1.1, "SepalWidth": 2.2, "PetalLength": 3.3, "PetalWidth": 4.4 }'
+az ml service run realtime -n myservice1 -d '{ "SepalLength": 4.7, "SepalWidth": 3.2, "PetalLength": 1.3, "PetalWidth": 0.2 }'
+```
+
+## Generate client code
+
+You can download the swagger.json metadata from /swagger.json
+
+Store it in a file and you can use [autorest](https://www.nuget.org/packages/AutoRest) to generate the client code:
+
+```
+.\AutoRest.exe -input 'swagger.json' -ClientName Service -CodeGenerator CSharp -Namespace 'AzureML' -OutputDirectory '/tmp'
+```
+
+With this you can create a sample C# application
+
+```
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        var service = new Service(new Uri("<servername>"));
+
+        var webServiceResult = service.RunMLService(new InputParameters(4.7, 3.2, 1.3, 0.2));
+        Console.WriteLine(webServiceResult.OutputParameters.Result);
+    }
+}
 ```
