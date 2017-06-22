@@ -11,7 +11,7 @@ import argparse
 
 sc = SparkContext.getOrCreate()
 sqlContext = SQLContext.getOrCreate(sc)
-sc._jsc.hadoopConfiguration().set('fs.azure.account.key.kumabhitest.blob.core.windows.net','VQx3B/yB//CYW/72RJzGOH3p0OWeKiVHh21dvh1HMllq4VPRrYV/UqT/K6z+Kclvptsyv1rEv83He+7QJPJVng==')
+sc._jsc.hadoopConfiguration().set('fs.azure.account.key.<acct>.blob.core.windows.net','<acctKey>')
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--input-data")
