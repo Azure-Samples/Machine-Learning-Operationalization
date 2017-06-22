@@ -14,9 +14,6 @@ az ml env setup -k
 # import bundleService
 source('https://raw.githubusercontent.com/danhartl/Machine-Learning-Operationalization/master/utils/BundleService.R')
 
-# import bundleService
-source('https://raw.githubusercontent.com/danhartl/Machine-Learning-Operationalization/master/utils/BundleService.R')
-
 library(RevoScaleR);
 
 # train model
