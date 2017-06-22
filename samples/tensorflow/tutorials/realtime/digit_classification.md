@@ -67,16 +67,13 @@ For information on deploying the web service on an ACS cluster, see the notes se
 
 Once the web service is deployed, you can call it to do predictions:
 
-	```
 	python tensorscorer.py --imgIdx <index of an image> ---url http://<your service URL>:<your service port>/score --name <your service name>
-	```
+	
 	Example:
 	
 	The following example uses the web service to recognize digit for the 10th in image in the dataset against the trained model.
 
-	```
 	python tensorscorer.py --imgIdx 10 --url http://127.0.0.1:32795/score --name tensorflowsrvc1
-	```
 
 ## Summary
 
