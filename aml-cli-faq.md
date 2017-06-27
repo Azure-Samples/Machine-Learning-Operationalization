@@ -24,7 +24,7 @@ To perform the upgrade you must be running as sudo:
 
 Then issue the following command:
 
-	# pip install --upgrade azuremlcli
+	# pip install azure-cli-ml --upgrade
 
 
 ## Known Issues
