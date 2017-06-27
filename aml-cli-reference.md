@@ -12,7 +12,7 @@ On Windows, you must run the command as administrator.
 
 Then issue the following command:
 
-	pip install --upgrade azuremlcli
+	pip install azure-cli-ml --upgrade
 
 Base commands:
 
