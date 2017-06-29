@@ -2,11 +2,13 @@ Operationalization is the process of publishing models and code as web services 
 
 Azure Machine Learning Operationalization is a component of the Azure CLI that enables operationalization of models that use the CNTK, SPARK, and Python machine learning platforms.
 
+You can use the Operationalization CLIs from the Vienna desktop app (File->Open Command-Line Interface) or install the CLIs direclty from the command line.
+
 ## Basic Concepts
 
 ### Local and cluster modes 
 
-Azure MLO provides two deployment modes: local and cluster.
+Azure ML Operationalization provides two deployment modes: local and cluster.
 
 Local mode deployments run in docker containers on your local computer, whether that is your personal machine or a VM running on Azure. You can use local mode for development and testing.
 
@@ -16,14 +18,14 @@ In cluster mode, your service is run in the Azure Container Service (ACS). The o
 
 Depending on your business needs, you can deploy your service in one of two processing modes:
 
-* Realtime: Provides a web service that you call asynchronously to score data on an as needed basis.
-* Batch: Provides a web service that you call synchronously to score a batch of data records.
+* Realtime: Provides a web service that you call synchronously to score data on an as needed basis.
+* Batch: Provides a web service that you call asynchronously to score a batch of data records.
 
 ### Environment configuration
 
-Before you can operationalize your model, you must configure the MLO environment. 
+Before you can operationalize your model, you must configure your environment. 
 
-To configure the machine learning operationalization environment, you must have access to an Azure subscription where you have sufficient permissions to create Azure assets.
+To configure the machine learning operationalization environment (the environment), you must have access to an Azure subscription where you have sufficient permissions (e.g. Contributor or Admin access) to create Azure assets.
 
 The default environment configuration only supports local deployments. Optionally, you can configure the environment to support cluster deployments. Requirements to run in local mode are:
 
@@ -39,9 +41,9 @@ Optionally you need:
 
 ## Creating the Web Service
 
-The Azure CLI implements the *ml service create* command, which deploys the web service and returns a scoring endpoint.
+The Azure CLI implements the *ml service create* command, which deploys the web service and returns a scoring endpoint URL.
 
-When creating a realtime web service, you must supply a name for the service and a scoring script (sometimes referred to as the driver file.) The scoring script loads the data and runs it against the model.
+When creating a realtime web service, you must supply a name for the service and a scoring script (sometimes referred to as the driver file.) The scoring script loads the data and runs it against the model to provide predictions.
 
 Additionally, you can specify the following options for a realtime service:
 
@@ -60,8 +62,6 @@ For a batch web service you can specify the following options:
 * Parameters for service to expect.
 * The title of service, defaults to service_name.
 * Files and directories required by the service. 
-
-What is the purpose of the schema in this context?
 
 ### Consuming the web service
 
@@ -94,7 +94,7 @@ For more information on accessing remote data, see [How to use remotely stored d
 
 Operationalized models, deployed on ACS clusters on which Kubernetes has been installed, can be scaled in two ways:
 
-* You can scale the number of agent nodes in the cluster.
-* You can scale the number of Kubernetes pods
+* You can increase the number of agent nodes in the cluster.
+* You can increase the number of Kubernetes pods
 
 For more information, see [How to scale operationalization on your ACS cluster](how-to-scale.md).
