@@ -3,7 +3,7 @@ Operationalization is the process of publishing models and code as web services 
 Azure Machine Learning Operationalization is a component of the Azure CLI that enables operationalization of models that you create through Vienna that use the CNTK, SPARK, and Python machine learning platforms.
 
 ## Documentation
-* [Operationalaiztion Overview](documentation/operationalization-overview.md)
+* [Operationalization Overview](documentation/operationalization-overview.md)
 * Installation guides
     * [Getting started](documentation/getting-started.md)
     * [Installing the machine learning operationalization stack on Ubuntu Linux](documentation/install-on-ubuntu-linux.md)
