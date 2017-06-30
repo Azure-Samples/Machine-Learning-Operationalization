@@ -28,7 +28,7 @@ SSH into your system and perform the following steps:
 
 6. Install the Azure Machine Learning CLI:
     
-    sudo pip install azure-cli-ml --upgrade
+    sudo pip install azure-cli-ml
 
 When developing code to operationalize a model as a web service, you should use the version of [Python](https://www.python.org/) that matches the version in which your image will run:
 
