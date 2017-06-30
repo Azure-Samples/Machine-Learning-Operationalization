@@ -13,7 +13,7 @@ Install Python from [https://www.python.org/](https://www.python.org/). Ensure t
 Open a command prompt using Run As Administrator and run the following commands:
 
     pip install azure-cli
-    pip install azure-cli-ml --upgrade
+    pip install azure-cli-ml
 
 ### Linux
 
