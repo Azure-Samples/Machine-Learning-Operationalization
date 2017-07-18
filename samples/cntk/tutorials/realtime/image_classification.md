@@ -50,11 +50,11 @@ Once the web service is deployed, you can call it to classify images in two ways
 
 Linux
 
-    az ml service run realtime -n <your service name> -d '{"input": "[\"<image data>\"]"}'
+    az ml service run realtime -n <your service name> -d '[\"<image data>\"]'
 
 Windows
 
-    az ml service run realtime -n <your service name> -d "{\"input\": \\\"[\"<image data>\\\"]\"}"
+    az ml service run realtime -n <your service name> -d "[\"<image data>\"]"
 
 Sample base64 formatted image:
 
