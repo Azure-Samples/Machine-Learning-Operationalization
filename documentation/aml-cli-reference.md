@@ -6,13 +6,22 @@ To perform the update, you must have sufficient permissions:
 
 On Linux you must be running as sudo:
 
-	$ sudo -i
+```
+$ sudo -i
+```
+
+Then issue the following command:
+```
+# wget -q https://raw.githubusercontent.com/Azure/Machine-Learning-Operationalization/master/scripts/amlupdate.sh -O - | sudo bash -
+```
 
 On Windows, you must run the command as administrator.
 
 Then issue the following command:
 
+```
 	pip install azure-cli-ml --upgrade
+```
 
 Base commands:
 
