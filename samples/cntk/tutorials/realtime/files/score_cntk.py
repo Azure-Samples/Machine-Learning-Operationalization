@@ -9,13 +9,11 @@ args = parser.parse_args()
 
 routing_id="/{0}".format(args.name)
 headers = {'Content-Type': 'application/json', 'X-Marathon-App-Id': routing_id}
-#print(headers)
 encoded = None
 with open(args.img, 'rb') as file:
   encoded = base64.b64encode(file.read())
-payload = {
-      'input': '["{0}"]'.format(encoded)
-}
+payload = []
+payload.append("{}".format(encoded))
 body = json.dumps(payload)
 
 r = requests.post(args.url, data = body, headers=headers)
