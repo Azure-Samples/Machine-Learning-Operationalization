@@ -24,7 +24,7 @@ To perform the upgrade you must be running as sudo:
 
 Then issue the following command:
 
-	# pip install azure-cli-ml --upgrade
+	# wget -q https://raw.githubusercontent.com/Azure/Machine-Learning-Operationalization/master/scripts/amlupdate.sh -O - | sudo bash -
 
 
 ## Known Issues
