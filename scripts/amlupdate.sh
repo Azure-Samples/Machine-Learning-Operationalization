@@ -57,13 +57,20 @@ systemctl start azureml.service
 ## Install AML CLI
 echo "Installing azureml cli"
 
+## First upgrade pip and setuptools to avoid running into this issue:
+## https://github.com/GoogleCloudPlatform/google-cloud-python/issues/2990
+/anaconda/envs/py35/bin/pip install pip setuptools --upgrade
+/anaconda/bin/pip install pip setuptools --upgrade
+
 ## Anaconda Python 3.5
 sudo /anaconda/envs/py35/bin/pip install azure-cli-ml --upgrade
-sudo /anaconda/envs/py35/bin/pip install azure-cli --upgrade
+sudo /anaconda/envs/py35/bin/pip install azure-cli --upgrade 
+sudo /anaconda/envs/py35/bin/pip install azure-cli-core --upgrade
 
 ## Anaconda Python 2.7 
 sudo /anaconda/bin/pip install azure-cli-ml --upgrade
 sudo /anaconda/bin/pip install azure-cli --upgrade
+sudo /anaconda/bin/pip install azure-cli-core --upgrade
 
 ## reinstall backports, as the --upgrade flag above causes issues
 sudo /anaconda/bin/pip uninstall -y backports.shutil-get-terminal-size
