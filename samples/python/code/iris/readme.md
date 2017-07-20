@@ -16,6 +16,6 @@ Create the web service
 
 Run the service
 
-- az ml service run realtime -n irisservice1 -d "\"3.4,4.2,5.1,3.1\""
+- az ml service run realtime -n irisservice1 -d "\\"3.4,4.2,5.1,3.1\\""
 
 See troubleshooting see the troubleshooting guide.
