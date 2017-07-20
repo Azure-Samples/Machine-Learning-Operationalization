@@ -15,4 +15,4 @@ To view the logs:
 2. Click **More Services**.  
 3. In the search box, type *app insights* and press **Enter**.
 4. From the **Application Insights** search blade, select the Application Insights resource. The name of the service is constructed by taking the resource group name you specified when setting up your machine learning environment and appending "_ins" to it.
-5. Click on Overview, then on Search on the menu bar to see the log entries (note that it could take a few minuutes before the entries are displayed)
+5. Click on Overview, then on Search on the menu bar to see the log entries (note that it could take a few minutes before the entries are displayed)
