@@ -1,3 +1,4 @@
+
 # How to enable logging
 
 Logging uses the [Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/) service. When you run the service, stdin, stdout, and stderr are captured in the log. It takes five to ten minutes for the logs to show up in the portal.
@@ -14,3 +15,4 @@ To view the logs:
 2. Click **More Services**.  
 3. In the search box, type *app insights* and press **Enter**.
 4. From the **Application Insights** search blade, select the Application Insights resource. The name of the service is constructed by taking the resource group name you specified when setting up your machine learning environment and appending "_ins" to it.
+5. Click on Overview, then on Search on the menu bar to see the log entries (note that it could take a few minuutes before the entries are displayed)
