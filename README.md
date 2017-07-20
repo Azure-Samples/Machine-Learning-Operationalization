@@ -28,6 +28,7 @@ Azure Machine Learning Operationalization is a component of the Azure CLI that e
     * [Operationalizing Batch Processing of Machine Learning Models on Azure (Preview)](documentation/batch-processing.md)
     * [How to scale operationalization on your ACS cluster](documentation/how-to-scale.md)
     * [Consuming the web service](documentation/consume-web-service.md)
+    * [Troubleshooting the web service](documentation/troubleshooting.md)
 
 * Technical Articles:
     * [Command-Line Interface Reference](documentation/aml-cli-reference.md)
