@@ -1,8 +1,6 @@
 # Troubleshooting web services
 During deployment or when calling the web service, you can use the following resources to determine the cause of the errors.
 
-## Troubleshooting
-
 ### 1. Docker logs
 
 After using the "service create" command, a docker container is created to package the model and its dependencies for deployment. You can find this container, and view its log by using the following. Look for the image that has the name of your service.
