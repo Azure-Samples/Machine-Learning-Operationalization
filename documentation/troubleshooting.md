@@ -13,7 +13,7 @@ If the above does not show your container, try:
 
 Then use the container Id in the following call:
 
-- docker logs <containerid>
+- docker logs \<containerid>
 
 ### 2. Kubernetes logs
 
@@ -21,7 +21,7 @@ If you deployed your web service to an ACS cluster, then you can view the Kubern
 
 To access it, type the following:
 
-c:\users\<username>bin>kubectl proxy
+c:\users\\\<username>\bin>kubectl proxy
 
 Then browse to the specified address (127.0.0.1:8001/ui). Once there, click on Pods, then on the hamburger icon for your service.
 
@@ -33,6 +33,6 @@ If you use the "-l" flag without the quotes when deploying a web service, then t
 To access it:
 
 - Use -l when creating service
-- Open App Insights in Azure Portal. Use the environment to find the App Insights instance.
+- Open App Insights in Azure Portal. Use your environment name to find the App Insights instance.
 - Once in App Insights, click on Search in the top menu to view the results
 - Or go to Analytics ->Exceptions > exceptions take | 10
