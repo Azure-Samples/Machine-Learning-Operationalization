@@ -3,12 +3,17 @@ The following sample will train and save a model using the Iris dataset. We will
 
 Steps:
 1. Set up your environment
-2. Create web service
-3. Run web service
+2. Train and save the model
+3. Create web service
+4. Run web service
 
 Call the setup command from the command line to create your environment if not already done.
 
 - az ml env setup 
+
+Use python to train and saved the model 
+
+- Python iris_train.py
 
 Create the web service
 
