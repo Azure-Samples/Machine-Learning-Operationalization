@@ -1,6 +1,8 @@
 # Troubleshooting web services
 During deployment or when calling the web service, you can use the following resources to determine the cause of the errors.
 
+Note: If you get a "bad gateway error" when calling the web service immediately after deploying it, it is normally caused by the deployment process still going through its steps. Wait a minute, and try again. It should go away.
+
 ### 1. Docker logs
 
 After using the "service create" command, a docker container is created to package the model and its dependencies for deployment. You can find this container, and view its log by using the following. Look for the image that has the name of your service.
