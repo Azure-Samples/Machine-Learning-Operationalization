@@ -18,4 +18,4 @@ Run the service
 
 - az ml service run realtime -n irisservice1 -d "\"3.4,4.2,5.1,3.1\""
 
-See torubleshooting guide for info on troubleshooting.
+See troubleshooting see the troubleshooting guide.
