@@ -12,7 +12,7 @@ Call the setup command from the command line to create your environment if not a
 
 Create the web service
 
-az ml service create realtime -f iris_score.py --model-file model.pkl --model-name irismodel1 -n irisservice1 -r scikit-py
+- az ml service create realtime -f iris_score.py --model-file model.pkl --model-name irismodel1 -n irisservice1 -r scikit-py
 
 Run the service
 
