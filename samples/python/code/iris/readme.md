@@ -14,7 +14,7 @@ Steps:
 
 The steps in the sample are intended to be performed on a machine running Windows 10.
 
-To setup your environment for operationalization your local machine, see [Installing the operationalization stack on Windows 10 or Windows Server](../../../../../documentation/install-on-windows.md).
+To setup your environment for operationalization your local machine, see [Installing the operationalization stack on Windows 10 or Windows Server](https://github.com/Azure/Machine-Learning-Operationalization/blob/master/documentation/install-on-windows.md).
 
 ### Set up the machine learning operationalization environment
 
@@ -45,4 +45,4 @@ az ml service create realtime -f iris_score.py --model-file model.pkl --model-na
 az ml service run realtime -n irisservice1 -d "\"3.4,4.2,5.1,3.1\""
 ```
 
-If you encounter difficulties, see the [Troubleshooting Guide](..\..\..\documentation\troubleshooting.md).
+If you encounter difficulties, see the [Troubleshooting Guide](https://github.com/Azure/Machine-Learning-Operationalization/blob/master/documentation/troubleshooting.md).
