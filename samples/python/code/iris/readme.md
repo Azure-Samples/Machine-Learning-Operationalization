@@ -14,20 +14,7 @@ Steps:
 
 The steps in the sample are intended to be performed on a machine running Windows 10.
 
-Requirements:
-
-* Azure CLI 2.0 and the Azure Machine Learning CLI component. 
-    * Sign in to your system and perform the following steps:
-        1.Install the Azure CLI:
-```
-            pip install azure-cli
-```
-        2.Install the Azure Machine Learning CLI component:
-```
-            pip install azure-cli-ml --upgrade
-```
-* [Docker for Windows](https://docs.docker.com/docker-for-windows/)
-* [Python 3.5](https://www.python.org/downloads/)
+To setup your environment for operationalization your local machine, see [Installing the operationalization stack on Windows 10 or Windows Server](../../../documentation/install-on-windows.md).
 
 ### Set up the machine learning operationalization environment
 
