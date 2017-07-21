@@ -58,4 +58,4 @@ az ml service create realtime -f iris_score.py --model-file model.pkl --model-na
 az ml service run realtime -n irisservice1 -d "\"3.4,4.2,5.1,3.1\""
 ```
 
-If you ecounter difficulties, see the [Troubleshooting Guide](..\..\..\documentation\troubleshooting.md).
+If you encounter difficulties, see the [Troubleshooting Guide](..\..\..\documentation\troubleshooting.md).
