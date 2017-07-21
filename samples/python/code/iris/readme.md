@@ -14,7 +14,7 @@ Steps:
 
 The steps in the sample are intended to be performed on a machine running Windows 10.
 
-To setup your environment for operationalization your local machine, see [Installing the operationalization stack on Windows 10 or Windows Server](../../../documentation/install-on-windows.md).
+To setup your environment for operationalization your local machine, see [Installing the operationalization stack on Windows 10 or Windows Server](../../../../../documentation/install-on-windows.md).
 
 ### Set up the machine learning operationalization environment
 
