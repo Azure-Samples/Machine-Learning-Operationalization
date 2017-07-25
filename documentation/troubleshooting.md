@@ -38,3 +38,10 @@ To access it:
 - Open App Insights in Azure Portal. Use your environment name to find the App Insights instance.
 - Once in App Insights, click on Search in the top menu to view the results
 - Or go to Analytics ->Exceptions > exceptions take | 10
+
+### 4. Other known issues
+
+ - Do not re-use the environment name for the env setup command
+ - If env setup fails, make sure you have enough cores available in your subscription
+ - Do not use _ in the web service name (as in my_webservice)
+ - Retry if you get "Bad gateway error" when calling the web service. It normally means the container hasn't been deployed to the cluster yet.
