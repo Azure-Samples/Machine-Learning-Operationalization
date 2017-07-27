@@ -72,8 +72,8 @@ and testing. To run the CLI in local mode, set the following environment variabl
 
 *az ml env cluster*
 
-In cluster mode, the CLI is used to deploy production web services. Real-time web services are deployed to
-an Azure Container Service (ACS) cluster, and batch web services are deployed to an HDInsight Spark cluster. 
+In cluster mode, the CLI is used to deploy production web services. Real-time and batch services are deployed to
+an Azure Container Service (ACS) cluster. 
 For more information on ACS, see https://docs.microsoft.com/en-us/azure/container-service/container-service-intro.
 
 To use the CLI in cluster mode, define the following environment variables (in addition to those above for
