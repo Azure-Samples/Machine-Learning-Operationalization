@@ -20,7 +20,7 @@ On Windows, you must run the command as administrator.
 Then issue the following command:
 
 ```
-	pip install azure-cli-ml --upgrade
+	pip install azure-cli-ml
 ```
 
 Base commands:
