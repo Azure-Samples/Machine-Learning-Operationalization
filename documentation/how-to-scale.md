@@ -17,7 +17,7 @@ Using the -k parameter when setting up the operationalization environment, confi
 
 To scale the number pods in the Kubernetes service, use the ```az ml scale``` command.
 
-    az ml scale realtime -n <service name> -z <number of pods>
+    az ml service scale realtime -n <service name> -z <number of pods>
 
 For more information on Kubernetes pods, see the [Kubernetes Pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) documentation.
 
