@@ -26,6 +26,7 @@ Once you have provisioned and signed into the DSVM, run the following commands a
     $ sudo /opt/microsoft/azureml/initial_setup.sh
     
 **NOTE**: You may need to use the sudo -i command first.
+
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
 
 
