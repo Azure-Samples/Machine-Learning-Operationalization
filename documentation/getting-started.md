@@ -1,5 +1,4 @@
 # Operationalizing ML Models on Azure (Preview)
-
 ## Overview
 
 You can efficiently operationalize Spark, Tensorflow, CNTK, or Python based machine learning models using the Azure Machine Learning CLI.
@@ -26,7 +25,9 @@ Once you have provisioned and signed into the DSVM, run the following commands a
     $ wget -q https://raw.githubusercontent.com/Azure/Machine-Learning-Operationalization/master/scripts/amlupdate.sh -O - | sudo bash -
     $ sudo /opt/microsoft/azureml/initial_setup.sh
     
+**NOTE**: You may need to use the sudo -i command first.
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
+
 
 ## Set up the Azure Machine Learning environment on Windows and Linux
 
