@@ -41,7 +41,7 @@ To access it:
 
 ### 4. Error handling in script
 
-You can exception handling in your scoring.py script's run() function to return the error message:
+You can use exception handling in your scoring.py script's run() function to return the error message:
 
 ```python
     try:
