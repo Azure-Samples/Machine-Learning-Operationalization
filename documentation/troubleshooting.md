@@ -28,7 +28,7 @@ c:\users\\\<username>\bin>kubectl proxy
 Then browse to the specified address (127.0.0.1:8001/ui). Once there, click on Pods, then on the hamburger icon for your service.
 
 
-## 3. App Insights
+### 3. App Insights
 
 If you use the "-l" flag without the quotes when deploying a web service, then the service logs are written to the App Insights instance for your environment in Azure. You can search for it using the environment name you used when using the az ml env setup command.
 
@@ -39,7 +39,17 @@ To access it:
 - Once in App Insights, click on Search in the top menu to view the results
 - Or go to Analytics ->Exceptions > exceptions take | 10
 
-### 4. Other known issues
+### 4. Error handling in script
+
+You can exception handling in your scoring.py script's run() function to return the error message:
+
+```python
+    try:
+        <code to load model and score>
+    except Exception as e:
+        return(str(e))
+```
+### 5. Other known issues
 
  - Do not re-use the environment name for the env setup command
  - If env setup fails, make sure you have enough cores available in your subscription
