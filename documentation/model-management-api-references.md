@@ -1,6 +1,6 @@
 # Model Management Service API reference
 
-For environment set-up information, see [Model Management Service getting started]().
+For environment set-up information, see [Model Management Service getting started](model-management-service-overview.md).
 
 The Model Management Service API implements the following operations:
 
@@ -40,6 +40,8 @@ Registers a model in the specified hosting account.
 | Content-Type    | Application/json |
 | Authorization |  Bearer &lt;token> |
 
+The authorization token can be either an Azure Active Directory or Azure Resource Manager access token.
+
 ### Request Body
 
 ```
@@ -59,10 +61,10 @@ Registers a model in the specified hosting account.
 | Field   | Description  |
 |-------------|----------|
 | name        | **Required**. Name of the model. Model names can contain alphanumeric characters and hyphens. Maximum length: 32 characters |
-| tags        | **Optional**. Additional identifiers for a model. Tags must be alpha numeric. Maximum length: 29 characters.|
+| tags        | **Optional**. Additional identifiers for a model. Tags must be alpha numeric. Tags should be 30 or fewere characters in length.|
 | description | **Optional**. Description of the model. If no description is provided, the default value is an empty string. Max length: 200 Unicode characters. |
 | url    | **Required**. A URL specifying the location of the model. |
-| mimeType    | **Optional**. The Mime type of the model. Required by Docker image generation.   |
+| mimeType    | **Required**. The Mime type of the model. Required by Docker image generation.   |
 | unpack | If the model is contained in a packaged file, specifies that is to be automatically unpackaged. For example, a zipped model resource is unzipped. Default value: False. |
 
 ### Response
@@ -135,6 +137,8 @@ Creates a manifest using one or more models.
 | Content-Type    | Application/json     |
 | Authorization| Bearer &lt;token>  |
 
+The authorization token can be either an Azure Active Directory or Azure Resource Manager access token.
+
 ### Request Body
 
 ```
@@ -154,7 +158,7 @@ Creates a manifest using one or more models.
          "id": "<asset id>",
          "url": "<asset location url>",
          "mimeType": "<asset mime type>",
-         "unPack":
+         "unPack": "true|false"
       },
       ...,
       ...,
@@ -171,10 +175,10 @@ Creates a manifest using one or more models.
 ```
 | Field     | Description |
 |---------------|---------------|
-| driverProgram | **Optional**. The asset ID of the script file containing the entry point for the web service code execution. |
+| driverProgram | **Optional**. The asset ID of the script file containing the entry point for the web service code execution. For some runtimes, may be required. |
 | description   | **Optional**. Description of the manifest. If no description is provided, the default value is an empty string. Max length: 512 Unicode characters. |
 | modelType | **Required**. Must be set to 'registered'.|
-| modelIds | **Required**. The list of model names. All models must reside under the same hosting account. |
+| modelIds | **Required**. The list of model IDs. All models must reside under the same hosting account. |
 | assets | **Required**. List of non-model assets that are used by the models in this manifest, including but not limited to the web service input and output schema. |
 | targetRuntime | **Required**. The target runtime for the manifest. |
 
@@ -182,7 +186,7 @@ Creates a manifest using one or more models.
 
 | Field     | Description |
 |---------------|---------------|
-| id | **Required**. An identifier for the the asset. Identifies are are alpha numeric and can contain hyphens. Maximum Length: 32 characters |
+| id | **Required**. An identifier for the asset. Identifies are alpha numeric and can contain hyphens. Maximum Length: 32 characters |
 | url | **Required**. A URL specifying the location of the asset.|
 | mimetypes | **Required**. The mime-type of the asset. |
 | unPack | **Required**. If the asset is contained in a packaged file, specifies that is to be automatically unpackaged. For example, a zipped model resource is unzipped. Default value: False.|
@@ -201,9 +205,9 @@ The response includes an HTTP status code, a response header, and a response bod
 
 ### Status Code
 
--   200 - OK. This is returned when the model successfully registered.
+-   200 - OK. This is returned when the manifest is successfully registered.
 
-### Response Field Name
+### Response Header
 
 | Field Name     | Description      |
 |-----------------|----------------------|
@@ -251,15 +255,15 @@ The response includes an HTTP status code, a response header, and a response bod
 | id | A GUID that uniquely identifies the manifest. |
 | driverProgram | The asset ID of the script file containing the entry point for the web service code execution. |
 | description   | Description of the manifest. If the manifest does not have a description, an empty string is returned. Max length: 512 Unicode characters. |
-| modelIds      | The list of model names included in the manifest. |
-| assets        | List of non-model assets that are used by the models in this manifest. |
+| modelIds | The list of model IDs included in the manifest. |
+| assets | List of non-model assets that are used by the models in this manifest. |
 | targetRuntime | The target runtime for the manifest. |
 
 **asset fields**
 
 | Field     | Description |
 |---------------|---------------|
-| id | An identifier for the the asset. Identifies are are alpha numeric and can contain hyphens. Maximum Length: 32 characters  |
+| id | An identifier for the asset. Identifies are alpha numeric and can contain hyphens. |
 | url | A URL specifying the location of the asset.|
 | mimetypes | The mime-type of the asset. |
 | unPack | If the asset is contained in a packaged file, specifies that is to be automatically unpackaged. For example, a zipped model resource is unzipped. Default value: False. |
@@ -278,7 +282,7 @@ The response includes an HTTP status code, a response header, and a response bod
 
 Creates an image using the supplied manifest and image type. Currently, the only supported image type is Docker.
 
-This is an async operation. Call the Get Async Operation Status operation with the `x-ms-request-id` to check the status of the create operation.
+This is an async operation. To check the status of the create operation, call the Get Async Operation Status operation with the value of the `Operation-Location` reposnse field.
 
 ### Request
 
@@ -300,8 +304,9 @@ This is an async operation. Call the Get Async Operation Status operation with t
 | Field Name     | Description      |
 |-----------------|----------------------|
 | Content-Type    | Application/json     |
-| Authorization|   |
+| Authorization| Bearer &lt;token>  |
 
+The authorization token can be either an Azure Active Directory or Azure Resource Manager access token.
 
 ### Request Body
 
@@ -321,7 +326,7 @@ This is an async operation. Call the Get Async Operation Status operation with t
 | Field     | Description |
 |---------------|---------------|
 | manifestId | **Required**. ID of the manifest to use for image creation. |
-| description | **Optional**. Description of the manifest. If no description is provided, the default value is an empty string. Max length: 512 Unicode characters. |
+| description | **Optional**. Description of the manifest. If no description is provided, the default value is an empty string.  |
 | imageType | **Required**. The type of image to create. Must be set to `Docker`. |
 | registryInfo | **Required**. ACR Registry information. |
 
@@ -349,7 +354,7 @@ The response includes an HTTP status code, a response header, and a response bod
 |-----------------|----------------------|
 | Content-Type    | Application/json     |
 | x-ms-request-id | GUID. The request id. |
-
+| Operation-Location | The the path from which to retrieve the status. |
 
 ### Response Body
 
@@ -360,7 +365,7 @@ Empty.
 
 Creates a web service based on the specified image.
 
-This is an async operation. Call the Get Async Operation Status operation with the `x-ms-request-id` to check the status of the create operation.
+This is an async operation. To check the status of the create operation, call the Get Async Operation Status operation with the value of the `Operation-Location` reposnse field.
 
 ### Request
 
@@ -383,7 +388,9 @@ This is an async operation. Call the Get Async Operation Status operation with t
 |-----------------|----------------------|
 | Content-Type    | Application/json     |
 | Authorization | Bearer &lt;token> |
+| Operation-Location | The the path from which to retrieve the status. |
 
+The authorization token can be either an Azure Active Directory or Azure Resource Manager access token.
 
 ### Request Body
 
@@ -427,7 +434,7 @@ Empty.
 
 Updates the specified web service.
 
-This is an async operation. Call the Get Async Operation Status operation with the `x-ms-request-id` to check the status of the create operation.
+This is an async operation. To check the status of the create operation, call the Get Async Operation Status operation with the value of the `Operation-Location` reposnse field.
 
 ### Request
 
@@ -451,6 +458,9 @@ This is an async operation. Call the Get Async Operation Status operation with t
 |-----------------|----------------------|
 | Content-Type    | Application/json     |
 | Authorization| Bearer &lt;token>  |
+| Operation-Location | The the path from which to retrieve the status. |
+
+The authorization token can be either an Azure Active Directory or Azure Resource Manager access token.
 
 
 ### Request Body
@@ -513,6 +523,8 @@ Deletes the specified service.
 |-----------------|----------------------|
 | Authorization | Bearer &lt;token> |
 
+The authorization token can be either an Azure Active Directory or Azure Resource Manager access token.
+
 
 ### Request Body
 
@@ -524,8 +536,8 @@ The response includes an HTTP status code, a response header, and a response bod
 
 ### Status Code
 
--   200 - Ok
-
+- 200 - Ok
+- 204 - Not Found.
 ### Response Header
 
 | Field Name     | Description      |
@@ -536,7 +548,6 @@ The response includes an HTTP status code, a response header, and a response bod
 ### Response Body
 
 Empty.
-
 
 #--------------------------------------------------------
 
@@ -574,6 +585,8 @@ Retrieve all models in the Hosting Account.
 | Headers     | Description      |
 |-----------------|----------------------|
 | Authorization| Bearer &lt;token>  |
+
+The authorization token can be either an Azure Active Directory or Azure Resource Manager access token.
 
 ### Response
 
@@ -657,6 +670,8 @@ Retrieve all manifests in the Hosting Account
 |-----------------|----------------------|
 | Content-Type    | Application/json |
 | Authorization |  Bearer &lt;token> |
+
+The authorization token can be either an Azure Active Directory or Azure Resource Manager access token.
 
 ### Response
 
@@ -851,6 +866,7 @@ To retrieve all services in the Hosting Account.
 | Content-Type    | Application/json     |
 | Authorization|   | Bearer &lt;token> |
 
+The authorization token can be either an Azure Active Directory or Azure Resource Manager access token.
 
 ### Request Body
 
@@ -920,6 +936,8 @@ Empty.
 | Field Name     | Description      |
 |-----------------|----------------------|
 | Authorization| Bearer &lt;token>  |
+
+The authorization token can be either an Azure Active Directory or Azure Resource Manager access token.
 
 ### Request Body
 
