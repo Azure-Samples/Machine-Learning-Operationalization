@@ -31,5 +31,7 @@ Azure Machine Learning Operationalization is a component of the Azure CLI that e
 
 * Technical Articles:
     * [Command-Line Interface Reference](documentation/aml-cli-reference.md)
+    * [Model Management Service Overview](documentation/model-management-service-overview.md)
+    * [Model Management API Reference](documentation/model-management-api-references.md)
 
 * [FAQ](documentation/aml-cli-faq.md)
