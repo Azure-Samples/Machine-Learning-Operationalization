@@ -7,8 +7,13 @@ import shlex
 import re
 import platform
 
-from cStringIO import StringIO
 import sys
+PYTHON_2 = sys.version_info < (3,0)
+
+if PYTHON_2:
+    from cStringIO import StringIO
+else:
+    from io import StringIO
 
 
 class Capturing(list):
