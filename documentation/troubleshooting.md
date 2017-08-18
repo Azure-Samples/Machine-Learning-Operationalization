@@ -49,7 +49,15 @@ You can use exception handling in your scoring.py script's run() function to ret
     except Exception as e:
         return(str(e))
 ```
-### 5. Other known issues
+### 5. Deleting a faulty web service
+
+If your web service needs to be deleted, please use the following:
+
+```bash
+az ml service delete realtime --name=<service name>
+```
+
+### 6. Other known issues
 
  - Do not re-use the environment name for the env setup command
  - If env setup fails, make sure you have enough cores available in your subscription
