@@ -16,4 +16,4 @@ To view the logs:
 3. In the search box, type *app insights* and press **Enter**.
 4. From the **Application Insights** search blade, select the Application Insights resource. The name of the service is constructed by taking the resource group name you specified when setting up your machine learning environment and appending "_ins" to it.
 5. Click on Overview, then on Search on the menu bar to see the log entries (note that it could take a few minutes before the entries are displayed)
-6. You can also see the exception by clicking on Analytics -> exceptiops. Then type in execptions | take 10 and press Go on the top right corner.
+6. You can also see the exception by clicking on Analytics -> exceptions. Then type in exceptions | take 10 and press Go on the top right corner.
