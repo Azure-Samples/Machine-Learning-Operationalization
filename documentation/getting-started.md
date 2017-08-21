@@ -64,7 +64,7 @@ The environment set commands are saved to:
     
 To set the environment commands temporarily, you can open the file in a text editor, copy the commands, and run them at the command prompt.
 
-To set them permanantly, open your **Control Panel** and click **System**. Next, click **Advanced System Settings** and select the **Advanced** tab. Click **Environment Variables** and add the each of the variables to the **Systems variables**.
+To set them permanently, open your **Control Panel** and click **System**. Next, click **Advanced System Settings** and select the **Advanced** tab. Click **Environment Variables** and add the each of the variables to the **Systems variables**.
 
 ### Linux
 

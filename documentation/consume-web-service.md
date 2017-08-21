@@ -1,6 +1,6 @@
 # Consuming the web service
 
-When the web service is succesffuly deployed, you can call it using the CLI or by calling the scoring endpoint.
+When the web service is successfully deployed, you can call it using the CLI or by calling the scoring endpoint.
 
 The CLI provides the *ml service run*  command which you can use to test your web service. 
 
@@ -17,7 +17,7 @@ az ml service run realtime -n <service name> [-d "\"YOUR DATA HERE\""]
 ```
 NOTE: When specify data to test with, do not include the brackets - [].
 
-When calling a batch web service, you must supplye service name and a location for the output. Optionally, you can also specify a model to use, input data to evaluate, and an ID for the job.
+When calling a batch web service, you must supply a service name and a location for the output. Optionally, you can also specify a model to use, input data to evaluate, and an ID for the job.
 
 ```
 az ml service run batch -n <service name>  --out=--output-data:<value> [--in=--trained-model:<value>] [--in=--input-data:<value>] [-j <job_id>]

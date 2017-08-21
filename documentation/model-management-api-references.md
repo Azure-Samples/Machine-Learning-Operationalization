@@ -61,7 +61,7 @@ The authorization token can be either an Azure Active Directory or Azure Resourc
 | Field   | Description  |
 |-------------|----------|
 | name        | **Required**. Name of the model. Model names can contain alphanumeric characters and hyphens. Maximum length: 32 characters |
-| tags        | **Optional**. Additional identifiers for a model. Tags must be alpha numeric. Tags should be 30 or fewere characters in length.|
+| tags        | **Optional**. Additional identifiers for a model. Tags must be alpha numeric. Tags should be 30 or fewer characters in length.|
 | description | **Optional**. Description of the model. If no description is provided, the default value is an empty string. Max length: 200 Unicode characters. |
 | url    | **Required**. A URL specifying the location of the model. |
 | mimeType    | **Required**. The Mime type of the model. Required by Docker image generation.   |
@@ -282,7 +282,7 @@ The response includes an HTTP status code, a response header, and a response bod
 
 Creates an image using the supplied manifest and image type. Currently, the only supported image type is Docker.
 
-This is an async operation. To check the status of the create operation, call the Get Async Operation Status operation with the value of the `Operation-Location` reposnse field.
+This is an async operation. To check the status of the create operation, call the Get Async Operation Status operation with the value of the `Operation-Location` response field.
 
 ### Request
 

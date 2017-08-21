@@ -19,7 +19,7 @@ Then use the container Id in the following call:
 
 ### 2. Kubernetes logs
 
-If you deployed your web service to an ACS cluster, then you can view the Kubernetes logs. To access the logs, you need to use the kubectl tool to access the Kuberentes UI. In Windows, the tool is noramlly installed to the c:\users\<username>\bin folder.
+If you deployed your web service to an ACS cluster, then you can view the Kubernetes logs. To access the logs, you need to use the kubectl tool to access the Kuberentes UI. In Windows, the tool is normally installed to the c:\users\<username>\bin folder.
 
 To access it, type the following:
 
