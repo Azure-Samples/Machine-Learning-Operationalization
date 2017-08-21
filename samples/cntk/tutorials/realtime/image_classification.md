@@ -30,7 +30,7 @@ Example:
 
 When the service finishes deploying, the CLI returns the service URL and service port which you use to call the service. If you need to retrieve the URL and port, you can call the ```aml service view``` command.
 
-	$ az ml service view realtime -n <your service name>
+	$ az ml service show realtime -n <your service name>
 
 For information on deploying the web service on an ACS cluster, see the notes section at the end of the tutorial.
 
@@ -44,7 +44,7 @@ Once the web service is deployed, you can call it to classify images in two ways
 
 	Example:
 
-	python score\_cntk.py --img car.png --url http://127.0.0.1:32794/score --name cntksrvc2
+	python score\_cntk.py --img images/car.png --url http://127.0.0.1:32794/api/v1/service/cntksrvc2/score --name cntksrvc2
 
 1.  You can use an CLI command to score the image. When using the CLI, you must the supply the input image as a base64 string as shown in the following example:
 
