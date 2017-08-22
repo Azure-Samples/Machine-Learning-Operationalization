@@ -141,7 +141,7 @@ Switches to the local deployment environment.
     list: List images created
     show: Show image details for an image
 
-** Create image **
+**Create image**
 
 Note that the create service command listed below can perform the create image operation. So you don't have to create an image separately. 
 
@@ -179,7 +179,7 @@ Unregistered image:
     list: List of manifests
     show: Show manifest details
 
-** Create manifest **
+**Create manifest**
 
 Creates a manifest file to register the model. Note that you can use the service create command which will perform the manifest creation (without you having to create it separately).
 
@@ -205,7 +205,7 @@ Command details:
     register: Register the model
     show: Show model details
 
-** Register a model **
+**Register a model**
 
 *az ml model register --model [model file] --name [model name] --*
 
