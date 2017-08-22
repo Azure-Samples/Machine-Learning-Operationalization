@@ -32,7 +32,7 @@ pip install azure-cli-ml
     model   : Manage operationalization models.
     service : Manage operationalized services.
 
-### Account commands
+## Account commands
 A model management account is required to use the model management services which allow you to deploy and manage models.
 
     create: Create a Model Management Account.
@@ -65,7 +65,7 @@ Local Arguments:
     -v                            : Verbosity flag.
 
 
-### Environment commands
+## Environment commands
 
     delete         : Delete an MLCRP-provisioned resource.
     get-credentials: Gets the credentials for the specified cluster such as Storage, ACR and ACS
@@ -171,6 +171,33 @@ Unregistered image:
     -r                        : [Required] Runtime of the web service. Valid runtimes are spark-
                                 py|cntk-py|tlc|scikit-py.
 
+## Manifest commands
+
+Create a manifest file to register the model. Note that you can use the service create command which will perform the manifest creation (without you having to create it separately).
+
+    create: Create an Operationalization Manifest. This command has two different
+            sets of required arguments, depending on if you want to use previously registered
+            model/s.
+    list: List of manifests
+    show: Show manifest details
+
+** Create manifest
+
+*az ml manifest create --manifest-name [your new manifest name] -f [path to code file] -r [runtime for the image e.g. scikit-py]*
+
+
+Command details:
+
+    --manifest-name -n [Required]: Name of the manifest to create.
+    -f                 [Required]: The code file to be deployed.
+    -r                 [Required]: Runtime of the web service. Valid runtimes are spark-py|cntk-
+                                   py|tlc|scikit-py.
+    --dependency -d              : Files and directories required by the service. Multiple
+                                   dependencies can be specified with additional -d arguments.
+    --manifest-description       : Description of the manifest.
+    --schema-file -s             : Schema file to add to the manifest.
+    -p                           : A pip requirements.txt file needed by the code file.
+    -v                           : Verbosity flag.
 
 ## Service commands
 
