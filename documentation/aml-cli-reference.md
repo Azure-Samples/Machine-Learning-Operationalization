@@ -1,8 +1,6 @@
-# Azure Machine Learning Command Line Tools
+# Azure Machine Learning Operationalization and Model management Command Line Tools
 
-You can update your Azure ML CLI installation using pip.
-
-To perform the update, you must have sufficient permissions: 
+You can update your Azure ML CLI installation using pip. To perform the update, you must have sufficient permissions: 
 
 **Linux**: On Linux you must be running as sudo:
 
@@ -23,7 +21,7 @@ Then issue the following command:
 pip install azure-cli-ml
 ```
 
-## Base concepts:
+## Base CLI concepts:
 
     account : Manage model management accounts.	
     env     : Manage compute environments.
@@ -33,7 +31,7 @@ pip install azure-cli-ml
     service : Manage operationalized services.
 
 ## Account commands
-A model management account is required to use the model management services which allow you to deploy and manage models.
+A model management account is required to use the services which allow you to deploy and manage models.
 
     create: Create a Model Management Account.
     delete: Delete a specified Model Management Account.
@@ -48,9 +46,6 @@ Create a model managment account using the below command. This account will be u
 
 *az ml account modelmanagement create --location [Azure region e.g. eastus2] --name [your new account name] --resource-group [resource group name to store the account in] --sku-capacity 1 --sku-name S1*
 
-Command details:
-
-    az ml account modelmanagement create
 Local Arguments:
 
 
@@ -79,16 +74,11 @@ Local Arguments:
 
 **Set up the Deployment Environment**
 
-Set up a local or cluster environment for deployment.
+There are two option for deployment: local or cluster. 
 
 *az ml env setup [-c][-l] --name[your-cluster-name]*
 
-Initializes your Azure machine learning environment with a storage account, ACR registry, App Insights service, and an ACS cluster. By default, the environment is initialized for local deployments only (no ACS) if no flag is specified. If you need to scale service, you can specify -c flag to create a ACS cluster.
-
-You are prompted for the following information during the setup:
-
-* A name for your environment. Environment names must be between 3 and 20 characters in length and can only consist of numbers and lowercase letters.
-* The subscription in which to create Azure resources. You need to have owner access to this subscription.
+Initializes your Azure machine learning environment with a storage account, ACR registry, App Insights service, and an ACS cluster created in your subscription. By default, the environment is initialized for local deployments only (no ACS) if no flag is specified. If you need to scale service, you can specify -c flag to create an ACS cluster.
 
 Command details:
 
@@ -129,6 +119,8 @@ In the cluster mode, the model is deployed to and runs on the ACS cluster which 
 *az ml env set --cluster-name [your cluster name used in env setup call] -g [resrouce group name]*
 
 In cluster mode, the CLI is used to deploy production web services using ACS with Kubernetes. For more information on ACS, see https://docs.microsoft.com/en-us/azure/container-service/container-service-intro.
+
+**Switching to local**
 
 *az ml env local*
 
@@ -181,7 +173,7 @@ Unregistered image:
 
 **Create manifest**
 
-Creates a manifest file to register the model. Note that you can use the service create command which will perform the manifest creation (without you having to create it separately).
+Creates a manifest file for the model. Note that you can use the service create command which will perform the manifest creation (without you having to create it separately).
 
 *az ml manifest create --manifest-name [your new manifest name] -f [path to code file] -r [runtime for the image e.g. scikit-py]*
 
@@ -209,7 +201,7 @@ Command details:
 
 Command to register the model. Note that you can use the service create command which will perform the model registraiton (without you having to register it separately).
 
-*az ml model register --model [path to model file] --name [model name] --*
+*az ml model register --model [path to model file] --name [model name]*
 
 Command details:
 
@@ -233,7 +225,7 @@ Command details:
 
 **Create a service**
 
-Note that the schema needs to be generated through 
+In the below command, note that the schema needs to be generate-schema command available through the Azure ML SDK (see samples for more info on the schema creation). 
 
 *az ml service create realtime --model-file [path to model file(s)] -f [path to model scoring file e.g. score.py] -n [your service name] -s [schema file e.g. service_schema.json] -r [run time included in the image e.g. spark-py]*
 
@@ -252,6 +244,7 @@ Commands details:
 
 
 **Get service details**
+
 Get service details including URL, usage (including sample data if a schema was created).
 
 *az ml service show realtime --name [your service name]*
