@@ -222,77 +222,37 @@ Command details:
 
 ## Service commands
 
-The following command performs the action for web services in the current, local or cluster, environment.
+    create
+    delete
+    keys
+    list
+    run
+    scale
+    show
+    update
 
-* az ml service list: Lists the AML web services.
-* az ml services create: Creates a new AML web service.
-* az ml service run: Runs an existing AML web service.
-* az ml service view: Retrieves the status an existing AML web service.
-* az ml service scale: Scale an existing AML real-time web service.
-* az ml service listjobs: Lists the jobs on an existing AML batch web service.
-* az ml service viewjob: Retrieves the status of job on and existing AML batch web service.
-* az ml service canceljob: Cancels a job on an existing AML batch web service.
-* az ml service delete: Deletes an existing AML web service.
+**Create a service**
+Note that the schema needs to be generated through 
+*az ml service create realtime --model-file [path to model file(s)] -f [path to model scoring file e.g. score.py] -n [your service name] -s [schema file e.g. service_schema.json] -r [run time included in the image e.g. spark-py]*
+
+Commands details:
+
+    --conda-file -c     : Path to Conda Environment file.
+    --image-type        : The image type to create. Defaults to "Docker".  Default: Docker.
+    --model-file -m     : [Required] The model to be deployed.
+    -d                  : Files and directories required by the service. Multiple dependencies can
+                          be specified with additional -d arguments.
+    -f                  : [Required] The code file to be deployed.
+    -p                  : A pip requirements.txt file of package needed by the code file.
+    -r                  : [Required] Runtime of the web service. Valid runtimes are spark-py|cntk-
+                          py|tlc|scikit-py.
+    -s                  : Input and output schema of the web service.
 
 
-*az ml service list [batch|realtime]*
+**Show the service**
+*az ml service show realtime --name [your service name]*
 
-List the status of deployed web services.
 
-Example Output:
-
-+-----------+------------------------------------------+-------+----------+-----------+-------------+----------+
-| NAME      | IMAGE                                    |   CPU |   MEMORY | STATUS    |   INSTANCES | HEALTH   |
-|-----------+------------------------------------------+-------+----------+-----------+-------------+----------|
-| mytestapp | abc.azurecr.io/mytestapp                 |   0.1 |     1024 | Running   |           1 | Healthy  |
-+-----------+------------------------------------------+-------+----------+-----------+-------------+----------+
-
-|Name|Description|
-|---|---|
-|Name|Name of the web service.|
-|Image|Web service image location.|
-|CPU|Amount of CPU used.|
-|Memory|Amount of memory allocated.|
-|Status|Status of the web service. The valid values are: Healthy, Scaling, Unhealthy, or Destroyed<|
-|Instances|The number of instances of the web service.|
-|Health|The health of the web service. |
-
-*az ml service create batch -n &lt;service name&gt; -f &lt;webservice file&gt; [-i &lt;input&gt;[=&lt;default_value&gt;] [-i &lt;input&gt;[=&lt;default_value&gt;]...]] [-o &lt;output&gt;[=&lt;default_value&gt;] [-o &lt;output&gt;[=&lt;default_value&gt;] ...]] [-p &lt;parameter&gt;[=&lt;default_value&gt;] [-p &lt;parameter&gt;[=&lt;default_value&gt;]...]] [-d &lt;dependency&gt; [-d &lt;dependency&gt;...]] [-v]*
-
-Creates a batch web service using the specified parameters.
-
-|Name|Required|Description|
-|---|---|---|
-|-n | Y | Name for the web service. |
-|-f | Y | The script file containing the definition for the web service.|
-|-i | N | Specifies an input variable defined in the web service, along with an optional default input value.|
-|-o | N |Specifies an output variable defined in the web service, along with an optional default output location.|
-|-p | N | Specifies an input parameter to the web service script file. To specify multiple parameters, use additional -p options.|
-|-d | N | Specifies the path to a file on which the web service has a dependency. To specify multiple dependencies, use additional -d options.|
-|-v | N | When specified, verbose output is provided. |
-
-*az ml service create realtime --f &lt;webservice file&gt; -n &lt;service name&gt; [-m &lt;model1&gt; [-m &lt;model2&gt;] ...] [-p requirements.txt] [-s &lt;schema&gt;] [-r spark-py|cntk-py|tensorflow-py]*
-
-|Name|Required|Description|
-|---|---|---|
-|-n | Y | Name for the web service. |
-|-f | Y | The script file containing the definition for the web service.|
-|-m | N | The model for the web service. |
-|-p | N | Specifies the path to a pip requirements.txt specifying packages to install when the web service is created. |
-|-s | N |  Specifies the path to web service schema. |
-|-r | N | Specifies a runtime to use for the web service. Valid values are: spark-py, cntk-py, or tensorflow-py. If you do not specify a runtime, the web service is created using the spark-py runtime. |
-
-*az ml service run batch -n &lt;service name&gt; [-j &lt;job id&gt;] [-i &lt;input&gt;=&lt;value&gt; [-i &lt;input&gt;=&lt;value&gt;...]] [-o &lt;output&gt;=&lt;value&gt; [-o &lt;output&gt;=&lt;value&gt; ...]] [-p &lt;parameter&gt;=&lt;value&gt; [-p &lt;parameter&gt;=&lt;value&gt;...]] [w]*
-
-Starts a job on the specified batch web service.
-
-|Name|Required|Description|
-|---|---|---|
-|-n | Y | The Name of the web service.|
-|-j | N | An identifier for the job. |
-|-i | N | Specifies input values to the web service. Inputs are defined when you use the `az ml service create batch` command.|
-|-o | N | Specifies the output locations for the results from the web service. |
-|-p | N | Specifies input parameter values to the web service script file. |
 
 
 *az ml service run realtime -n service name -d input_data*
