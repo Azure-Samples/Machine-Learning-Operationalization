@@ -207,7 +207,9 @@ Command details:
 
 **Register a model**
 
-*az ml model register --model [model file] --name [model name] --*
+Command to register the model. Note that you can use the service create command which will perform the model registraiton (without you having to register it separately).
+
+*az ml model register --model [path to model file] --name [model name] --*
 
 Command details:
 
