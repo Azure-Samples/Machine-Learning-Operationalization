@@ -20,7 +20,7 @@ Then issue the following command:
 Then issue the following command:
 
 ```
-	pip install azure-cli-ml
+pip install azure-cli-ml
 ```
 
 ## Base concepts:
@@ -44,7 +44,7 @@ A model management account is required to use the model management services whic
 
 **Create Model Managment Account**
 
-Create a model managment account using the below command.
+Create a model managment account using the below command. This account will be used for billing.
 
 *az ml account modelmanagement create --location [Azure region e.g. eastus2] --name [your new account name] --resource-group [resource group name to store the account in] --sku-capacity 1 --sku-name S1*
 
@@ -90,12 +90,20 @@ You are prompted for the following information during the setup:
 * A name for your environment. Environment names must be between 3 and 20 characters in length and can only consist of numbers and lowercase letters.
 * The subscription in which to create Azure resources. You need to have owner access to this subscription.
 
-| --cluster -c | Sets up a new ACS cluster and deploy Kubernetes for orchestration. |
-| --mesos -m  | Sets up a new ACS cluster and deploy mesos for orchestration. |
-| --name -n | The name of your Azure ML environment (1-20 characters, alphanumeric only.)  |
-| --service-principal-app-id -a | App ID of service principal to use for configuring ACS cluster. |
-| --service-principal-password -p | Password associated with service principal. |
-| --status -s | Check the status of an ongoing deployment. |
+Command details:
+
+    --cluster-name -n    [Required]: Name of cluster to provision.
+    --agent-count -z               : Number of agents to provision for the cluster.  Default: 2.
+    --cluster -c                   : Flag to provision ACS cluster. Defaults to false.
+    --location -l                  : Location to provision ACS cluster. Required if provisioning in
+                                     cluster mode. Ignored if provisioning in local mode.
+    --resource-group -g            : Resource group in which to create compute resource. Will be
+                                     created if it does not exist. If not provided, resource group
+                                     will be created with 'rg' appended to 'name.'.
+    --service-principal-app-id -a  : App ID of service principal to use for configuring ML compute.
+    --service-principal-password -p: Password associated with service principal.
+    --yes -y                       : Flag to answer 'yes' to any prompts. Command will fail if user
+                                     is not logged in.
 
 **Local mode**
 
@@ -116,34 +124,16 @@ and testing. To run the CLI in local mode, set the following environment variabl
 
 **Cluster mode**
 
-*az ml env cluster*
+In the clsuter mode, the model is deployed to and runs on the ACS cluster which is set up using the env setup command above. To use the environment you have set up before, use the following command.
 
-In cluster mode, the CLI is used to deploy production web services. Real-time and batch services are deployed to
-an Azure Container Service (ACS) cluster. 
-For more information on ACS, see https://docs.microsoft.com/en-us/azure/container-service/container-service-intro.
+*az ml env set --cluster-name [your cluster name used in env setup call] -g [resrouce group name]*
 
-To use the CLI in cluster mode, define the following environment variables (in addition to those above for
-local mode):
-
-| Variable | Description |
-|---|---|
-| AML_ACS_MASTER | Set this to the URL of your ACS Master (e.g.yourclustermgmt.westus.cloudapp.azure.com) |
-| AML_ACS_MASTER_PORT | If port forwarding is set for the ACS cluster, set this to the local port that is forwarded to port 80 on the ACS master. For details on setting up port forwarding, see https://docs.microsoft.com/en-us/azure/container-service/container-service-connect. If this is set, AML defaults to localhost to communicate with ACS and AML_ACS_MASTER is ignored. |
-| AML_ACS_AGENT  | Set this to the URL of your ACS Public Agent (for example, yourclusteragents.westus.cloudapp.azure.com) |
-| AML_HDI_CLUSTER  | Set this to the URL of your HDInsight Spark cluster. |
-| AML_HDI_USER  | Set this to the admin user of your HDInsight Spark cluster. |
-| AML_HDI_PW  | Set this to the password of the admin user of your HDInsight Spark cluster. |
-| AML_ACS_IS_K8S | When set to 'true', specifies that the ACS cluster is running Kubernetes. |
+In cluster mode, the CLI is used to deploy production web services using ACS with Kubernetes. For more information on ACS, see https://docs.microsoft.com/en-us/azure/container-service/container-service-intro.
 
 *az ml env local*
 
 Switches to the local deployment environment. 
 
-*az ml env cluster [-f]*
-
-Switches to the local deployment environment. Use the -f flag to force a switch to the cluster environment.
-
-------------------------------------------------------------------------------
 ## Service commands
 
 The following command performs the action for web services in the current, local or cluster, environment.
