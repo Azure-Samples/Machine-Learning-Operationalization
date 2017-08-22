@@ -43,12 +43,11 @@ A model management account is required to use the model management services whic
     update: Update an existing Model Management Account.
 
 **Create Model Managment Account**
-*az ml account modelmanagement create --location [Azure region e.g. eastus2] --name [your new account name] --resource-group [resource group name to store the account in] --sku-capacity 1 --sku-name S1
+*az ml account modelmanagement create --location [Azure region e.g. eastus2] --name [your new account name] --resource-group [resource group name to store the account in] --sku-capacity 1 --sku-name S1*
 
 Command details:
 
-az ml account modelmanagement create
-
+    az ml account modelmanagement create
 Local Arguments:
 
 
