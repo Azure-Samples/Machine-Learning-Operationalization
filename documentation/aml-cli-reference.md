@@ -1,4 +1,4 @@
-# Azure Machine Learning Operationalization and Model management Command Line Tools
+# Operationalization and Model Management Command Line Tools
 
 You can update your Azure ML CLI installation using pip. To perform the update, you must have sufficient permissions: 
 
