@@ -142,7 +142,34 @@ Switches to the local deployment environment.
     show: Show image details for an image
 
 **Create image**
-Note that the create web service command listed below, can perform the create image operation. So you don't have to create an image separately.
+
+Note that the create service command listed below can perform the create image operation. So you don't have to create an image separately. 
+
+You can create an image with the option of having registered it before, or register it with a single command (shown below).
+
+*az ml image create -n [image name] --model-file [model file or folder path] -f [code file e.g. the score.py file] -r [the runtime eg.g. scikit-pay which is the Docker container image base]*
+
+Command details:
+
+    --image-name -n [Required]: The name of the image being created.
+    --image-description       : Description of the image.
+    --image-type              : The image type to create. Defaults to "Docker".  Default: Docker.
+    -v                        : Verbosity flag.
+
+Registered image:
+
+    --manifest-id             : [Required] Id of previously registered manifest to use in image
+                                creation.
+Unregistered image:
+
+    --dependency -d           : Files and directories required by the service. Multiple dependencies
+                                can be specified with additional -d arguments.
+    --model-file -m           : [Required] Model file to register.
+    --schema-file -s          : Schema file to add to the manifest.
+    -f                        : [Required] The code file to be deployed.
+    -p                        : A pip requirements.txt file needed by the code file.
+    -r                        : [Required] Runtime of the web service. Valid runtimes are spark-
+                                py|cntk-py|tlc|scikit-py.
 
 
 ## Service commands
