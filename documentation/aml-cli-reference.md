@@ -235,13 +235,14 @@ Commands details:
     --image-type        : The image type to create. Defaults to "Docker".  Default: Docker.
     --model-file -m     : [Required] The model to be deployed.
     -d                  : Files and directories required by the service. Multiple dependencies can
-                          be specified with additional -d arguments.
+                          be specified with additional -d arguments. 
     -f                  : [Required] The code file to be deployed.
     -p                  : A pip requirements.txt file of package needed by the code file.
     -r                  : [Required] Runtime of the web service. Valid runtimes are spark-py|cntk-
                           py|tlc|scikit-py.
     -s                  : Input and output schema of the web service.
 
+Note on the -d flag for attaching dependencies: If you pass the name of a directory that is not already bundled (zip, tar, etc.) that directory automatically gets tar’ed, and is passed along, then automatically un-bundled on the other end. If you pass in a directory that is already bundled we treat it as a file and pass it along as is. It will not be un-bundled automatically, and you would be expected to handle that in your code.
 
 **Get service details**
 
