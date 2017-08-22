@@ -141,7 +141,7 @@ Switches to the local deployment environment.
     list: List images created
     show: Show image details for an image
 
-**Create image**
+** Create image **
 
 Note that the create service command listed below can perform the create image operation. So you don't have to create an image separately. 
 
@@ -173,15 +173,15 @@ Unregistered image:
 
 ## Manifest commands
 
-Create a manifest file to register the model. Note that you can use the service create command which will perform the manifest creation (without you having to create it separately).
-
     create: Create an Operationalization Manifest. This command has two different
             sets of required arguments, depending on if you want to use previously registered
             model/s.
     list: List of manifests
     show: Show manifest details
 
-** Create manifest
+** Create manifest **
+
+Creates a manifest file to register the model. Note that you can use the service create command which will perform the manifest creation (without you having to create it separately).
 
 *az ml manifest create --manifest-name [your new manifest name] -f [path to code file] -r [runtime for the image e.g. scikit-py]*
 
@@ -198,6 +198,25 @@ Command details:
     --schema-file -s             : Schema file to add to the manifest.
     -p                           : A pip requirements.txt file needed by the code file.
     -v                           : Verbosity flag.
+
+## Model commands
+
+    list: List created models
+    register: Register the model
+    show: Show model details
+
+** Register a model **
+
+*az ml model register --model [model file] --name [model name] --*
+
+Command details:
+
+    --model -m [Required]: Model to register.
+    --name -n  [Required]: Name of model to register.
+    --description -d     : Description of the model.
+    --tag -t             : Tags for the model. Multiple tags can be specified with additional -t
+                           arguments.
+    -v                   : Verbosity flag.
 
 ## Service commands
 
