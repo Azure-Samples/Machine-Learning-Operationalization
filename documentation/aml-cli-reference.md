@@ -232,7 +232,9 @@ Command details:
     update
 
 **Create a service**
+
 Note that the schema needs to be generated through 
+
 *az ml service create realtime --model-file [path to model file(s)] -f [path to model scoring file e.g. score.py] -n [your service name] -s [schema file e.g. service_schema.json] -r [run time included in the image e.g. spark-py]*
 
 Commands details:
@@ -249,88 +251,37 @@ Commands details:
     -s                  : Input and output schema of the web service.
 
 
-**Show the service**
+**Get service details**
+Get service details including URL, usage (including sample data if a schema was created).
+
 *az ml service show realtime --name [your service name]*
 
+Command details:
+
+    --id -i    : The service id to show.
+    --name -n  : The service name.
+    -v         : Verbosity flag.
+
+**Run the service**
+
+*az ml service run realtime -n [service name] -d [input_data]*
+
+Command details:
+
+    --id -i    : The MMS service id to score against.
+    --name -n  : Webservice name.
+    -d         : The data to use for calling the web service.
+    -v         : Verbosity flag.
 
 
+**Scale the service**
 
-*az ml service run realtime -n service name -d input_data*
+*az ml service scale realtime -n [service name] -z [number of replicas]*
 
-|Name|Required|Description|
-|---|---|---|
-|-n | Y | The Name of the web service.|
-|-d | Y | Input data for the web service. The format of the data input is: '{"input":"&lt;data&gt;"}']|
+Command details:
 
-
-*az ml service view batch -n &lt;service name&gt;*
-
-Retrieves status information about the specified batch service.
-
-|Name|Required|Description|
-|---|---|---|
-|-n|Y| The Name of the web service.|
-
-*az ml service view realtime -n &lt;service name&gt;* 
-
-Retrieves status information about the specified real-time service.
-
-|Name|Required|Description|
-|---|---|---|
-|-n|Y| The Name of the web service.|
-
-*az ml service scale realtime -n &lt;service_name&gt; -c &lt;instance_count&gt;*
-
-|Name|Required|Description|
-|---|---|---|
-|-n|Y| The Name of the web service.|
-|-c|Y| The number of instances the web service.|
-
-
-*az ml service listjobs -n &lt;service name&gt;* 
-
-Retrieves a list of jobs running against the specified web service.
-
-|Name|Required|Description|
-|---|---|---|
-|-n|Y| The Name of the web service.|
-
-*az ml service viewjob -n &lt;service name&gt; -j &lt;job id&gt;* 
-
-Retrieves status information about the specified batch job.
-
-|Name|Required|Description|
-|---|---|---|
-|-n|Y| The name of the service on which the job is running.|
-|-j|Y| The job ID specified when the job was started with the `az ml service run batch` command.|
-
-*az ml service canceljob -n &lt;service name&gt; -j &lt;job id&gt;*
-
-Cancels the specified batch job.
-
-|Name|Required|Description|
-|---|---|---|
-|-n|Y| The name of the service on which the job is running.|
-|-j|Y| The job ID specified when the job was started with the `az ml service run batch` command.|
-
-
-*az ml service delete batch -n <service name>*
-
-Deletes the specified batch web service.
-
-|Name|Required|Description|
-|---|---|---|
-|-n|Y|The name of the web service to delete.|
-
-
-*az ml service delete realtime -n &lt;service name&gt;*
-
-Deletes the specified real-time web service.
-
-|Name|Required|Description|
-|---|---|---|
-|-n|Y|The name of the web service to delete.|
-
+    -n [Required]: Webservice name.
+    -z [Required]: Number of replicas for a Kubernetes service.  Default: 1.
 
 
 
