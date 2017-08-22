@@ -23,7 +23,7 @@ Then issue the following command:
 	pip install azure-cli-ml
 ```
 
-Base concepts:
+## Base concepts:
 
     account : Manage model management accounts.	
     env     : Manage compute environments.
@@ -32,7 +32,7 @@ Base concepts:
     model   : Manage operationalization models.
     service : Manage operationalized services.
 
-## Account commands
+### Account commands
 A model management account is required to use the model management services which allow you to deploy and manage models.
 
     create: Create a Model Management Account.
@@ -65,7 +65,7 @@ Local Arguments:
     -v                            : Verbosity flag.
 
 
-## Environment commands
+### Environment commands
 
     delete         : Delete an MLCRP-provisioned resource.
     get-credentials: Gets the credentials for the specified cluster such as Storage, ACR and ACS
@@ -77,16 +77,18 @@ Local Arguments:
     show           : Show an MLC resource; If resource_group or cluster_name are not provided, shows
                      the active MLC env.
 
+**Set up the Deployment Environment**
 
-**Environment Setup**
+Set up a local or cluster environment for deployment.
 
-*az ml env setup [-c][-m][--name or -n][--service-principal-app-id or -a][--service-principal-password -p][--status -s]
+*az ml env setup [-c][-l] --name[your-cluster-name]*
 
-Initializes your Azure machine learning environment with a storage account, ACR registry, and ACS cluster. By default, the environment is initialized for local deployments only (no ACS). If you need to scale service, you can specify -c flag to create a Kubernetes cluster. 
+Initializes your Azure machine learning environment with a storage account, ACR registry, App Insights service, and an ACS cluster. By default, the environment is initialized for local deployments only (no ACS) if no flag is specified. If you need to scale service, you can specify -c flag to create a ACS cluster.
+
 You are prompted for the following information during the setup:
 
 * A name for your environment. Environment names must be between 3 and 20 characters in length and can only consist of numbers and lowercase letters.
-* The subscription in which to create Azure resources.
+* The subscription in which to create Azure resources. You need to have owner access to this subscription.
 
 | --cluster -c | Sets up a new ACS cluster and deploy Kubernetes for orchestration. |
 | --mesos -m  | Sets up a new ACS cluster and deploy mesos for orchestration. |
