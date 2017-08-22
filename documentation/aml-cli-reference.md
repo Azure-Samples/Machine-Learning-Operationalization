@@ -42,6 +42,27 @@ A model management account is required to use the model management services whic
     show  : Show a Model Management Account.
     update: Update an existing Model Management Account.
 
+**Create Model Managment Account**
+*az ml account modelmanagement create --location [Azure region e.g. eastus2] --name [your new account name] --resource-group [resource group name to store the account in] --sku-capacity 1 --sku-name S1
+
+Command details:
+
+az ml account modelmanagement create
+
+Local Arguments:
+
+
+    --location -l       [Required]: Resource location.
+    --name -n           [Required]: Name of the model management account.
+    --resource-group -g [Required]: Resource group to create the model management account in.
+    --sku-capacity      [Required]: Sku capacity. Used to scale the max capacity for resources
+                                    managed by this account. Must be between 1 and 16 inclusive.
+    --sku-name          [Required]: Sku name. Valid names are S1|S2|S3|DevTest.
+    --description -d              : Description of the model management account.
+    --tags -t                     : Tags for the model management account.  Default: {}.
+    -v                            : Verbosity flag.
+
+
 ## Environment commands
 
 - az ml env setup: Display help on setting up your environment.
