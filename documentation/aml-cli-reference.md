@@ -124,7 +124,7 @@ and testing. To run the CLI in local mode, set the following environment variabl
 
 **Cluster mode**
 
-In the clsuter mode, the model is deployed to and runs on the ACS cluster which is set up using the env setup command above. To use the environment you have set up before, use the following command.
+In the cluster mode, the model is deployed to and runs on the ACS cluster which is set up using the env setup command above. To use the environment you have set up before, use the following command.
 
 *az ml env set --cluster-name [your cluster name used in env setup call] -g [resrouce group name]*
 
@@ -133,6 +133,17 @@ In cluster mode, the CLI is used to deploy production web services using ACS wit
 *az ml env local*
 
 Switches to the local deployment environment. 
+
+## Image commands
+
+    create: Create an Operationalization Image. This command has two different sets of
+            required arguments, depending on if you want to use a previously created manifest.
+    list: List images created
+    show: Show image details for an image
+
+**Create image**
+Note that the create web service command listed below, can perform the create image operation. So you don't have to create an image separately.
+
 
 ## Service commands
 
