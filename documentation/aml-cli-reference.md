@@ -25,12 +25,12 @@ Then issue the following command:
 
 Base concepts:
 
-- account: Manage model management accounts.
-- env : Manage deployment environments.
-- image   : Manage operationalization images.
-- manifest: Manage operationalization manifests.
-- model   : Manage operationalization models.
-- service : Manage operationalized services.
+    account : Manage model management accounts.	
+    env     : Manage compute environments.
+    image   : Manage operationalization images.
+    manifest: Manage operationalization manifests.
+    model   : Manage operationalization models.
+    service : Manage operationalized services.
 
 ## Account commands
 A model management account is required to use the model management services which allow you to deploy and manage models.
@@ -43,6 +43,9 @@ A model management account is required to use the model management services whic
     update: Update an existing Model Management Account.
 
 **Create Model Managment Account**
+
+Create a model managment account using the below command.
+
 *az ml account modelmanagement create --location [Azure region e.g. eastus2] --name [your new account name] --resource-group [resource group name to store the account in] --sku-capacity 1 --sku-name S1*
 
 Command details:
@@ -64,9 +67,16 @@ Local Arguments:
 
 ## Environment commands
 
-- az ml env setup: Display help on setting up your environment.
-- az ml env local: Switches your environment to local mode.
-- az ml env cluster: Switches your environment to cluster mode.
+    delete         : Delete an MLCRP-provisioned resource.
+    get-credentials: Gets the credentials for the specified cluster such as Storage, ACR and ACS
+                     credentials.
+    list           : Gets the operationalization clusters in the specified subscription.
+    local          : Switch to local mode.
+    set            : Set the active MLC environment.
+    setup          : Sets up an MLC environment.
+    show           : Show an MLC resource; If resource_group or cluster_name are not provided, shows
+                     the active MLC env.
+
 
 **Environment Setup**
 
