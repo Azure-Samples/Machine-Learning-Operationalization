@@ -23,10 +23,24 @@ Then issue the following command:
 	pip install azure-cli-ml
 ```
 
-Base commands:
+Base concepts:
 
-- env: Shows the current Azure ML related environment settings.
-- service: Allows you to manage Azure ML web services.
+- account: Manage model management accounts.
+- env : Manage deployment environments.
+- image   : Manage operationalization images.
+- manifest: Manage operationalization manifests.
+- model   : Manage operationalization models.
+- service : Manage operationalized services.
+
+## Account commands
+A model management account is required to use the model management services which allow you to deploy and manage models.
+
+    create: Create a Model Management Account.
+    delete: Delete a specified Model Management Account.
+    list  : Gets the Model Management Accounts in the current subscriptiong.
+    set   : Set the active Model Management Account.
+    show  : Show a Model Management Account.
+    update: Update an existing Model Management Account.
 
 ## Environment commands
 
