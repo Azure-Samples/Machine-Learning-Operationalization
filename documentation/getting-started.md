@@ -51,7 +51,7 @@ It is recommended to start with a local deployment, validate that your model and
 * When the sign in is complete your subscription information will be presented and you will be prompted whether you wish to continue with the selected account.
 
 #### Local deployment (Windows and Linux)
-
+##### Set up the environment
 To deply and test your web service on the local machine, set up a local environment.
 
     az ml env setup
@@ -65,7 +65,7 @@ The local environment setup command creates the following resources in your subs
 
 In local mode only, the setup command saves a file in your home directory that contains environment settings parameters to configure your environment. You must set those environment variables before you use the Azure Machine Learning CLI to operationalize your models. (see below)
 
-##### Windows 
+**Windows**
 
 The environment set commands are saved to:
 
@@ -75,7 +75,7 @@ To set the environment commands temporarily, you can open the file in a text edi
 
 To set them permanently, open your **Control Panel** and click **System**. Next, click **Advanced System Settings** and select the **Advanced** tab. Click **Environment Variables** and add the each of the variables to the **Systems variables**.
 
-##### Linux
+**Linux**
 
 The environment export commands are saved to:
 
@@ -88,8 +88,9 @@ Source the file to set up your environment variables:
 To always set these variables when you log in, copy the export commands into your .bashrc file:
 
     $ cat < ~/.amlenvrc >> ~/.bashrc
-#### Cluster deployment (Windows and Linux)
 
+#### Cluster deployment (Windows and Linux)
+##### Set up the environment
 To deploy your web service to a production environment, use the followign command:
 
     az ml env setup -c --cluster-name <yourenvironmentname> --location <Azure region e.g. eastus>
