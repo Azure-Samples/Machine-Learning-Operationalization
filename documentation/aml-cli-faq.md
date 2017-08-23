@@ -14,6 +14,11 @@ When you use the CLI to create a web service, it creates a docker image containi
 
 You can use the returned ACR path to deploy the image as a web service on any docker host. 
 
+**How can I check the version of my installed CLI?**
+Can you check the version of your CLI using the below command:
+
+	pip show azure-cli-ml
+
 **How do I upgrade just the AML CLI?**
 
 You can upgrade your azuremlcli installation using pip.
