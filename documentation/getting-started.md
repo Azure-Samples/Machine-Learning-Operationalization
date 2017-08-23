@@ -13,7 +13,7 @@ Type az ml -h to see the optins. For more details, use the --help with individua
 
 On all other systems, you would have to install the CLIs. 
 
-#### Windows
+#### Installing on Windows
 
 Install Python from [https://www.python.org/](https://www.python.org/). Ensure that you have selected to install pip.
 
@@ -22,7 +22,7 @@ Open a command prompt using Run As Administrator and run the following commands:
     pip install azure-cli
     pip install azure-cli-ml
 
-#### Linux
+#### Installing on Linux
 
 The easiest and quickest way to get started is to use the Data Science VM (see [Provision the Data Science Virtual Machine for Linux (Ubuntu)](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-dsvm-ubuntu-intro)).
 
@@ -37,12 +37,39 @@ Once you have provisioned and signed into the DSVM, run the following commands a
 
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
 
+**NOTE**: You can use the above commands to update an earlier version of the CLIs on the DSVM.
+
 ### Deploying web services
-Use the CLIs to deploy as web services. The web services can be deployed locally or to a cluster.
+Use the CLIs to deploy models as web services. The web services can be deployed locally or to a cluster.
 
-It is recommended to start with a local deployment, validate that your model and code works, then deploy to a cluster for production scale use.
+It is recommended to start with a local deployment, validate that your model and code work, then deploy to a cluster for production scale use.
 
-#### Set up the environment on Windows and Linux
+**NOTE**: The following items when completing the environment setup:
+
+* You will be prompted to sign in to Azure. To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the provided code to authenticate.
+* During the authentication process you will be prompted for an account to authenticate with. **Important**: Select an account that has a valid Azure subscription and sufficient permissions to create resources in the account.
+* When the sign in is complete your subscription information will be presented and you will be prompted whether you wish to continue with the selected account.
+
+#### Local deployment (Windows and Linux)
+
+To deply and test your web service on the local machine, set up a local environment.
+
+    az ml env setup
+
+The local environment setup command creates the following resources in your subscription:
+
+* A resource group
+* A storage account
+* An Azure Container Registry (ACR)
+* Application insights
+
+The setup command saves a file in your home directory that contains environment settings parameters to configure your environment. You must set those environment variables before you use the Azure Machine Learning CLI to operationalize your models. (see below)
+
+#### Cluster deployment (Windows and Linux)
+
+To deploy your web service to a production environment, use the followign command:
+
+    az ml env setup -c --cluster-name <yourenvironmentname> --location <Azure region e.g. eastus>
 
 The cluster environment setup command creates the following resources in your subscription:
 
@@ -51,22 +78,10 @@ The cluster environment setup command creates the following resources in your su
 * An Azure Container Registry (ACR)
 * A Kubernetes deployment on an Azure Container Service (ACS) cluster
 * Application insights
-
-**NOTE**: The following items when completing the environment setup:
-
-* You will be prompted to sign in to Azure. To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the provided code to authenticate.
-* During the authentication process you will be prompted for an account to authenticate with. **Important**: Select an account that has a valid Azure subscription and sufficient permissions to create resources in the account.
-* When the sign in is complete your subscription information will be presented and you will be prompted whether you wish to continue with the selected account.
-
-To setup the AML environment, on either Windows or Linux, run the following command:
-
-    az ml env setup -c
-    
+   
 The resource group, storage account, and ACR are created quickly. The ACS deployment can take some time. Once the setup command has finished setting up the resource group, storage account, and ACR, it outputs environment export commands for the AML CLI environment. 
 
-**Note**: If you do not supply a -c or -m parameter when you call the environment set up, the environment is configured a local only mode. If you choose this option, you will not be able to run any cluster mode commands.
-
-The setup command saves a file in your home directory that contains commands to configure your environment. You must run these commands before you use the Azure Machine Learning CLI to operationalize your models.
+**Note**: If you do not supply a -c parameter when you call the environment set up, the environment is configured a local only mode. If you choose this option, you will not be able to run any cluster mode commands.
 
 ### Windows 
 
