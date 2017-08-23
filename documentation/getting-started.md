@@ -93,7 +93,7 @@ To always set these variables when you log in, copy the export commands into you
 ##### Set up the environment
 To deploy your web service to a production environment, use the followign command:
 
-    az ml env setup -c --cluster-name <yourenvironmentname> --location <Azure region e.g. eastus>
+    az ml env setup -c --cluster-name [your environment name] --location [Azure region e.g. eastus]
 
 The cluster environment setup command creates the following resources in your subscription:
 
@@ -107,6 +107,9 @@ The resource group, storage account, and ACR are created quickly. The ACS deploy
 
 **Note**: If you do not supply a -c parameter when you call the environment set up, the environment is configured a local only mode. If you choose this option, you will not be able to run any cluster mode commands.
 
+#### Create an account
+This creates an account that will be used for billing. You need to this once, and can re-use the same account in multiple deployments.
 
+    az ml account modelmanagement create -l [Azure region, e.g. eastus2] -n [your account name] -g [resource group name: existing] --sku-capacity 1 --sku-name S1
     
 
