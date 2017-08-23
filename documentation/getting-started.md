@@ -4,7 +4,7 @@
 You can efficiently operationalize Spark, Tensorflow, CNTK, or Python based machine learning models using the Azure Machine Learning CLI.
 
 ## Getting Started
-
+### Accessing the CLIs
 The CLIs come pre-installed on the Azure ML Workbench and on Azure DSVMs [https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-virtual-machine-overview]. 
 
 On the Azure ML Workbench menu, use File -> Open CommandLine Interface. On a DSVM, open a command prompt. 
@@ -13,7 +13,7 @@ Type az ml -h to see the optins. For more details, use the --help with individua
 
 On all other systems, you would have to install the CLIs. 
 
-### Windows
+#### Windows
 
 Install Python from [https://www.python.org/](https://www.python.org/). Ensure that you have selected to install pip.
 
@@ -22,7 +22,7 @@ Open a command prompt using Run As Administrator and run the following commands:
     pip install azure-cli
     pip install azure-cli-ml
 
-### Linux
+#### Linux
 
 The easiest and quickest way to get started is to use the Data Science VM (see [Provision the Data Science Virtual Machine for Linux (Ubuntu)](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-dsvm-ubuntu-intro)).
 
@@ -37,8 +37,12 @@ Once you have provisioned and signed into the DSVM, run the following commands a
 
 **NOTE**: You must log out and log back in to your SSH session for the changes to take effect.
 
+### Deploying web services
+Use the CLIs to deploy as web services. The web services can be deployed locally or to a cluster.
 
-## Set up the Azure Machine Learning environment on Windows and Linux
+It is recommended to start with a local deployment, validate that your model and code works, then deploy to a cluster for production scale use.
+
+#### Set up the environment on Windows and Linux
 
 The cluster environment setup command creates the following resources in your subscription:
 
