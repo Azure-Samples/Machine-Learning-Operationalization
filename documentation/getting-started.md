@@ -5,6 +5,14 @@ You can efficiently operationalize Spark, Tensorflow, CNTK, or Python based mach
 
 ## Getting Started
 
+The CLIs come pre-installed on the Azure ML Workbench and on Azure DSVMs [https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-virtual-machine-overview]. 
+
+On the Azure ML Workbench menu, use File -> Open CommandLine Interface. On a DSVM, open a command prompt. 
+
+Type az ml -h to see the optins. For more details, use the --help with individual commands or see the CLI Reference Guide.
+
+On all other systems, you would have to install the CLIs. 
+
 ### Windows
 
 Install Python from [https://www.python.org/](https://www.python.org/). Ensure that you have selected to install pip.
