@@ -125,7 +125,7 @@ The above command also sets the account for deployment which means you can now d
 
     az ml account modelmanagement set -n [your account name] -g [resource group it was created in]
 
-##### Deploy yuor model
+##### Deploy your model
 You are now ready to deploy your saved model as a web service. You can start from one of many samples in the gallery or in the samples folder. 
 
 The command to use is as follows:
