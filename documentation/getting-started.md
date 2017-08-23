@@ -44,7 +44,7 @@ Use the CLIs to deploy models as web services. The web services can be deployed 
 
 It is recommended to start with a local deployment, validate that your model and code work, then deploy to a cluster for production scale use.
 
-The environment setup is a one time task. Once the setup is complete, you can re-use the environment for subsequent deployments by setting your environment for deployment (see below for more detail).
+Next, you need to set up the environment. The environment setup is a one time task. Once the setup is complete, you can re-use the environment for subsequent deployments by setting your environment for deployment (see below for more detail).
 
 **NOTE**: The following items when completing the environment setup:
 
@@ -127,5 +127,5 @@ Set the account to be used for this deployment:
 
     az ml account modelmanagement set -n [your account name] -g [resource group it was created in]
     
-
+You are not ready to deploy your saved model as a web service. You can start from one of many samples in the gallery or in the samples folder. 
 
