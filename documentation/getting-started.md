@@ -44,6 +44,8 @@ Use the CLIs to deploy models as web services. The web services can be deployed 
 
 It is recommended to start with a local deployment, validate that your model and code work, then deploy to a cluster for production scale use.
 
+The environment setup is a one time task. Once the setup is complete, you can re-use the environment for subsequent deployments by setting your environment for deployment (see below for more detail).
+
 **NOTE**: The following items when completing the environment setup:
 
 * You will be prompted to sign in to Azure. To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the provided code to authenticate.
@@ -52,7 +54,7 @@ It is recommended to start with a local deployment, validate that your model and
 
 #### Local deployment (Windows and Linux)
 ##### Set up the environment
-To deply and test your web service on the local machine, set up a local environment.
+To deploy and test your web service on the local machine, set up a local environment.
 
     az ml env setup
 
@@ -91,7 +93,7 @@ To always set these variables when you log in, copy the export commands into you
 
 #### Cluster deployment (Windows and Linux)
 ##### Set up the environment
-To deploy your web service to a production environment, use the followign command:
+To deploy your web service to a production environment, use the following command.
 
     az ml env setup -c --cluster-name [your environment name] --location [Azure region e.g. eastus]
 
@@ -105,11 +107,25 @@ The cluster environment setup command creates the following resources in your su
    
 The resource group, storage account, and ACR are created quickly. The ACS deployment can take some time. Once the setup command has finished setting up the resource group, storage account, and ACR, it outputs environment export commands for the AML CLI environment. 
 
-**Note**: If you do not supply a -c parameter when you call the environment set up, the environment is configured a local only mode. If you choose this option, you will not be able to run any cluster mode commands.
+**NOTE**: If you do not supply a -c parameter when you call the environment set up, the environment is configured a local only mode. If you choose this option, you will not be able to run any cluster mode commands.
 
-#### Create an account
+After setup is complete, set the environment to be used for this deployment.
+
+    az ml env set --cluster-name [environment name] -g [resource group]
+    
+- Cluster name: the name used when setting up the environment
+- Resource group name: the name you specified for the setup command above. Or if you didn't specify it at time of set up, it was created and returned in the output of the set up command.
+
+Note that once the environment is created, for subsequent deployments, you only need to use the set command above.
+
+##### Create an account
 This creates an account that will be used for billing. You need to this once, and can re-use the same account in multiple deployments.
 
     az ml account modelmanagement create -l [Azure region, e.g. eastus2] -n [your account name] -g [resource group name: existing] --sku-capacity 1 --sku-name S1
+
+Set the account to be used for this deployment:
+
+    az ml account modelmanagement set -n [your account name] -g [resource group it was created in]
     
+
 
