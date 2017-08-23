@@ -7,9 +7,7 @@ You can efficiently operationalize Spark, Tensorflow, CNTK, or Python based mach
 ### Accessing the CLIs
 The CLIs come pre-installed on the Azure ML App and on Azure DSVMs [https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-virtual-machine-overview]. 
 
-On the Azure ML App menu, use File -> Open CommandLine Interface. On a DSVM, open a command prompt. 
-
-Type az ml -h to see the optins. For more details, use the --help with individual commands or see the CLI Reference Guide.
+To use the CLIs, on the Azure ML App menu, use File -> Open CommandLine Interface. On a DSVM, open a command prompt. Once there, type *az ml -h* to see the options. For more details, use the --help with individual commands or see the CLI Reference Guide.
 
 On all other systems, you would have to install the CLIs. 
 
@@ -93,7 +91,7 @@ To always set these variables when you log in, copy the export commands into you
 
 #### Cluster deployment (Windows and Linux)
 ##### Set up the environment
-To deploy your web service to a production environment, use the following command.
+To deploy your web service to a production environment, first set up the environment using the following command.
 
     az ml env setup -c --cluster-name [your environment name] --location [Azure region e.g. eastus]
 
@@ -119,13 +117,13 @@ After setup is complete, set the environment to be used for this deployment.
 Note that once the environment is created, for subsequent deployments, you only need to use the set command above.
 
 ##### Create an account
-This creates an account that will be used for billing. You need to this once, and can re-use the same account in multiple deployments.
+This creates and sets the account that will be used for billing. You need to this once, and can re-use the same account in multiple deployments.
 
     az ml account modelmanagement create -l [Azure region, e.g. eastus2] -n [your account name] -g [resource group name: existing] --sku-capacity 1 --sku-name S1
 
-Set the account to be used for this deployment:
+The above command also sets the account for deployment which means you can now deploy your web service. For any subsequent deployments however, you need to set the account first using the below command:
 
     az ml account modelmanagement set -n [your account name] -g [resource group it was created in]
     
-You are not ready to deploy your saved model as a web service. You can start from one of many samples in the gallery or in the samples folder. 
+You are now ready to deploy your saved model as a web service. You can start from one of many samples in the gallery or in the samples folder. 
 
