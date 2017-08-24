@@ -1,18 +1,24 @@
-Operationalization is the process of publishing models and code as web services, and the consumption of these services to produce business results.
+Operationalization is the process of publishing models as web services, and the consumption of these services to produce business results.
 
-Azure Machine Learning Operationalization is a component of the Azure CLI that enables operationalization of models that use the CNTK, SPARK, and Python machine learning platforms.
+Azure Machine Learning Operationalization is a component of the Azure CLI that enables deployment of models that use the CNTK, SPARK, and Python machine learning platforms.
 
-You can use the Operationalization CLIs from the Vienna desktop app (File->Open Command-Line Interface) or install the CLIs direclty from the command line.
+You can use the Operationalization CLIs from the desktop app (File->Open Command-Line Interface) or install the CLIs direclty from the command line. They are also pre-installed on Azure DSVMs [https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-virtual-machine-overview].
 
 ## Basic Concepts
 
-### Local and cluster modes 
+### Use of Docker for deployment
+
+Azure ML Operationalization CLIs use Docker containers for packaging and deploying the model and its dependencies. Once the trained model is saved, it can be deployed using a CLI command. 
+
+### Local and cluster deployment modes 
 
 Azure ML Operationalization provides two deployment modes: local and cluster.
 
-Local mode deployments run in docker containers on a single computer, whether that is your personal machine or a VM running on Azure. You can use local mode for development and testing.
+Local mode deployments run in Docker containers on a single computer, whether that is your personal machine or a VM running on Azure. It is recommended to use local mode for development and testing.
 
 In cluster mode, your service is run in Azure Container Service (ACS). The operationalization environment provisions Docker and Kubernetes in the cluster to manage web service deployment. Deploying to ACS allows you to scale your service as needed to meet your business needs.
+
+The CLIs provide commands to set up the environments (local and cluster) for deployment. The envrionment services such as Storage, ACR, and ACS are created in your subscription.
 
 ### Realtime and Batch processing 
 
@@ -21,13 +27,13 @@ Depending on your business needs, you can deploy your service in one of two proc
 * Realtime: Provides a web service that you call synchronously to score data on an as-needed basis.
 * Batch: Provides a web service that you call asynchronously to score a batch of data records.
 
-### Environment configuration
+### Environment requirements
 
-Before you can operationalize your model, you must configure your environment. 
+Before you can operationalize your model, you must set up your environment. 
 
-To configure the machine learning operationalization environment, you must have access to an Azure subscription with sufficient permissions to create Azure assets (e.g. Contributor or Admin access).
+To set up the machine learning operationalization environment, you must have access to an Azure subscription with sufficient permissions to create Azure assets (e.g. Contributor or Admin access).
 
-By default, the Vienna's environment configuration only supports local deployments. Requirements to run in local mode are:
+By default, the environment configuration only supports local deployments. Requirements to run in local mode are:
 
 * Azure CLI version 2.0
 * Azure Machine Learning CLI component
@@ -43,14 +49,14 @@ Optionally, you can configure the environment to support cluster deployments. To
 
 You can create a new web service in the Azure CLI using the *ml service create* command, which deploys the web service and returns a scoring endpoint URL.
 
-When creating a realtime web service, you must supply a name for the service and a scoring script (sometimes referred to as the driver file.) The scoring script loads the data and runs it against the model to provide predictions.
+When creating a realtime web service, you must supply a name for the service and a scoring script. The scoring script loads the data and runs it against the model to provide predictions.
 
 Additionally, you can specify the following options for a realtime service:
 
 * Files and directories required by the service. 
 * Enable [Applications Insights](https://docs.microsoft.com/en-us/azure/application-insights/) logging.
 * The model to be deployed.
-* A pip requirements.txt file of packages needed by the code file.
+* Add packages needed by the code file.
 * The runtime of the web service. Valid runtimes are spark-py, cntk-py, tensorflow-py, scikit-py. The default runtime is spark-py.
 * The input and output schema of the web service.
 * Number of nodes for the Kubernetes service in a cluster.  The default is 1.
