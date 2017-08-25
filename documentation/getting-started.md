@@ -1,7 +1,11 @@
 # Operationalizing ML Models on Azure (Preview)
 ## Overview
 
-You can efficiently operationalize Spark, Tensorflow, CNTK, or Python based machine learning models using the Azure Machine Learning CLI.
+This guide gets you started with using the Azure ML CLIs to deploy and manage your machine learning models. To get the most out of this guide, you should have owner access to an Azure subscription that you can deploy your models to.
+
+Using the CLIs, you can efficiently operationalize Spark, Keras, Tensorflow, CNTK, or Python based machine learning models. By the end of this document, you should be able to have your operationalization environment set up and ready for deploy your machine learning models.
+
+For more on operationlaziation, see the [Overview Document](https://github.com/Azure/Machine-Learning-Operationalization/blob/master/documentation/operationalization-overview.md).
 
 ## Getting Started
 ### Accessing the CLIs
@@ -133,3 +137,7 @@ You are now ready to deploy your saved model as a web service. You can start fro
 The command to use is as follows:
 
     az ml service create realtime --model-file [model file/folder path] -f [scoring file e.g. score.py] -n [service name] -s [schema file e.g. service_schema.json] -r [runtime for the Docker container e.g. spark-py]
+
+##### Next Steps
+
+Try one of the many samples in the [samples folder](https://github.com/Azure/Machine-Learning-Operationalization/tree/master/samples).
