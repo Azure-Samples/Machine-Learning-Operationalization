@@ -3,7 +3,7 @@
 
 This guide gets you started with using the Azure ML CLIs to deploy and manage your machine learning models. To get the most out of this guide, you should have owner access to an Azure subscription that you can deploy your models to.
 
-Using the CLIs, you can efficiently operationalize Spark, Keras, Tensorflow, CNTK, or Python based machine learning models. By the end of this document, you should be able to have your operationalization environment set up and ready for deploy your machine learning models.
+Using the CLIs, you can efficiently operationalize Spark, Keras, Tensorflow, CNTK, or Python based machine learning models. By the end of this document, you should be able to have your operationalization environment set up and ready for deploying your machine learning models.
 
 For more on operationlaziation, see the [Overview Document](https://github.com/Azure/Machine-Learning-Operationalization/blob/master/documentation/operationalization-overview.md).
 
