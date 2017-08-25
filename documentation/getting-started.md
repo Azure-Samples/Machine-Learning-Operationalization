@@ -28,7 +28,7 @@ Open a command prompt using Run As Administrator and run the following commands:
 
 #### Installing on Linux
 
-The easiest and quickest way to get started is to use the Data Science VM (see [Provision the Data Science Virtual Machine for Linux (Ubuntu)](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-dsvm-ubuntu-intro)).
+The easiest and quickest way to get started on Linux is to use the Data Science VM (see [Provision the Data Science Virtual Machine for Linux (Ubuntu)](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-dsvm-ubuntu-intro)).
 
 **Note**: The information in this document pertains to DSVMs provisioned after May 1st, 2017.
 
