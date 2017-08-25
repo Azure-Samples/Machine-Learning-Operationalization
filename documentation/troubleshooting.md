@@ -1,4 +1,4 @@
-# Troubleshooting web services
+# Troubleshooting web services deployments
 During deployment or when calling the web service, you can use the following resources to determine the cause of the errors.
 
 Note: If you get a "bad gateway error" when calling the web service immediately after deploying it, it is normally caused by the deployment process still going through its steps. Wait a minute, and try again. It should go away.
