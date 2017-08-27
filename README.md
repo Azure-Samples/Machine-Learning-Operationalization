@@ -28,6 +28,7 @@ Azure Machine Learning Operationalization is a component of the Azure CLI that e
     * [How to scale operationalization on your ACS cluster](documentation/how-to-scale.md)
     * [Consuming the web service](documentation/consume-web-service.md)
     * [Troubleshooting the web service](documentation/troubleshooting.md)
+    * [Creating score.py file](documentation/creating_score_py.md)
 
 * Technical Articles:
     * [Command-Line Interface Reference](documentation/aml-cli-reference.md)
