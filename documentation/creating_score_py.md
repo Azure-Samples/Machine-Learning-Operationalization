@@ -1,0 +1,1 @@
+# How create the score.py file
