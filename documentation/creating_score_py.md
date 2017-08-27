@@ -34,7 +34,7 @@ def run(input_data):
 
 You can combine the above two functions and save them in a file called score.py. And you would have this necessary piece of the model deployment process.
 
-If you are using a Jupyter notebook with Python 3, you can use the _%%writefile_ Magic commandat the top of the cell containing the two functions. Running that cell will save the file.
+If you are using a Jupyter notebook with Python 3, you can use the _%%writefile_ Magic command the top of the cell containing the two functions. Running that cell will save the file.
 
 ```
 %%writefile score.py
