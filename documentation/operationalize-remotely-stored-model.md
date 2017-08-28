@@ -8,10 +8,12 @@ You can upload the model to your azure storage account using any of the followin
 * [AZCopy](https://docs.microsoft.com/en-us/azure/storage/storage-use-azcopy)
 * Directly through the [Azure portal](https://portal.azure.com)
 
-To find the name of the storage account, set your environment (if already deployed), then use the following command:
+To find the name of the storage account, set your environment (if already set up), then use the following command:
 
      az ml env show
-     
+
+To see who how to set up an environment, see the Getting Started Guide.
+
 The command to create a web service using remote data takes the following form:
 
      az ml service create realtime --model-file <model file path> -f <scoring file e.g. sore.py> -n <myservicename> -r <runtime> 
