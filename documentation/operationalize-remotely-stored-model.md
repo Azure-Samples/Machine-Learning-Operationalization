@@ -8,14 +8,16 @@ You can upload the model to your azure storage account using any of the followin
 * [AZCopy](https://docs.microsoft.com/en-us/azure/storage/storage-use-azcopy)
 * Directly through the [Azure portal](https://portal.azure.com)
 
-To find the name of the storage account, open your .amlenvrc file and find the *AML_STORAGE_ACCT_NAME* variable.
+To find the name of the storage account, set your environment (if already deployed), then use the following command:
 
+     az ml env show
+     
 The command to create a web service using remote data takes the following form:
 
-     az ml service create batch -f <myfile>.py --in=--trained-model:<mytrainedmodel> --in=--input-data:<protocol>://<mycluster>.blob.core.windows.net/<mypackages>/<myfile>.csv --out=--output-data -v -n <myservicename> 
+     az ml service create realtime --model-file <model file path> -f <scoring file e.g. sore.py> -n <myservicename> -r <runtime> 
 
 The following is an example CLI command to create a service using a model stored in a private Azure blob:
 
-    az ml service create realtime -r cntk-py -f driver.py -m https://donsubuncli06012017stor.blob.core.windows.net/models/resnet.dnn -n cntksrvc2
+    az ml service create realtime --model-file https://myenvironmentstor.blob.core.windows.net/models/resnet.dnn -f driver.py-n cntksrvc2-r cntk-py 
 
 You can specify either a https or wasb url to the model.
