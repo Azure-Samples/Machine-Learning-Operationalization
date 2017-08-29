@@ -60,7 +60,7 @@ Next, you need to set up the environment. The environment setup is a one time ta
 ##### Set up the environment
 To deploy and test your web service on the local machine, set up a local environment.
 
-    az ml env setup --cluster-name <your environemnt name>
+    az ml env setup
 
 The local environment setup command creates the following resources in your subscription:
 
