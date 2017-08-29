@@ -33,7 +33,7 @@ The easiest and quickest way to get started on Linux is to use the Data Science 
 **Note**: The information in this document pertains to DSVMs provisioned after May 1st, 2017.
 
 Once you have provisioned and signed into the DSVM, run the following commands and follow the prompts:
-
+ 
     $ wget -q https://raw.githubusercontent.com/Azure/Machine-Learning-Operationalization/master/scripts/amlupdate.sh -O - | sudo bash -
     $ sudo /opt/microsoft/azureml/initial_setup.sh
     
@@ -60,7 +60,7 @@ Next, you need to set up the environment. The environment setup is a one time ta
 ##### Set up the environment
 To deploy and test your web service on the local machine, set up a local environment.
 
-    az ml env setup
+    az ml env setup --cluster-name <your environemnt name>
 
 The local environment setup command creates the following resources in your subscription:
 
