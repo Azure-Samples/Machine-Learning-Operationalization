@@ -17,7 +17,7 @@ To use the CLIs, on the Azure ML App menu, use File -> Open CommandLine Interfac
 
 On all other systems, you would have to install the CLIs. 
 
-#### Installing on Windows
+#### Installing (or updating) on Windows
 
 Install Python from [https://www.python.org/](https://www.python.org/). Ensure that you have selected to install pip.
 
@@ -26,7 +26,7 @@ Open a command prompt using Run As Administrator and run the following commands:
     pip install azure-cli
     pip install azure-cli-ml
 
-#### Installing on Linux
+#### Installing (or updating) on Linux
 
 The easiest and quickest way to get started on Linux is to use the Data Science VM (see [Provision the Data Science Virtual Machine for Linux (Ubuntu)](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-dsvm-ubuntu-intro)).
 
