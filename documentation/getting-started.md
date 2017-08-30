@@ -125,7 +125,7 @@ Note that once the environment is created, for subsequent deployments, you only 
 ##### Create an account
 This creates and sets the account that will be used for billing. You need to this once, and can re-use the same account in multiple deployments.
 
-    az ml account modelmanagement create -l [Azure region, e.g. eastus2] -n [your account name] -g [resource group name: existing] --sku-capacity 1 --sku-name S1
+    az ml account modelmanagement create -l [Azure region, e.g. eastus2] -n [your account name] -g [resource group name: existing] --sku-instances 1 --sku-name S1
 
 The above command also sets the account for deployment which means you can now deploy your web service. For any subsequent deployments however, you need to set the account first using the below command:
 
