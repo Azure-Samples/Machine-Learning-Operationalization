@@ -1,4 +1,4 @@
-# Operationalization and Model Management Command Line Interface Reference
+# Model Management Command Line Interface Reference
 
 You can update your Azure Machine Learning command line interface (CLI) installation using pip. To perform the update, you must have sufficient permissions.
 
