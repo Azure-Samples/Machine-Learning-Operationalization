@@ -33,34 +33,47 @@ pip install azure-cli-ml
     service : Manage operationalized services.
 
 ## Account commands
+
 A model management account is required to use the services, which allow you to deploy and manage models. Use `az ml account modelmanagement -h` to see the following list.
 
     create: Create a Model Management Account.
     delete: Delete a specified Model Management Account.
-    list  : Gets the Model Management Accounts in the current subscriptiong.
+    list  : Get the Model Management Accounts in the current subscription.
     set   : Set the active Model Management Account.
     show  : Show a Model Management Account.
     update: Update an existing Model Management Account.
 
-**Create Model Managment Account**
+**Create a Model Management Account**
 
-Create a model managment account using the below command. This account will be used for billing.
+Create a model management account using the following command. This account will be used for billing.
 
 `az ml account modelmanagement create --location [Azure region e.g. eastus2] --name [new account name] --resource-group [resource group name to store the account in]`
 
-Local Arguments:
+Command details:
 
-    --location -l       [Required]: Resource location.
-    --name -n           [Required]: Name of the model management account.
-    --resource-group -g [Required]: Resource group to create the model management account in.
-    --description -d              : Description of the model management account.
-    --sku-instances               : Number of instances of the selected SKU. Must be between 1 and
-                                    16 inclusive.  Default: 1.
-    --sku-name                    : SKU name. Valid names are S1|S2|S3|DevTest.  Default: S1.
-    --tags -t                     : Tags for the model management account.  Default: {}.
-    -v                            : Verbosity flag.
+    --location -l      : [Required] Resource location.
+    --name -n          : [Required] Name of the model management account.
+    --resource-group -g: [Required] Resource group to create the model management account in.
+    --description -d   : Description of the model management account.
+    --sku-instances    : Number of instances of the selected SKU. Must be between 1 and 16 inclusive. Default: 1.
+    --sku-name         : SKU name. Valid names are S1|S2|S3|DevTest.  Default: S1.
+    --tags -t          : Tags for the model management account.  Default: {}.
+    -v                 : Verbosity flag.
+
+**Set the active Model Management Account**
+
+Set the active model management account using the following command.
+
+`az ml account modelmanagement set --name [account name] --resource-group [resource group name associated with the account]`
+
+Command details:
+
+    --name -n          : [Required] Name of model management account to set.
+    --resource-group -g: [Required] Resource group containing the model management account to set.
+    -v                 : Verbosity flag.
 
 ## Environment commands
+Use `az ml env -h` to see the following list.
 
     cluster        : Switch the current execution context to 'cluster'.
     delete         : Delete an MLCRP-provisioned resource.
@@ -69,21 +82,47 @@ Local Arguments:
     local          : Switch the current execution context to 'local'.
     set            : Set the active MLC environment.
     setup          : Sets up an MLC environment.
-    show           : Show an MLC resource; if resource_group or cluster_name are not provided, shows
-                     the active MLC env.
+    show           : Show an MLC resource; if resource_group or cluster_name are not provided, shows the active MLC env.
+
+**Switch to 'cluster'**
+Use `az ml env cluster` to switch the current execution context to 'cluster'.
+
+**List environment credentials**
+
+Use `az ml env get-credentials --cluster-name [compute resource] --resource-group [resource group compute resource]` to list the credentials for the environment.
+
+Command details:
+
+    --cluster-name -n       : [Required] Name of compute resource to retrieve keys for.
+    --resource-group -g     : [Required] Resource group compute resource to retrieve keys for.
+    --install-kube-config -i: Flag to save Kubernetes configuration to file. If value not provided, will install to ~/.kube/config.
+    -v                      : Verbosity flag.
+
+**Switch to 'local'**
+
+Use `az ml env local` to switch the current execution context to 'local'.
+
+**Set the active MLC environment**
+
+Use `az ml env set --cluster-name [cluster name] --resource-group [resource group]` to set the active MLC environment.
+
+Command details:
+
+    --cluster-name -n  : [Required] Name of cluster to provision.
+    --resource-group -g: [Required] Resource group of compute resource to set as active resource.
 
 **Set up the Deployment Environment**
 
-There are two option for deployment: *local* and *cluster*. Setting the `--cluster` (or `-c`) flag enables cluster deployment. The basic setup syntax is as follows:
+When setting up the deployment environment, there are two option for deployment: *local* and *cluster*. Setting the `--cluster` (or `-c`) flag enables cluster deployment. The basic setup syntax is as follows:
 
-`az ml env setup [-c] --location [location of environment resources] --name[name of environment]`
+`az ml env setup [-c] --location [location of environment resources, e.g. eastus2] --name[name of environment]`
 
 This initializes your Azure machine learning environment with a storage account, ACR registry, App Insights service, and an ACS cluster created in your subscription. By default, the environment is initialized for local deployments only (no ACS) if no flag is specified. If you need to scale service, specify the `--cluster` (or `-c`) flag to create an ACS cluster.
 
 Command details:
 
-    --location -l        [Required]: Location for environment resources; an Azure region, e.g. eastus2.
-    --name -n            [Required]: Name of environment to provision.
+    --location -l                  : [Required] Location for environment resources; an Azure region, e.g. eastus2.
+    --name -n                      : [Required] Name of environment to provision.
     --acr -r                       : ARM ID of ACR to associate with this environment.
     --agent-count -z               : Number of agents to provision in the ACS cluster. Default: 3.
     --cert-cname                   : CNAME of certificate.
@@ -98,19 +137,10 @@ Command details:
     --storage -s                   : ARM ID of storage account to associate with this environment.
     --yes -y                       : Flag to answer 'yes' to any prompts. Command will fail if user is not logged in.
 
-Global Arguments
-```
-    --debug                        : Increase logging verbosity to show all debug logs.
-    --help -h                      : Show this help message and exit.
-    --output -o                    : Output format.  Allowed values: json, jsonc, table, tsv. Default: json.
-    --query                        : JMESPath query string. See http://jmespath.org/ for more information and examples.
-    --verbose                      : Increase logging verbosity. Use --debug for full debug logs.
-```
-
 ## Image commands
 
-    create: Create an Operationalization Image. This command has two different sets of
-            required arguments, depending on if you want to use a previously created manifest.
+    create: Create an Operationalization Image. This command has two different sets of required arguments,
+            depending on if you want to use a previously created manifest.
     list
     show
     usage
@@ -121,35 +151,43 @@ Note that the create service command listed below can perform the create image o
 
 You can create an image with the option of having registered it before, or you can register it with a single command. Each option is shown below.
 
-`az ml image create -n [image name] -manifest-id [the manifest ID]`
+`az ml image create -n [image name] -manifest-id [manifest ID]`
 
-`az ml image create -n [image name] --model-file [model file or folder path] -f [code file, e.g. the score.py file] -r [the runtime eg.g. spark-py which is the Docker container image base]`
+`az ml image create -n [image name] --model-file [model file or folder path] -f [code file, e.g. the score.py file] -r [the runtime, e.g. spark-py which is the Docker container image base]`
 
 Command details:
 
-    --image-name -n [Required]: The name of the image being created.
-    --image-description       : Description of the image.
-    --image-type              : The image type to create. Defaults to "Docker".
-    -v                        : Verbosity flag.
+    --image-name -n    : [Required] The name of the image being created.
+    --image-description: Description of the image.
+    --image-type       : The image type to create. Defaults to "Docker".
+    -v                 : Verbosity flag.
 
 Registered Manifest Arguments
-    --manifest-id             : [Required] Id of previously registered manifest to use in image creation.
+    --manifest-id      : [Required] Id of previously registered manifest to use in image creation.
 
 Unregistered Manifest Arguments
-    --conda-file -c           : Path to Conda Environment file.
-    --dependency -d           : Files and directories required by the service. Multiple dependencies can
-                                be specified with additional -d arguments.
-    --model-file -m           : [Required] Model file to register.
-    --schema-file -s          : Schema file to add to the manifest.
-    -f                        : [Required] The code file to be deployed.
-    -p                        : A pip requirements.txt file needed by the code file.
-    -r                        : [Required] Runtime of the web service. Valid runtimes are python|spark-py.
+    --conda-file -c    : Path to Conda Environment file.
+    --dependency -d    : Files and directories required by the service. Multiple dependencies can be specified
+                         with additional -d arguments.
+    --model-file -m    : [Required] Model file to register.
+    --schema-file -s   : Schema file to add to the manifest.
+    -f                 : [Required] The code file to be deployed.
+    -p                 : A pip requirements.txt file needed by the code file.
+    -r                 : [Required] Runtime of the web service. Valid runtimes are python|spark-py.
+
+**Image usage**
+
+Use `az ml image usage --image-id [image ID]` to show the usage of the specified image.
+
+Command details:
+
+    --image-id -i: [Required] ID of image to show.
+    -v           : Verbosity flag.
 
 ## Manifest commands
 
-    create: Create an Operationalization Manifest. This command has two different
-            sets of required arguments, depending on if you want to use previously registered
-            model/s.
+    create: Create an Operationalization Manifest. This command has two different sets of required arguments,
+            depending on if you want to use previously registered model/s.
     list
     show
 
@@ -161,33 +199,23 @@ Creates a manifest file for the model. Note that you can use the `service create
 
 Command details:
 
-    --manifest-name -n [Required]: Name of the manifest to create.
-    -f                 [Required]: The code file to be deployed.
-    -r                 [Required]: Runtime of the web service. Valid runtimes are spark-py|python.
-    --conda-file -c              : Path to Conda Environment file.
-    --dependency -d              : Files and directories required by the service. Multiple
-                                   dependencies can be specified with additional -d arguments.
-    --manifest-description       : Description of the manifest.
-    --schema-file -s             : Schema file to add to the manifest.
-    -p                           : A pip requirements.txt file needed by the code file.
-    -v                           : Verbosity flag.
+    --manifest-name -n    : [Required] Name of the manifest to create.
+    -f                    : [Required] The code file to be deployed.
+    -r                    : [Required] Runtime of the web service. Valid runtimes are spark-py|python.
+    --conda-file -c       : Path to Conda Environment file.
+    --dependency -d       : Files and directories required by the service. Multiple dependencies can be
+                            specified with additional -d arguments.
+    --manifest-description: Description of the manifest.
+    --schema-file -s      : Schema file to add to the manifest.
+    -p                    : A pip requirements.txt file needed by the code file.
+    -v                    : Verbosity flag.
 
 Registered Model Arguments
-    --model-id -i                : [Required] Id of previously registered model to add to manifest.
-                                   Multiple models can be specified with additional -i arguments.
+    --model-id -i         : [Required] Id of previously registered model to add to manifest.
+                            Multiple models can be specified with additional -i arguments.
 
 Unregistered Model Arguments
-    --model-file -m              : [Required] Model file to register. If used, must be combined with
-                                   model name.
-
-Global Arguments
-    --debug                      : Increase logging verbosity to show all debug logs.
-    --help -h                    : Show this help message and exit.
-    --output -o                  : Output format.  Allowed values: json, jsonc, table, tsv.
-                                   Default: json.
-    --query                      : JMESPath query string. See http://jmespath.org/ for more
-                                   information and examples.
-    --verbose                    : Increase logging verbosity. Use --debug for full debug logs.
+    --model-file -m       : [Required] Model file to register. If used, must be combined with model name.
 
 ## Model commands
 
@@ -203,19 +231,11 @@ Command to register the model. Note that you can use the service create command 
 
 Command details:
 
-    --model -m [Required]: Model to register.
-    --name -n  [Required]: Name of model to register.
-    --description -d     : Description of the model.
-    --tag -t             : Tags for the model. Multiple tags can be specified with additional -t arguments.
-    -v                   : Verbosity flag.
-
-Global Arguments
-    --debug              : Increase logging verbosity to show all debug logs.
-    --help -h            : Show this help message and exit.
-    --output -o          : Output format.  Allowed values: json, jsonc, table, tsv.  Default: json.
-    --query              : JMESPath query string. See http://jmespath.org/ for more information and
-                           examples.
-    --verbose            : Increase logging verbosity. Use --debug for full debug logs.
+    --model -m      : [Required] Model to register.
+    --name -n       : [Required] Name of model to register.
+    --description -d: Description of the model.
+    --tag -t        : Tags for the model. Multiple tags can be specified with additional -t arguments.
+    -v              : Verbosity flag.
 
 ## Service commands
 
@@ -233,11 +253,11 @@ Global Arguments
 
 In the following command, note that the schema needs to be `generate-schema` command available through the Azure ML SDK (see samples for more info on the schema creation). 
 
-`az ml service create realtime --imageid [image to deploy] -n [service name]'
+`az ml service create realtime --imageid [image to deploy] -n [service name]`
 
 `az ml service create realtime --model-file [path to model file(s)] -f [path to model scoring file, e.g. score.py] -n [service name] -r [run time included in the image, e.g. spark-py]`
 
-Commands details:
+Command details:
 
     -n                                : [Required] Webservice name.
     --autoscale-enabled               : Enable automatic scaling of service replicas based on request demand.
@@ -268,63 +288,60 @@ Unregistered Image Arguments
     -r                                : [Required] Runtime of the web service. Valid runtimes are python|spark-py.
     -s                                : Input and output schema of the web service.
 
-Global Arguments
-    --debug                           : Increase logging verbosity to show all debug logs.
-    --help -h                         : Show this help message and exit.
-    --output -o                       : Output format.  Allowed values: json, jsonc, table, tsv. Default: json.
-    --query                           : JMESPath query string. See http://jmespath.org/ for more information and examples.
-    --verbose                         : Increase logging verbosity. Use --debug for full debug logs.
-
 Note on the `-d` flag for attaching dependencies: If you pass the name of a directory that is not already bundled (zip, tar, etc.), that directory automatically gets tar’ed and is passed along, then automatically unbundled on the other end. If you pass in a directory that is already bundled, we treat it as a file and pass it along as is. It will not be unbundled automatically; you are expected to handle that in your code.
 
-**Get service details**
+**Get the keys for a service**
 
-Get service details including URL, usage (including sample data if a schema was created).
+`az ml service keys realtime --id [service ID]`
 
-`az ml service show realtime --name [service name]`
+Arguments
+    --id -i [Required]: Service ID.
+    --regen -r        : Flag to specify to regenerate keys for the specified service.
+    -v                : Verbosity flag.
 
-Command details:
+**Get service logs**
 
-    --id -i    : The service id to show.
-    --name -n  : Webservice name.
-    -v         : Verbosity flag.
+Either a service name or a service ID is required.
 
-Global Arguments
-    --debug    : Increase logging verbosity to show all debug logs.
-    --help -h  : Show this help message and exit.
-    --output -o: Output format.  Allowed values: json, jsonc, table, tsv.  Default: json.
-    --query    : JMESPath query string. See http://jmespath.org/ for more information and examples.
-    --verbose  : Increase logging verbosity. Use --debug for full debug logs.
+`az ml service keys realtime --service-id [service ID]`
+`az ml service keys realtime --service-name [service name]`
+
+    --kube-config -k : Kubeconfig of the cluster to get logs from.
+    --request-id -r  : Request Id to filter the logs by.
+    --service-id -i  : Service ID.
+    --service-name -n: Service Name.
+    -v               : Verbosity flag.
 
 **Run the service**
 
-`az ml service run realtime -n [service name] -d [input_data]`
+`az ml service run realtime -i [service ID]`
 
 Command details:
 
-    --id -i    : The service id to show.
-    --name -n  : Webservice name.
-    -v         : Verbosity flag.
-
-Global Arguments
-    --debug    : Increase logging verbosity to show all debug logs.
-    --help -h  : Show this help message and exit.
-    --output -o: Output format.  Allowed values: json, jsonc, table, tsv.  Default: json.
-    --query    : JMESPath query string. See http://jmespath.org/ for more information and examples.
-    --verbose  : Increase logging verbosity. Use --debug for full debug logs.
-stephen@vstbeeUbuntuDSVM170905:~$ az ml service run realtime -h
-
-Command
-    az ml service run realtime
-
-Arguments
     --id -i    : [Required] The service id to score against.
     -d         : The data to use for calling the web service.
     -v         : Verbosity flag.
 
-Global Arguments
-    --debug    : Increase logging verbosity to show all debug logs.
-    --help -h  : Show this help message and exit.
-    --output -o: Output format.  Allowed values: json, jsonc, table, tsv. Default: json.
-    --query    : JMESPath query string. See http://jmespath.org/ for more information and examples.
-    --verbose  : Increase logging verbosity. Use --debug for full debug logs.
+**Get service details**
+
+Get service details including URL and usage (including sample data if a schema was created). Either a service name or a service ID is required.
+
+`az ml service show realtime --name [service name]`
+`az ml service show realtime --id [service ID]`
+
+Command details:
+
+    --id -i  : The service id to show.
+    --name -n: Webservice name.
+    -v       : Verbosity flag.
+
+**Service usage**
+
+`az ml service usage realtime --id [service ID]`
+
+Command details:
+
+    --id -i: [Required] Service ID.
+    -v     : Verbosity flag.
+
+
