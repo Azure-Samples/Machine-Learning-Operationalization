@@ -33,7 +33,7 @@ def main():
   
   df = pandas.DataFrame(data=[[3.0, 3.6, 1.3, 0.25]], columns=['sepal length', 'sepal width','petal length','petal width'])
 
-  # Testt the functions' output
+  # Test the functions' output
   init()
   input1 = pandas.DataFrame([[3.0, 3.6, 1.3, 0.25]])
   print("Result: " + run(input1))
