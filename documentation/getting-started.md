@@ -23,9 +23,12 @@ Install Python from [https://www.python.org/](https://www.python.org/). Ensure t
 
 Open a command prompt using Run As Administrator and run the following commands:
 
-    pip install azure-cli
     pip install azure-cli-ml
 
+If you you are updating your CLI, you need to uninstall the CLI first:
+
+    pip uninstall azure-cli-ml
+    
 #### Installing (or updating) on Linux
 
 The easiest and quickest way to get started on Linux is to use the Data Science VM (see [Provision the Data Science Virtual Machine for Linux (Ubuntu)](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-dsvm-ubuntu-intro)).
