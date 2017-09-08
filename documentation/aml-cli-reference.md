@@ -34,7 +34,7 @@ pip install azure-cli-ml
 
 ## Account commands
 
-A model management account is required to use the services, which allow you to deploy and manage models. Use `az ml account modelmanagement -h` to see the following list.
+A model management account is required to use the services, which allow you to deploy and manage models. Use `az ml account modelmanagement -h` to see the following list:
 
     create: Create a Model Management Account.
     delete: Delete a specified Model Management Account.
@@ -45,7 +45,7 @@ A model management account is required to use the services, which allow you to d
 
 **Create a Model Management Account**
 
-Create a model management account using the following command. This account will be used for billing.
+Create a model management account for billing, use the following command:
 
 `az ml account modelmanagement create --location [Azure region e.g. eastus2] --name [new account name] --resource-group [resource group name to store the account in]`
 
@@ -55,14 +55,14 @@ Command details:
     --name -n          : [Required] Name of the model management account.
     --resource-group -g: [Required] Resource group to create the model management account in.
     --description -d   : Description of the model management account.
-    --sku-instances    : Number of instances of the selected SKU. Must be between 1 and 16 inclusive. Default: 1.
-    --sku-name         : SKU name. Valid names are S1|S2|S3|DevTest.  Default: S1.
-    --tags -t          : Tags for the model management account.  Default: {}.
+    --sku-instances    : Number of instances of the selected SKU. Must be between 1 and 16 inclusive. Default: **1**
+    --sku-name         : SKU name. Valid names are S1|S2|S3|DevTest.  Default: **S1**
+    --tags -t          : Tags for the model management account.  Default: {}
     -v                 : Verbosity flag.
 
 **Set the active Model Management Account**
 
-Set the active model management account using the following command.
+Set the active model management account using the following command:
 
 `az ml account modelmanagement set --name [account name] --resource-group [resource group name associated with the account]`
 
@@ -73,7 +73,7 @@ Command details:
     -v                 : Verbosity flag.
 
 ## Environment commands
-Use `az ml env -h` to see the following list.
+Use `az ml env -h` to see the following list:
 
     cluster        : Switch the current execution context to 'cluster'.
     delete         : Delete an MLCRP-provisioned resource.
@@ -113,23 +113,23 @@ Command details:
 
 **Set up the Deployment Environment**
 
-When setting up the deployment environment, there are two option for deployment: *local* and *cluster*. Setting the `--cluster` (or `-c`) flag enables cluster deployment. The basic setup syntax is as follows:
+When setting up the deployment environment, there are two options for deployment: *local* and *cluster*. Setting the `--cluster` (or `-c`) flag enables cluster deployment. The basic setup syntax is as follows:
 
 `az ml env setup [-c] --location [location of environment resources, e.g. eastus2] --name[name of environment]`
 
-This initializes your Azure machine learning environment with a storage account, ACR registry, App Insights service, and an ACS cluster created in your subscription. By default, the environment is initialized for local deployments only (no ACS) if no flag is specified. If you need to scale service, specify the `--cluster` (or `-c`) flag to create an ACS cluster.
+This command initializes your Azure machine learning environment with a storage account, ACR registry, App Insights service, and an ACS cluster created in your subscription. By default, the environment is initialized for local deployments only (no ACS) if no flag is specified. If you need to scale service, specify the `--cluster` (or `-c`) flag to create an ACS cluster.
 
 Command details:
 
     --location -l                  : [Required] Location for environment resources; an Azure region, e.g. eastus2.
     --name -n                      : [Required] Name of environment to provision.
     --acr -r                       : ARM ID of ACR to associate with this environment.
-    --agent-count -z               : Number of agents to provision in the ACS cluster. Default: 3.
+    --agent-count -z               : Number of agents to provision in the ACS cluster. Default: **3**
     --cert-cname                   : CNAME of certificate.
     --cert-pem                     : Path to .pem file with certificate bytes.
     --cluster -c                   : Flag to provision ACS cluster. Off by default; specify this to force an ACS cluster deployment.
     --key-pem                      : Path to .pem file with certificate key.
-    --master-count -m              : Number of master nodes to provision in the ACS cluster. Acceptable values: 1, 3, 5. Default: 1.
+    --master-count -m              : Number of master nodes to provision in the ACS cluster. Acceptable values: 1, 3, 5. Default: **1**
     --resource-group -g            : Resource group in which to create compute resource. Will be created if it does not exist.
                                      If not provided, resource group will be created with 'rg' appended to 'name.'.
     --service-principal-app-id -a  : App ID of service principal to use for configuring ML compute.
@@ -147,7 +147,7 @@ Command details:
 
 **Create image**
 
-Note that the create service command listed below can perform the create image operation, so you don't have to create an image separately. 
+(The `create service` command can perform the `create image` operation instead of creating the image separately.) 
 
 You can create an image with the option of having registered it before, or you can register it with a single command. Each option is shown below.
 
@@ -159,11 +159,11 @@ Command details:
 
     --image-name -n    : [Required] The name of the image being created.
     --image-description: Description of the image.
-    --image-type       : The image type to create. Defaults to "Docker".
+    --image-type       : The image type to create. Default: **Docker**
     -v                 : Verbosity flag.
 
 Registered Manifest Arguments
-    --manifest-id      : [Required] Id of previously registered manifest to use in image creation.
+    --manifest-id      : [Required] ID of previously registered manifest to use in image creation.
 
 Unregistered Manifest Arguments
     --conda-file -c    : Path to Conda Environment file.
@@ -193,7 +193,7 @@ Command details:
 
 **Create manifest**
 
-Creates a manifest file for the model. Note that you can use the `service create` command, which will perform the manifest creation without you having to create it separately.
+Creates a manifest file for the model. The `service create` command performs the manifest creation without needing to create it separately.
 
 `az ml manifest create --manifest-name [your new manifest name] -f [path to code file] -r [runtime for the image, e.g. spark-py]`
 
@@ -211,7 +211,7 @@ Command details:
     -v                    : Verbosity flag.
 
 Registered Model Arguments
-    --model-id -i         : [Required] Id of previously registered model to add to manifest.
+    --model-id -i         : [Required] ID of previously registered model to add to manifest.
                             Multiple models can be specified with additional -i arguments.
 
 Unregistered Model Arguments
@@ -225,7 +225,7 @@ Unregistered Model Arguments
 
 **Register a model**
 
-Command to register the model. Note that you can use the service create command which will perform the model registraiton (without you having to register it separately).
+Command to register the model. You can use the `service create` command, which will perform the model registration without the need to register it separately.
 
 `az ml model register --model [path to model file] --name [model name]`
 
@@ -261,25 +261,25 @@ Command details:
 
     -n                                : [Required] Webservice name.
     --autoscale-enabled               : Enable automatic scaling of service replicas based on request demand.
-                                        Allowed values: true, false. False if omitted.  Default: false.
+                                        Allowed values: true, false. False if omitted.  Default: **false**
     --autoscale-max-replicas          : If autoscale is enabled - sets the maximum number of replicas.
     --autoscale-min-replicas          : If autoscale is enabled - sets the minimum number of replicas.
     --autoscale-refresh-period-seconds: If autoscale is enabled - the interval of evaluating scaling demand.
     --autoscale-target-utilization    : If autoscale is enabled - target utilization of replicas time.
-    --collect-model-data              : Enable model data collection. Allowed values: true, false. False if omitted.  Default: false.
+    --collect-model-data              : Enable model data collection. Allowed values: true, false. False if omitted.  Default: **false**
     --cpu                             : Reserved number of CPU cores per service replica (can be fraction).
-    --enable-app-insights -l          : Enable app insights. Allowed values: true, false. False if omitted.  Default: false.
+    --enable-app-insights -l          : Enable app insights. Allowed values: true, false. False if omitted.  Default: **false**
     --memory                          : Reserved amount of memory per service replica, in M or G. (ex. 1G, 300M).
     --replica-max-concurrent-requests : Maximum number of concurrent requests that can be routed to a service replica.
     -v                                : Verbosity flag.
-    -z                                : Number of replicas for a Kubernetes service.  Default: 1.
+    -z                                : Number of replicas for a Kubernetes service.  Default: **1**
 
 Registered Image Arguments
     --image-id                        : [Required] Image to deploy to the service.
 
 Unregistered Image Arguments
     --conda-file -c                   : Path to Conda Environment file.
-    --image-type                      : The image type to create. Defaults to "Docker".
+    --image-type                      : The image type to create. Default: **Docker**
     --model-file -m                   : [Required] The model to be deployed.
     -d                                : Files and directories required by the service. Multiple dependencies can be specified
                                         with additional -d arguments.
@@ -288,7 +288,7 @@ Unregistered Image Arguments
     -r                                : [Required] Runtime of the web service. Valid runtimes are python|spark-py.
     -s                                : Input and output schema of the web service.
 
-Note on the `-d` flag for attaching dependencies: If you pass the name of a directory that is not already bundled (zip, tar, etc.), that directory automatically gets tar’ed and is passed along, then automatically unbundled on the other end. If you pass in a directory that is already bundled, we treat it as a file and pass it along as is. It will not be unbundled automatically; you are expected to handle that in your code.
+Note on the `-d` flag for attaching dependencies: If you pass the name of an unbundled directory (that is, not zip, tar, etc.), that directory automatically gets tar'ed. The tarball is passed along and automatically unbundled on the other end. If you pass in a bundled directory, it is treated as a file and passed along as is. It is not unbundled automatically; you are expected to handle that in your code.
 
 **Get the keys for a service**
 
@@ -318,7 +318,7 @@ Either a service name or a service ID is required.
 
 Command details:
 
-    --id -i    : [Required] The service id to score against.
+    --id -i    : [Required] The service ID to score against.
     -d         : The data to use for calling the web service.
     -v         : Verbosity flag.
 
@@ -343,5 +343,3 @@ Command details:
 
     --id -i: [Required] Service ID.
     -v     : Verbosity flag.
-
-
