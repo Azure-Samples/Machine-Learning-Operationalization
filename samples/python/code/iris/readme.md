@@ -1,3 +1,4 @@
+
 # Iris sample
 
 This sample demonstrates how to train and save a model and deploy it as a web service on your local machine. 
@@ -7,8 +8,9 @@ Steps:
 
 1. Set up your environment
 2. Train and save the model
-3. Create web service
-4. Run web service
+3. Generate the schema
+4. Create web service
+5. Run web service
 
 ## Set up your environment
 
