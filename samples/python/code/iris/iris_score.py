@@ -1,7 +1,6 @@
 # This script generates the schema file
 # and holds the init and run functions needed to 
 # operationalize the Iris Classification sample
-
 # Prepare the web service definition by authoring
 # init() and run() functions. Test the functions
 # before deploying the web service.
@@ -14,13 +13,6 @@ def init():
 
 def run(input_df):
     import json
-    
-    # append 40 random features just like the training script does it.
-    import numpy as np
-    n = 40
-    random_state = np.random.RandomState(0)
-    n_samples, n_features = input_df.shape
-    input_df = np.c_[input_df, random_state.randn(n_samples, n)]
 
     pred = model.predict(input_df)
     return json.dumps(str(pred[0]))
