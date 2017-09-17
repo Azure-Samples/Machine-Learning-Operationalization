@@ -14,7 +14,7 @@ def run(doc_text):
     from sklearn.datasets import fetch_20newsgroups
     
     #Load the same categories as used in training sample
-    categories = ['alt.atheism', 'soc.religion.christian','comp.graphics', 'sci.med']
+    categories = ['comp.graphics', 'rec.autos','sci.med', 'misc.forsale']
     #Load the newsgroups from data folder
     twenty_train = fetch_20newsgroups(data_home='./data',subset='train',categories=categories, shuffle=True, random_state=42)
     
