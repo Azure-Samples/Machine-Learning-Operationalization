@@ -9,6 +9,7 @@ from sklearn.pipeline import Pipeline
 import pickle
 
 categories = ['alt.atheism', 'soc.religion.christian','comp.graphics', 'sci.med']
+#Running this line the first time will downlaod the newsgroups dataset and will take a couple of minutes.
 twenty_train = fetch_20newsgroups(data_home='./data',subset='train',categories=categories, shuffle=True, random_state=42)
 
 count_vect = CountVectorizer()
