@@ -29,7 +29,7 @@ np.mean(predicted == twenty_test.target)
 
 #Save the model to file
 print("Export the model to model.pkl")
-f = open('model.pkl', 'wb')
+f = open('./outputs/model.pkl', 'wb')
 pickle.dump(text_clf, f)
 f.close()
 
