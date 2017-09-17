@@ -45,7 +45,7 @@ def main():
 
     # Generate the schema file (schema.json)
     inputs = {"doc_text": SampleDefinition(DataTypes.STANDARD, test_doc_text)}
-    generate_schema(run_func=run, inputs=inputs, filepath='schema.json')
+    generate_schema(run_func=run, inputs=inputs, filepath='./outputs/schema.json')
 
 if __name__ == "__main__":
     main()
