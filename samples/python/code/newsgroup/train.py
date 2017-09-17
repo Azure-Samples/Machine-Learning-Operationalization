@@ -8,7 +8,7 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.pipeline import Pipeline
 import pickle
 
-categories = ['alt.atheism', 'soc.religion.christian','comp.graphics', 'sci.med']
+categories = ['comp.graphics', 'rec.autos','sci.med', 'misc.forsale']
 #Running this line the first time will downlaod the newsgroups dataset and will take a couple of minutes.
 twenty_train = fetch_20newsgroups(data_home='./data',subset='train',categories=categories, shuffle=True, random_state=42)
 
@@ -34,7 +34,7 @@ f = open('./outputs/model.pkl', 'wb')
 pickle.dump(text_clf, f)
 f.close()
 
-docs_new = ["GPU is faster than CPU"]
+docs_new = ["SUVs are very popylar"]
 predicted = text_clf.predict(docs_test)
 for doc, category in zip(docs_new, predicted):
     print('%r => %s' % (doc, twenty_train.target_names[category]))
