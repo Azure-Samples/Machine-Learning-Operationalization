@@ -9,7 +9,7 @@ For more on operationlaziation, see the [Overview Document](https://github.com/A
 
 ## Getting Started
 ### Accessing the CLIs
-_Note: The latest changes to the CLIs require your Azure subscription to be whitelisted before you can start the environment provisioning process. Please contact the dedicated ViennaWhitelist alias (viennawhitelist@service.microsoft.com) with your subscription id before using the CLIs._
+_Note: The latest changes to the CLIs require your Azure subscription to be whitelisted before you can start the environment provisioning process. 
 
 The CLIs come pre-installed on the Azure ML App and on Azure DSVMs [https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-virtual-machine-overview]. 
 
