@@ -8,7 +8,7 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.pipeline import Pipeline
 import pickle
 
-categories = ['alt.atheism', 'soc.religion.christian','comp.graphics', 'sci.med']
+categories = ['comp.graphics', 'rec.autos','sci.med', 'misc.forsale']
 twenty_train = fetch_20newsgroups(data_home='./data',subset='train',categories=categories, shuffle=True, random_state=42)
 
 count_vect = CountVectorizer()
