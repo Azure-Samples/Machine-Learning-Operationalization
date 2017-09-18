@@ -9,6 +9,7 @@ from sklearn.pipeline import Pipeline
 import pickle
 
 categories = ['comp.graphics', 'rec.autos','sci.med', 'misc.forsale']
+#Running this will copy the file to the home directory. Will take a couple of minuts to download the first time.
 twenty_train = fetch_20newsgroups(data_home='./data',subset='train',categories=categories, shuffle=True, random_state=42)
 
 count_vect = CountVectorizer()
@@ -29,11 +30,11 @@ np.mean(predicted == twenty_test.target)
 
 #Save the model to file
 print("Export the model to model.pkl")
-f = open('model.pkl', 'wb')
+f = open('./outputs/model.pkl', 'wb')
 pickle.dump(text_clf, f)
 f.close()
 
-docs_new = ["GPU is faster than CPU"]
+docs_new = ["SUVs are very popular"]
 predicted = text_clf.predict(docs_test)
 for doc, category in zip(docs_new, predicted):
     print('%r => %s' % (doc, twenty_train.target_names[category]))
