@@ -38,14 +38,14 @@ def main():
     from azureml.api.realtime.services import generate_schema
     
     # Test the init and run functions using test data
-    test_doc_text = "OpenGL on the GPU is fast"
+    test_doc_text = "SUVs are very popular"
     init()
     category = run(test_doc_text)
     print(category)
 
     # Generate the schema file (schema.json)
     inputs = {"doc_text": SampleDefinition(DataTypes.STANDARD, test_doc_text)}
-    generate_schema(run_func=run, inputs=inputs, filepath='schema.json')
+    generate_schema(run_func=run, inputs=inputs, filepath='./outputs/schema.json')
 
 if __name__ == "__main__":
     main()
