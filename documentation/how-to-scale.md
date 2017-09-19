@@ -59,3 +59,4 @@ From the dashboard main screen, click **Deployments** on the left navigation bar
 Locate the deployment to modify and click this icon ![Menu icon consisting of three vertical dots](https://github.com/Azure/Machine-Learning-Operationalization/blob/master/images/kebab-icon.jpg) on the right and then click **View/edi YAML**.
 
 On the Edit deployment screen, locate the *spec* node, modify the *replicas* value, and click **Update**.
+
