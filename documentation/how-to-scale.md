@@ -4,14 +4,14 @@ Operationalized models deployed on ACS clusters with Kubernetes installed can be
 
 * You can scale the number of agent nodes in the cluster.
 * You can scale the number of Kubernetes pods.
+
+For more information on scaling the number of nodes in the cluster, see [Scale agent nodes in a Container Service cluster](https://docs.microsoft.com/en-us/azure/container-service/container-service-scale).
  
 ##  Scale the number of nodes in the cluster
 
 The following command directly scales the agent nodes in the cluster.
 
     az acs scale -g <resource group> -n <cluster name> --new-agent-count <new scale>
-
-For more information on scaling the number of nodes in the cluster, see [Scale agent nodes in a Container Service cluster](https://docs.microsoft.com/en-us/azure/container-service/container-service-scale).
 
 ## Scale the number of Kubernetes pods
 
