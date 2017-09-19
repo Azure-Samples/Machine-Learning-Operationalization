@@ -7,11 +7,17 @@ Operationalized models deployed on ACS clusters with Kubernetes installed can be
  
 ##  Scale the number of nodes in the cluster
 
-For information on scaling the number of nodes in the cluster, see [Scale agent nodes in a Container Service cluster](https://docs.microsoft.com/en-us/azure/container-service/container-service-scale).
+The following command directly scales the agent nodes in the cluster.
 
-## Scale the number Kubernetes pods
+    az acs scale -g <resource group> -n <cluster name> --new-agent-count <new scale>
 
-Use the `-k` parameter when setting up the operationalization environment to configure one pod and install the Kubernetes CLI. You can scale the number of pods assigned to the cluster using Azure Machine Learning CLI, the `az acs scale` command, or the [Kubernetes dashboard] (https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
+For more information on scaling the number of nodes in the cluster, see [Scale agent nodes in a Container Service cluster](https://docs.microsoft.com/en-us/azure/container-service/container-service-scale).
+
+## Scale the number of Kubernetes pods
+
+Use the `-k` parameter when setting up the operationalization environment to configure one pod and install the Kubernetes CLI. You can scale the number of pods assigned to the cluster using the Azure Machine Learning CLI or the [Kubernetes dashboard] (https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
+
+For more information on Kubernetes pods, see the [Kubernetes Pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) documentation.
 
 ### Scale using the Azure Machine Learning CLI
 
@@ -20,15 +26,6 @@ To scale the number of pods in the Kubernetes service, create the service with t
     az ml service create realtime --imageid [image to deploy] -n [service name] --autoscale-enabled
 
 When using the `autoscale-enabled` flag, other autoscale parameters can be set to specify the minimum and maximum number of replicas, the scaling demand evaluation interval, and the target utilization of replicas time. For more information on using the autoscale parameters, see the [Model Management Command Line Interface Reference](aml-cli-reference.md) documentation.
-
-For more information on Kubernetes pods, see the [Kubernetes Pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) documentation.
-
-### Scale using the `az acs scale` command
-
-The following command directly scales the cluster.
-
-    az acs scale -g <resource group> -n <cluster name> --new-agent-count <new scale>
-
 
 ### Scale using the Kubernetes dashboard
 
