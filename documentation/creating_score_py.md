@@ -30,7 +30,7 @@ def run(input_data):
     except Exception as e:
         return (str(e))
 ```
-## Creating socre.py
+## Creating score.py
 
 You can combine the above two functions and save them in a file called score.py. And you would have this necessary piece of the model deployment process.
 
