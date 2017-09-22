@@ -58,9 +58,8 @@ Next, you need to set up the environment. The environment setup is a one time ta
 * You will be prompted to sign in to Azure. To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the provided code to authenticate.
 * During the authentication process you will be prompted for an account to authenticate with. **Important**: Select an account that has a valid Azure subscription and sufficient permissions to create resources in the account.
 * When the sign in is complete your subscription information will be presented and you will be prompted whether you wish to continue with the selected account.
-
-#### Local deployment (Windows and Linux)
-##### Set up the environment
+#### Set up the environment
+##### Local deployment (Windows and Linux)
 To deploy and test your web service on the local machine, set up a local environment.
 
     az ml env setup -n <you environment name> -l <location: Azure region, for example eastus2>
@@ -76,8 +75,7 @@ Set the environment:
 
     az ml env set -n <environment name> -g <resource group>
     
-#### Cluster deployment (Windows and Linux)
-##### Set up the environment
+##### Cluster deployment (Windows and Linux)
 To deploy your web service to a production environment, first set up the environment using the following command.
 
     az ml env setup -c --cluster-name [your environment name] --location [Azure region e.g. eastus]
@@ -103,7 +101,7 @@ After setup is complete, set the environment to be used for this deployment.
 
 Note that once the environment is created, for subsequent deployments, you only need to use the set command above.
 
-##### Create an account
+#### Create an account
 This creates and sets the account that will be used for billing. You need to this once, and can re-use the same account in multiple deployments.
 
     az ml account modelmanagement create -l [Azure region, e.g. eastus2] -n [your account name] -g [resource group name: existing] --sku-instances 1 --sku-name S1
@@ -112,13 +110,13 @@ The above command also sets the account for deployment which means you can now d
 
     az ml account modelmanagement set -n [your account name] -g [resource group it was created in]
 
-##### Deploy your model
+#### Deploy your model
 You are now ready to deploy your saved model as a web service. You can start from one of many samples in the gallery or in the samples folder. 
 
 The command to use is as follows:
 
     az ml service create realtime --model-file [model file/folder path] -f [scoring file e.g. score.py] -n [service name] -s [schema file e.g. service_schema.json] -r [runtime for the Docker container e.g. spark-py]
 
-##### Next Steps
+#### Next Steps
 
 Try one of the many samples in the [samples folder](https://github.com/Azure/Machine-Learning-Operationalization/tree/master/samples).
