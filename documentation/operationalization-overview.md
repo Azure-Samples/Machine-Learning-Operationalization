@@ -1,28 +1,28 @@
-Operationalization is the process of publishing models as web services, and the consumption of these services to produce business results.
+Operationalization is the process of publishing models as web services, and then consuming these services to produce business results.
 
 Azure Machine Learning Operationalization is a component of the Azure CLI that enables deployment of models that use the CNTK, SPARK, and Python machine learning platforms.
 
-You can use the Operationalization CLIs from the desktop app (File->Open Command-Line Interface) or install the CLIs direclty from the command line. They are also pre-installed on Azure DSVMs [https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-virtual-machine-overview].
+You can use the Operationalization CLIs from the desktop app (File->Open Command-Line Interface) or install the CLIs directly from the command line. They are also pre-installed on Azure DSVMs [https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-virtual-machine-overview].
 
 ## Basic Concepts
 
 ### Use of Docker for deployment
 
-Azure ML Operationalization CLIs use Docker containers for packaging and deploying the model and its dependencies. Once the trained model is saved, it can be deployed using a CLI command. 
+The Azure ML Operationalization CLI uses Docker containers for packaging and deploying the model and its dependencies. Once the trained model is saved, it can be deployed using a CLI command. 
 
 ### Local and cluster deployment modes 
 
 Azure ML Operationalization provides two deployment modes: local and cluster.
 
-Local mode deployments run in Docker containers on a single computer, whether that is your personal machine or a VM running on Azure. It is recommended to use local mode for development and testing.
+Local mode deployments run in Docker containers on a single computer, such as your personal machine or a VM running on Azure. It is recommended to use local mode for development and testing.
 
 In cluster mode, your service is run in Azure Container Service (ACS). The operationalization environment provisions Docker and Kubernetes in the cluster to manage web service deployment. Deploying to ACS allows you to scale your service as needed to meet your business needs.
 
-The CLIs provide commands to set up the environments (local and cluster) for deployment. The envrionment services such as Storage, ACR, and ACS are created in your subscription.
+The CLI provides commands to set up the environments (local and cluster) for deployment. Environment services such as Storage, ACR, and ACS are created in your subscription.
 
 ### Realtime and Batch processing 
 
-Depending on your business needs, you can deploy your service in one of two processing modes:
+You can deploy your service in one of two processing modes according to your business needs:
 
 * Realtime: Provides a web service that you call synchronously to score data on an as-needed basis.
 * Batch: Provides a web service that you call asynchronously to score a batch of data records.
@@ -33,7 +33,7 @@ Before you can operationalize your model, you must set up your environment.
 
 To set up the machine learning operationalization environment, you must have access to an Azure subscription with sufficient permissions to create Azure assets (e.g. Contributor or Admin access).
 
-By default, the environment configuration only supports local deployments. Requirements to run in local mode are:
+By default, the environment configuration supports only local deployments. Requirements to run in local mode are:
 
 * Azure CLI version 2.0
 * Azure Machine Learning CLI component
@@ -59,15 +59,15 @@ Additionally, you can specify the following options for a realtime service:
 * Add packages needed by the code file.
 * The runtime of the web service. Valid runtimes are spark-py, cntk-py, tensorflow-py, scikit-py. The default runtime is spark-py.
 * The input and output schema of the web service.
-* Number of nodes for the Kubernetes service in a cluster.  The default is 1.
+* Number of nodes for the Kubernetes service in a cluster (default is **1**).
 
 For a batch web service you can specify the following options:
 
-* Inputs for service to expect.
-* Outputs for service to expect.
-* Parameters for service to expect.
-* The title of service, defaults to service_name.
-* Files and directories required by the service. 
+* Inputs for service to expect
+* Outputs for service to expect
+* Parameters for service to expect
+* The title of the service (default is **service_name**)
+* Files and directories required by the service
 
 ### Consuming the web service
 
@@ -82,15 +82,15 @@ For more information on how to consume the web service, see [Consuming your oper
 ### logging
 You can troubleshoot your web service by viewing the logs. In local mode, you can inspect the Docker logs to diagnose issues with your deployment.
 
-In cluster mode, you can specify that logging in performed using Azure Application Insights.
+In cluster mode, you can specify that logging is to be performed using Azure Application Insights.
 
-For more information on Docker logs, see[Logs and troubleshooting](https://docs.docker.com/docker-for-windows/troubleshoot/) on the Docker web site.
+For more information on Docker logs, see [Logs and troubleshooting](https://docs.docker.com/docker-for-windows/troubleshoot/) on the Docker web site.
 
 For more information on logging in cluster mode, see [How to enable logging](how-to-enable-logging.md).
 
 ### Remote models, input data, and output data
 
-Creating and running a web service in cluster mode uses models and data that is stored remotely. The CLI uses the credentials stored in your environment configuration to access blobs located in Azure storage. The CLI uses the same credentials to store output in blobs in the storage account.
+Creating and running a web service in cluster mode uses remotely stored models and data. The CLI uses the credentials stored in your environment configuration to access blobs located in Azure storage. The CLI uses the same credentials to store output in blobs in the storage account.
 
 For more information on accessing remote data, see [How to use remotely stored data in a batch service call](how-to-use-remotely-stored-data-in-batch.md) and [Operationalizing Batch Processing of Machine Learning Models on Azure (Preview)](batch-processing.md).
 
