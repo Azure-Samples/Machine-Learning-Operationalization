@@ -8,5 +8,4 @@ Azure Machine Learning Operationalization is a component of the Azure CLI that e
         * [Realtime web service tutorial](samples/spark/tutorials/realtime/realtimewebservices.ipynb)
     * Python
         * [Realtime web service tutorial](samples/python/tutorials/realtime/)
-        * [Code Sample](samples/python/tutorials/Sample%20C%23%20Client%20App/CLIClientConsoleApp)
 
