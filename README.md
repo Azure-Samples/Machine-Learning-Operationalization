@@ -2,10 +2,4 @@ Operationalization is the process of publishing models and code as web services 
 
 Azure Machine Learning Operationalization is a component of the Azure CLI that enables operationalization of models that you create through using machine learning frameworks such as CNTK, SPARK, and Python machine learning platforms.
 
-## Documentation
-* Tutorials and samples: 
-    * Spark
-        * [Realtime web service tutorial](samples/spark/tutorials/realtime/realtimewebservices.ipynb)
-    * Python
-        * [Realtime web service tutorial](samples/python/tutorials/realtime/)
-
+The documentation on repo has been moved [here](https://docs.microsoft.com/en-us/azure/machine-learning/preview/deployment-setup-configuration).
